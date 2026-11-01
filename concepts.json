@@ -596,5 +596,44 @@
       "domain-3",
       "task-3.4"
     ]
+  },
+  {
+    "id": "responsible-ai-dimensions",
+    "title": "The dimensions of responsible AI",
+    "body": "AWS describes responsible AI through these dimensions:\n\n- Fairness: considering impacts on different groups of stakeholders.\n- Explainability: understanding and evaluating system outputs.\n- Privacy and security: appropriately obtaining, using and protecting data and models.\n- Safety: preventing harmful system output and misuse.\n- Controllability: having mechanisms to monitor and steer AI system behavior.\n- Veracity and robustness: achieving correct system outputs, even with unexpected or adversarial inputs.\n- Governance: incorporating best practices into the AI supply chain, including providers and deployers.\n- Transparency: enabling stakeholders to make informed choices about their engagement with an AI system.\n\nInclusivity sits close to fairness: the system and its data should serve every group of users it is meant for.\n\nRead more: https://aws.amazon.com/ai/responsible-ai/",
+    "commonMistakes": [
+      "Filing wrong answers on typos or odd phrasing under fairness: correct output on unexpected input is veracity and robustness.",
+      "Confusing transparency (informing stakeholders about the system) with explainability (understanding a given output)."
+    ],
+    "tags": [
+      "domain-4",
+      "task-4.1"
+    ]
+  },
+  {
+    "id": "human-centered-xai",
+    "title": "Human-centered design for explainable AI",
+    "body": "Explanations are built for the people who receive the decision, not only for the model's builders:\n\n- AI decision transparency: tell users when AI is involved and show the main factors behind a decision, in language they can follow, with a confidence level where it helps.\n- Guidance on trust: help users see when to rely on an output, when to verify it and when to override it.\n- User-feedback mechanisms: let users rate, report or challenge an output, and feed what they report back into improving the system.\n- Recourse: give people affected by a decision a way to contest it and reach a human reviewer.\n\nRead more: https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raiuc04-bp01.html",
+    "commonMistakes": [
+      "Treating an overall accuracy figure as an explanation of one person's decision.",
+      "Publishing model weights or code to end users and calling that explainable."
+    ],
+    "tags": [
+      "domain-4",
+      "task-4.2"
+    ]
+  },
+  {
+    "id": "model-transparency-docs",
+    "title": "AI Service Cards, open models and licenses",
+    "body": "Where to find out how a model was built and what it is for:\n\n- AWS AI Service Cards: AWS's own documentation of an AWS AI service's intended use cases and limitations, responsible AI design choices and performance best practices.\n- Amazon SageMaker Model Cards: your documentation of the models you build.\n- Open-weight models: the weights and architecture can be inspected, which helps audits, but the training data may be only partly described.\n- Licenses: models in Amazon SageMaker JumpStart come under licenses chosen by their providers (for example Apache 2.0 or Responsible AI Licenses), and some require accepting an end-user license agreement. Review the terms before you build a product on a model.\n\nRead more: https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html",
+    "commonMistakes": [
+      "Assuming publicly available weights allow any commercial use.",
+      "Looking in SageMaker Model Cards for AWS's documentation of its managed AI services."
+    ],
+    "tags": [
+      "domain-4",
+      "task-4.2"
+    ]
   }
 ]
