@@ -3013,6 +3013,644 @@
     "correctKey": "A"
   },
   {
+    "id": "aws-aif-easy-d4-13",
+    "categoryKey": "responsible-ai",
+    "conceptId": "responsible-ai-dimensions",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A support chatbot answers well-formed questions correctly. When customers make spelling mistakes or phrase a question in an unusual way, its answers often become wrong.\n\nWhich responsible AI dimension does this weakness fall under?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Fairness",
+        "explanation": "Fairness is about impacts on different groups of stakeholders; here anyone who makes a typo gets a wrong answer, whatever group they belong to."
+      },
+      {
+        "key": "B",
+        "text": "Veracity and robustness"
+      },
+      {
+        "key": "C",
+        "text": "Privacy and security",
+        "explanation": "Privacy and security covers how data and models are obtained, used and protected; misreading a typo exposes no data."
+      },
+      {
+        "key": "D",
+        "text": "Controllability",
+        "explanation": "Controllability means having mechanisms to monitor and steer system behavior; the problem here is wrong output on unexpected input."
+      }
+    ],
+    "explanation": "AWS defines veracity and robustness as achieving correct system outputs, even with unexpected or adversarial inputs. Typos and unusual phrasing are unexpected inputs, so a chatbot that only answers clean questions correctly lacks robustness. Fairness concerns differences between groups, privacy and security concerns protecting data and models, and controllability concerns monitoring and steering its behavior. Read more: https://aws.amazon.com/ai/responsible-ai/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/ai/responsible-ai/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d4-14",
+    "categoryKey": "responsible-ai",
+    "conceptId": "bias-variance",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A team trains a simple linear model to predict delivery times. It scores poorly on the training data and just as poorly on the test data.\n\nWhat is the most likely problem?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Overfitting (high variance)",
+        "explanation": "An overfit model scores well on its training data and poorly on test data; this model is poor on both."
+      },
+      {
+        "key": "B",
+        "text": "Underfitting (high bias)"
+      },
+      {
+        "key": "C",
+        "text": "Data drift",
+        "explanation": "Drift is a change in live data after deployment; poor scores on the training data itself point to the model."
+      },
+      {
+        "key": "D",
+        "text": "Data leakage",
+        "explanation": "Leakage of target information into the features makes scores look too good, not poor."
+      }
+    ],
+    "explanation": "An underfit model has high bias: it can't find a meaningful relationship between inputs and output, so it is inaccurate on both the training and the test data. Common causes are a model that is too simple, too few features or too little training. Overfitting shows the opposite pattern (good on training data, poor on test data), drift happens after deployment, and leakage inflates scores. Read more: https://aws.amazon.com/what-is/overfitting/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/overfitting/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d4-15",
+    "categoryKey": "responsible-ai",
+    "conceptId": "responsible-ai-practices",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "An airline's customer chatbot confidently tells a passenger that a bereavement refund policy exists. The airline has no such policy, and the passenger books a flight relying on the answer.\n\nWhich generative AI risk does this show?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Toxicity",
+        "explanation": "Toxic output is offensive or harmful language; this answer was polite but false."
+      },
+      {
+        "key": "B",
+        "text": "Prompt injection",
+        "explanation": "Prompt injection is crafted input that overrides the model's instructions; the passenger asked an ordinary question."
+      },
+      {
+        "key": "C",
+        "text": "Model overfitting",
+        "explanation": "Overfitting describes a model that generalizes poorly from its training data; it does not name the risk of a confident false claim to a customer."
+      },
+      {
+        "key": "D",
+        "text": "Hallucination"
+      }
+    ],
+    "explanation": "A hallucination is an incorrect or misleading output that a foundation model presents as an answer. When customers act on it, the business faces legal claims and loss of customer trust. Grounding answers in company documents (RAG), contextual grounding checks and human review reduce the risk. Toxicity is harmful language, prompt injection is a malicious input and overfitting is a training problem. Read more: https://aws.amazon.com/what-is/ai-hallucinations/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/ai-hallucinations/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d4-16",
+    "categoryKey": "responsible-ai",
+    "conceptId": "bedrock-guardrails",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A clinic's assistant built on Amazon Bedrock sometimes repeats patients' phone numbers and email addresses in its answers. The clinic wants those values replaced with placeholders while the rest of each answer is kept.\n\nWhich guardrail policy should it configure?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A sensitive information filter set to mask"
+      },
+      {
+        "key": "B",
+        "text": "A denied topic for personal contact details",
+        "explanation": "A denied topic blocks the whole response on a subject; it does not replace single values and keep the rest of the answer."
+      },
+      {
+        "key": "C",
+        "text": "A content filter for the misconduct category",
+        "explanation": "Content filters target harmful categories such as hate, violence and misconduct, not personal data such as phone numbers."
+      },
+      {
+        "key": "D",
+        "text": "A word filter listing the patients' names",
+        "explanation": "A word filter blocks exact words or phrases; it cannot recognize every phone number or email address."
+      }
+    ],
+    "explanation": "Sensitive information filters in Amazon Bedrock Guardrails detect PII, such as phone numbers and email addresses, in prompts and responses, using built-in PII types or custom regular expressions, and either block the message or mask the values. Masking keeps the useful part of the answer. A denied topic blocks a whole subject, content filters target harmful content and word filters match fixed words. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-sensitive-filters.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d4-17",
+    "categoryKey": "responsible-ai",
+    "conceptId": "model-transparency-docs",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A retailer plans to use Amazon Rekognition face matching. Before it starts, its review board wants AWS's own description of the feature's intended use cases, limitations and responsible AI design choices.\n\nWhere should the board look?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker Model Cards",
+        "explanation": "Model Cards document models that you build and govern in your own account, not the AWS managed AI services."
+      },
+      {
+        "key": "B",
+        "text": "AWS Artifact",
+        "explanation": "Artifact provides AWS compliance reports such as SOC and ISO certifications, not the intended uses and limits of an AI service."
+      },
+      {
+        "key": "C",
+        "text": "AWS AI Service Cards"
+      },
+      {
+        "key": "D",
+        "text": "AWS Trusted Advisor",
+        "explanation": "Trusted Advisor checks your account against best practices for cost, security and service limits; it says nothing about a model's intended use."
+      }
+    ],
+    "explanation": "AWS AI Service Cards give a single place to find the intended use cases and limitations, responsible AI design choices and performance best practices for AWS AI services, including a card for Rekognition face matching. SageMaker Model Cards are for documenting your own models, Artifact holds compliance reports and Trusted Advisor checks account configuration. Read more: https://aws.amazon.com/ai/responsible-ai/resources/",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/ai/responsible-ai/rekognition-face-matching/overview.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.2"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d4-18",
+    "categoryKey": "responsible-ai",
+    "conceptId": "human-centered-xai",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company adds a generative AI assistant to its HR portal. Following human-centered design, it wants employees to be able to tell the team when an answer is wrong or unhelpful, so the assistant improves.\n\nWhich feature meets this goal?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A rating and comment control on each answer, reviewed by the team"
+      },
+      {
+        "key": "B",
+        "text": "A higher temperature setting so that answers vary more",
+        "explanation": "Temperature changes how varied the answers are; it gives employees no way to report a bad answer."
+      },
+      {
+        "key": "C",
+        "text": "A monthly accuracy report sent to the HR leadership team",
+        "explanation": "A report to leaders informs management but gives employees no channel to flag a specific answer."
+      },
+      {
+        "key": "D",
+        "text": "A denied topic in Amazon Bedrock Guardrails for salary questions",
+        "explanation": "A denied topic blocks a subject; it does not collect users' views on the answers they get."
+      }
+    ],
+    "explanation": "User-feedback mechanisms are a principle of human-centered design for AI: let users rate, report or challenge outputs, and use what they report to refine the system over time. A rating and comment control that the team reviews does exactly that. Temperature tunes randomness, a leadership report has no user channel and a denied topic restricts content. Read more: https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raisp02-bp06.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raisp02-bp06.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.2"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d4-19",
+    "categoryKey": "responsible-ai",
+    "conceptId": "bias-variance",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A bank is training a speech recognition model for its phone banking line. Its callers speak with many regional accents, and many of them are older adults.\n\nWhich characteristic of the training data matters most for serving all these callers well?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The largest possible volume of recordings from the head-office region",
+        "explanation": "Volume from one region leaves out the other accents, so the model still fails many callers."
+      },
+      {
+        "key": "B",
+        "text": "Audio recorded in quiet studios for the clearest possible sound",
+        "explanation": "Studio audio is unlike real phone calls and says nothing about which speakers are represented."
+      },
+      {
+        "key": "C",
+        "text": "Diverse, inclusive coverage of accents and age groups"
+      },
+      {
+        "key": "D",
+        "text": "Recordings from the most recent three months of calls",
+        "explanation": "Recent data helps with drift, but recent calls can still underrepresent some accents and ages."
+      }
+    ],
+    "explanation": "A model performs worst for groups that are missing or underrepresented in its training data. Diverse and inclusive data that covers the accents and age groups of real callers lets the model serve all of them. A large volume from one region, clean studio audio or recent data can each still leave groups out, which leads to biased results for those callers. Read more: https://aws.amazon.com/what-is/overfitting/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/overfitting/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d4-20",
+    "categoryKey": "responsible-ai",
+    "conceptId": "responsible-ai-tools",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A team trained an image classifier on photos labeled by a contracted workforce. Accuracy is uneven, and a spot check finds that near-identical photos often carry different labels.\n\nWhat should the team do first to improve trust in the training data?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Run SageMaker Clarify post-training bias metrics on the predictions",
+        "explanation": "Post-training bias metrics compare outcomes across groups; they do not show whether the labels themselves are wrong."
+      },
+      {
+        "key": "B",
+        "text": "Train for more epochs so that the model averages out the label noise",
+        "explanation": "More training on inconsistent labels teaches the model the noise; it does not fix the labels."
+      },
+      {
+        "key": "C",
+        "text": "Have several annotators label each photo and audit where they disagree"
+      },
+      {
+        "key": "D",
+        "text": "Add a contextual grounding check to filter the classifier's outputs",
+        "explanation": "Contextual grounding checks compare generated text with a source document; they do not apply to image labels."
+      }
+    ],
+    "explanation": "Inconsistent labels point to a label-quality problem, so the fix starts with the data. Having two or more workers annotate each item and consolidating their answers gives a more accurate label, and auditing the items where workers disagree finds unclear guidelines and errors. Bias metrics, longer training and grounding checks do not repair wrong labels. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d4-21",
+    "categoryKey": "responsible-ai",
+    "conceptId": "responsible-ai-tools",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "Before launch, a team wants to measure how likely a candidate LLM is to produce stereotyped statements about groups defined by gender, race or religion, using a standard prompt dataset.\n\nWhich option fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Bedrock Guardrails content filters on the live application",
+        "explanation": "Content filters block harmful content at run time; they do not measure a model's tendency toward stereotypes before launch."
+      },
+      {
+        "key": "B",
+        "text": "SageMaker Clarify pre-training bias metrics on the tabular training data",
+        "explanation": "Pre-training bias metrics analyze a labeled tabular dataset; they do not test the text a language model generates."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Comprehend toxicity detection on a few hand-written prompts",
+        "explanation": "Toxicity detection flags offensive text, and a few hand-written prompts are no standard benchmark for stereotyping."
+      },
+      {
+        "key": "D",
+        "text": "A SageMaker Clarify foundation model evaluation for prompt stereotyping"
+      }
+    ],
+    "explanation": "SageMaker Clarify foundation model evaluations (FMEval) include a prompt stereotyping task that measures the probability that a model encodes biases about race, gender, religion, age and other attributes in its responses, using a built-in dataset such as CrowS-Pairs. Guardrails act at run time, pre-training bias metrics analyze tabular training data and toxicity detection measures offensive language rather than stereotyping. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d4-22",
+    "categoryKey": "responsible-ai",
+    "conceptId": "transparency-explainability",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A social platform uses a model to detect abusive posts. Regulators ask for transparency, but the trust team worries that publishing the exact blocked phrases and score thresholds would help abusers evade the model.\n\nWhich approach best balances transparency and safety?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Publish its intended use, limitations and evaluation results, and keep filter settings internal"
+      },
+      {
+        "key": "B",
+        "text": "Publish the full phrase list and thresholds so that anyone can audit each decision",
+        "explanation": "Full disclosure of filter settings maximizes transparency but hands abusers a guide to evading the model."
+      },
+      {
+        "key": "C",
+        "text": "Keep all model details confidential until a regulator requests a formal audit",
+        "explanation": "Waiting for an audit fails the transparency request; describing use and limits gives evaders little help."
+      },
+      {
+        "key": "D",
+        "text": "Replace the model with a keyword list, which is transparent by design",
+        "explanation": "A keyword list is easy to explain but easier to evade and less accurate, so safety drops."
+      }
+    ],
+    "explanation": "Transparency and safety can pull in opposite directions: the more detail is published about how a safety model works, the easier it is to bypass. Documenting intended use, limitations, risk and evaluation results, as a SageMaker model card does, informs regulators and users without publishing the exact settings. Full disclosure helps evaders, secrecy fails the request and a keyword list trades away safety. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.2"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-hard-d4-23",
+    "categoryKey": "responsible-ai",
+    "conceptId": "human-centered-xai",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A lender uses an ML model to recommend loan decisions. It wants the screens that applicants see to follow human-centered design for explainable AI.\n\nWhich TWO features should it add? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "The model's overall test accuracy on every decision screen",
+        "explanation": "One overall accuracy figure says nothing about why this applicant got this decision."
+      },
+      {
+        "key": "B",
+        "text": "The main factors behind each decision, in plain language"
+      },
+      {
+        "key": "C",
+        "text": "A download of the model's weights and training code",
+        "explanation": "Weights and code are unreadable to most applicants and do not explain an individual decision."
+      },
+      {
+        "key": "D",
+        "text": "A way to challenge a decision and request a human review"
+      },
+      {
+        "key": "E",
+        "text": "A quarterly report that explains decisions to auditors",
+        "explanation": "An audit report supports oversight but gives the applicant no explanation when the decision is made."
+      }
+    ],
+    "explanation": "Human-centered explainable AI puts the explanation in front of the person affected: show the main factors behind the decision in terms they can follow (AI decision transparency), and let them understand, challenge and give feedback on the output, with a route to a human reviewer. Overall accuracy, raw weights and auditor reports serve other audiences and leave the applicant without a reason or recourse. Read more: https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raiuc04-bp01.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raiuc04-bp01.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.2"
+    ],
+    "correctKeys": [
+      "B",
+      "D"
+    ]
+  },
+  {
+    "id": "aws-aif-hard-d4-24",
+    "categoryKey": "responsible-ai",
+    "conceptId": "model-transparency-docs",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company's auditors must be able to inspect a model's architecture and weights, and the company plans to sell a product built on the model. It is considering a publicly available model from Amazon SageMaker JumpStart.\n\nWhich statement is accurate?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Because the weights are public, the model can be used commercially without conditions",
+        "explanation": "Public weights do not waive the license; licenses such as the Responsible AI Licenses attach conditions to use."
+      },
+      {
+        "key": "B",
+        "text": "The weights can be inspected, but the team must check that the model's license allows its use"
+      },
+      {
+        "key": "C",
+        "text": "SageMaker JumpStart publishes the full training dataset alongside each model it offers",
+        "explanation": "JumpStart hosts models from many providers; it does not publish their training datasets."
+      },
+      {
+        "key": "D",
+        "text": "Inspecting the weights makes each individual prediction explainable without other tools",
+        "explanation": "Weights alone do not explain an individual output; post-hoc methods such as SHAP are still needed."
+      }
+    ],
+    "explanation": "Open-weight models support transparency because their architecture and weights can be examined. JumpStart models come from many providers under licenses those providers choose, such as Apache 2.0 or Responsible AI Licenses, and some require accepting a EULA; you are responsible for reviewing the terms for your use case. Public weights don't mean unconditional use, training data isn't published with each model and weights don't explain single predictions. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-veryhard-d4-25",
+    "categoryKey": "responsible-ai",
+    "conceptId": "bedrock-guardrails",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "An HR assistant in Amazon Bedrock answers questions about parental leave. Each answer must be checked against the company's written leave rules, and auditors want a logic-based explanation of why an answer is valid or invalid that cites the rules it rests on.\n\nWhich guardrail policy fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A contextual grounding check against the retrieved policy text",
+        "explanation": "Grounding checks score how well a response matches its source and the query; they return scores, not a logical proof that cites rules."
+      },
+      {
+        "key": "B",
+        "text": "A denied topic for leave questions outside the written policy",
+        "explanation": "A denied topic blocks a subject; it does not verify whether an answer on an allowed subject is correct."
+      },
+      {
+        "key": "C",
+        "text": "Automated Reasoning checks with a policy built from the rules"
+      },
+      {
+        "key": "D",
+        "text": "A content filter with the misconduct category set to high",
+        "explanation": "Content filters block harmful categories; they cannot judge whether a leave answer follows the rules."
+      }
+    ],
+    "explanation": "Automated Reasoning checks in Amazon Bedrock Guardrails use formal logic to validate responses against a policy built from your rules. They detect statements that contradict the rules, flag unstated assumptions and give verifiable explanations that cite the rules and values involved. A contextual grounding check is the near miss: it scores grounding and relevance against a threshold but gives no rule-based proof. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-automated-reasoning-checks.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-automated-reasoning-checks.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-veryhard-d4-26",
+    "categoryKey": "responsible-ai",
+    "conceptId": "bias-variance",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A gradient-boosted model reaches 98% accuracy on its training data but 74% on validation data drawn from the same source. The team wants to close the gap.\n\nWhich TWO actions are most likely to help? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Increase regularization to penalize features with little impact"
+      },
+      {
+        "key": "B",
+        "text": "Add many more engineered feature combinations to the inputs",
+        "explanation": "More feature combinations make the model more flexible, which tends to widen an overfitting gap."
+      },
+      {
+        "key": "C",
+        "text": "Train for more boosting rounds on the same training data",
+        "explanation": "Extra training helps an underfit model; here it lets the model memorize the training set further."
+      },
+      {
+        "key": "D",
+        "text": "Train on more data that covers a wider range of inputs"
+      },
+      {
+        "key": "E",
+        "text": "Switch to a larger model with more parameters",
+        "explanation": "A larger model has more capacity to memorize noise, which raises variance rather than lowering it."
+      }
+    ],
+    "explanation": "A large gap between training and validation accuracy is overfitting, or high variance. Reducing the model's flexibility with more regularization or fewer feature combinations, and training on more varied data, help it generalize. More training rounds are the remedy for underfitting, and more features or a bigger model add capacity, which tends to make overfitting worse. Read more: https://aws.amazon.com/what-is/overfitting/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/overfitting/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKeys": [
+      "A",
+      "D"
+    ]
+  },
+  {
+    "id": "aws-aif-veryhard-d4-27",
+    "categoryKey": "responsible-ai",
+    "conceptId": "bedrock-guardrails",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A company serves an open-weight LLM on its own Amazon SageMaker AI endpoint instead of through Amazon Bedrock. It wants the same denied topics and PII masking that its Bedrock-based apps use, without maintaining a second set of rules.\n\nWhat should it do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Attach the model to a Bedrock knowledge base so that the guardrail applies",
+        "explanation": "Knowledge bases store documents for retrieval; they do not host a model or apply a guardrail to its output."
+      },
+      {
+        "key": "B",
+        "text": "Use Amazon Comprehend PII detection and rewrite the topic rules in code",
+        "explanation": "Comprehend can detect PII, but rewriting the topic rules creates the second rule set the team wants to avoid."
+      },
+      {
+        "key": "C",
+        "text": "Enable SageMaker Model Monitor data quality checks on the endpoint",
+        "explanation": "Model Monitor tracks data and model quality over time; it does not block topics or mask PII in each response."
+      },
+      {
+        "key": "D",
+        "text": "Call the ApplyGuardrail API with the existing guardrail on inputs and outputs"
+      }
+    ],
+    "explanation": "The ApplyGuardrail API assesses any text against a pre-configured guardrail without invoking a Bedrock foundation model, so the team can check user inputs and the self-hosted model's outputs with the same denied topics, content filters and PII rules. A knowledge base doesn't host models, a Comprehend rewrite duplicates the rules and Model Monitor watches quality drift rather than filtering responses. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use-independent-api.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-veryhard-d4-28",
+    "categoryKey": "responsible-ai",
+    "conceptId": "transparency-explainability",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A hospital is choosing a model to score patients for triage. Clinicians and the regulator must be able to see exactly how each score is computed. A gradient-boosted model reaches 0.91 AUC; a logistic regression reaches 0.89, which meets the release criteria.\n\nWhich choice follows responsible AI guidance?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The logistic regression, because it meets the criteria and is interpretable"
+      },
+      {
+        "key": "B",
+        "text": "The boosted model, because SHAP values make it as interpretable as a linear model",
+        "explanation": "SHAP gives post-hoc estimates of feature influence; it does not make the model's full logic inspectable."
+      },
+      {
+        "key": "C",
+        "text": "The boosted model, with a model card that replaces per-score explanations",
+        "explanation": "A model card documents the model as a whole; it does not show clinicians how each score was computed."
+      },
+      {
+        "key": "D",
+        "text": "An average of the boosted and logistic regression scores, to keep both strengths",
+        "explanation": "Averaging the two gives a system harder to interpret than either model, which works against the requirement."
+      }
+    ],
+    "explanation": "When stakeholders need to understand exactly how decisions are made, AWS guidance is to choose an interpretable model such as a linear model or decision tree, and to weigh its accuracy cost against the explanation benefit. Here the logistic regression meets the release criteria, so the small AUC gain doesn't justify losing interpretability. SHAP explains a black box after the fact, a model card is not a per-score explanation and an ensemble is less interpretable. Read more: https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raisp02-bp07.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raisp02-bp07.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-4",
+      "task-4.2"
+    ],
+    "correctKey": "A"
+  },
+  {
     "id": "aws-aif-easy-d5-1",
     "categoryKey": "security-governance",
     "conceptId": "shared-responsibility-ai",
