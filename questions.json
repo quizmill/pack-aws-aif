@@ -4126,6 +4126,637 @@
     "correctKey": "A"
   },
   {
+    "id": "aws-aif-easy-d5-13",
+    "categoryKey": "security-governance",
+    "conceptId": "governance-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A team serves a model from a container image stored in Amazon ECR and runs pre-processing code in AWS Lambda functions. It wants both scanned continually for known software vulnerabilities.\n\nWhich AWS service should it use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Inspector"
+      },
+      {
+        "key": "B",
+        "text": "Amazon GuardDuty",
+        "explanation": "GuardDuty detects threats such as malicious activity and compromised credentials in logs; it does not scan images and code for software vulnerabilities."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Macie",
+        "explanation": "Macie discovers sensitive data such as PII in Amazon S3, not software vulnerabilities in images or functions."
+      },
+      {
+        "key": "D",
+        "text": "AWS Trusted Advisor",
+        "explanation": "Trusted Advisor checks the account against best practices; it does not scan container images or function code for vulnerabilities."
+      }
+    ],
+    "explanation": "Amazon Inspector is a vulnerability management service. It automatically discovers Amazon EC2 instances, container images in Amazon ECR and Lambda functions, and continually scans them for software vulnerabilities and unintended network exposure. GuardDuty detects active threats, Macie finds sensitive data, and Trusted Advisor gives account-wide best-practice checks. Read more: https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.2"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d5-14",
+    "categoryKey": "security-governance",
+    "conceptId": "governance-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A small company new to AWS runs its AI workloads in one account. It wants recommendations based on AWS best practices that point out ways to save money, improve availability and performance, and close security gaps, such as S3 buckets open to the public.\n\nWhich service provides this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "AWS Artifact",
+        "explanation": "Artifact provides AWS's own compliance reports and agreements, not recommendations about the company's account."
+      },
+      {
+        "key": "B",
+        "text": "AWS CloudTrail",
+        "explanation": "CloudTrail records API calls for auditing; it does not check the account against best practices."
+      },
+      {
+        "key": "C",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "key": "D",
+        "text": "Amazon Inspector",
+        "explanation": "Inspector scans workloads for software vulnerabilities; it does not recommend cost or availability improvements."
+      }
+    ],
+    "explanation": "AWS Trusted Advisor inspects an AWS environment and makes recommendations when there are opportunities to save money, improve availability and performance, or close security gaps. Artifact holds AWS's own compliance reports, CloudTrail records API activity, and Inspector scans for vulnerabilities. Read more: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.2"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d5-15",
+    "categoryKey": "security-governance",
+    "conceptId": "ai-security-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A security team wants to be alerted if the AWS credentials used by its AI application are compromised, for example when they are suddenly used from a known malicious IP address.\n\nWhich AWS service detects this kind of threat?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Macie",
+        "explanation": "Macie discovers and protects sensitive data in Amazon S3; it does not analyze how credentials are used."
+      },
+      {
+        "key": "B",
+        "text": "AWS Config",
+        "explanation": "Config records resource configurations and evaluates them against rules; it does not use threat intelligence to spot malicious activity."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Inspector",
+        "explanation": "Inspector scans workloads for software vulnerabilities, not for suspicious use of credentials."
+      },
+      {
+        "key": "D",
+        "text": "Amazon GuardDuty"
+      }
+    ],
+    "explanation": "Amazon GuardDuty is a threat detection service. It continuously analyzes AWS data sources and logs, using threat intelligence such as lists of malicious IP addresses together with ML models, to find suspicious activity, including compromised and exfiltrated AWS credentials. Macie finds sensitive data, Config tracks configuration compliance, and Inspector finds vulnerabilities. Read more: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d5-16",
+    "categoryKey": "security-governance",
+    "conceptId": "data-governance",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company's data scientists lose time hunting for training datasets spread across Amazon S3 buckets and databases. The company wants one central index of each dataset's location and schema, filled in automatically by scanning the sources.\n\nWhich option fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker Model Cards",
+        "explanation": "Model Cards document a model's intended use, risk rating and evaluation; they do not index datasets across data stores."
+      },
+      {
+        "key": "B",
+        "text": "AWS Glue Data Catalog with crawlers"
+      },
+      {
+        "key": "C",
+        "text": "Amazon SageMaker ML Lineage Tracking",
+        "explanation": "Lineage Tracking links the data, steps and jobs that produced a model; it is not an index of every dataset's location and schema."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Macie sensitive data discovery",
+        "explanation": "Macie scans Amazon S3 for sensitive data such as PII; it does not build a catalog of schemas across data stores."
+      }
+    ],
+    "explanation": "The AWS Glue Data Catalog is a central repository of metadata about an organization's datasets: an index to their location, schema and runtime metrics. Crawlers scan data sources and fill in the catalog automatically. Cataloging is part of documenting where AI training data comes from. Model Cards describe models, Lineage Tracking links artifacts to a model, and Macie finds PII. Read more: https://docs.aws.amazon.com/glue/latest/dg/catalog-and-crawler.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/glue/latest/dg/catalog-and-crawler.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d5-17",
+    "categoryKey": "security-governance",
+    "conceptId": "ai-security-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A bank builds a knowledge base in Amazon Bedrock. Its policy requires that the bank controls the encryption key for the stored data, can audit each use of the key, and can disable the key to cut off access.\n\nWhat should the bank use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A customer managed key in AWS KMS"
+      },
+      {
+        "key": "B",
+        "text": "The default AWS owned key that Bedrock uses",
+        "explanation": "An AWS owned key is managed by AWS in its own accounts, so the bank cannot audit its use or disable it."
+      },
+      {
+        "key": "C",
+        "text": "AWS Secrets Manager with automatic rotation",
+        "explanation": "Secrets Manager stores and rotates secrets such as database passwords; it is not the key that encrypts knowledge base data."
+      },
+      {
+        "key": "D",
+        "text": "A certificate from AWS Certificate Manager",
+        "explanation": "Certificate Manager issues TLS certificates that protect data in transit, not keys that encrypt stored data."
+      }
+    ],
+    "explanation": "By default, Amazon Bedrock encrypts knowledge base resources with an AWS owned key. Choosing a customer managed key in AWS KMS instead gives the bank control of the key policy, a CloudTrail record of each use of the key, and the ability to disable the key. Secrets Manager holds credentials, and Certificate Manager covers TLS in transit. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-kb.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-kb.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d5-18",
+    "categoryKey": "security-governance",
+    "conceptId": "governance-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "An operations team runs an application on Amazon Bedrock. It wants a graph of how many model requests are being throttled, and an alarm when throttling rises above a threshold.\n\nWhich service should it use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "AWS CloudTrail event history",
+        "explanation": "CloudTrail records who made which API call, for auditing; it does not graph throttling counts or raise alarms on them."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Bedrock model invocation logging",
+        "explanation": "Invocation logging stores request and response data for each call; it is a log, not a metric with alarms."
+      },
+      {
+        "key": "C",
+        "text": "Amazon CloudWatch metrics and alarms"
+      },
+      {
+        "key": "D",
+        "text": "AWS Config rules and conformance packs",
+        "explanation": "Config tracks changes to resource configurations, not counts of runtime requests."
+      }
+    ],
+    "explanation": "Amazon Bedrock publishes runtime metrics such as Invocations, InvocationLatency and InvocationThrottles to Amazon CloudWatch. The team can graph InvocationThrottles and set a CloudWatch alarm on a threshold. CloudTrail and invocation logging are records of individual calls, and Config tracks configuration. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/monitoring-runtime-metrics.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/monitoring-runtime-metrics.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.2"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d5-19",
+    "categoryKey": "security-governance",
+    "conceptId": "ai-security-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "An AWS Lambda function calls one foundation model in Amazon Bedrock.\n\nWhich TWO choices follow IAM security best practices? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Create an IAM user for the function and rotate its access keys every 90 days",
+        "explanation": "Rotated access keys are still long-term credentials, which IAM best practice says workloads should replace with roles."
+      },
+      {
+        "key": "B",
+        "text": "Give the function an execution role so that it uses temporary credentials"
+      },
+      {
+        "key": "C",
+        "text": "Grant bedrock:* on all resources so that new models work without changes",
+        "explanation": "Every Bedrock action on every resource breaks least privilege; the function only needs to invoke one model."
+      },
+      {
+        "key": "D",
+        "text": "Store an IAM user's access key in AWS Secrets Manager and load it at start-up",
+        "explanation": "Secrets Manager protects the key, but it is still a long-term credential that an execution role makes unnecessary."
+      },
+      {
+        "key": "E",
+        "text": "Allow only bedrock:InvokeModel on the ARN of the model it uses"
+      }
+    ],
+    "explanation": "IAM best practice is that workloads use temporary credentials through IAM roles, and that permissions follow least privilege. A Lambda execution role supplies short-lived credentials automatically, and a policy that allows only bedrock:InvokeModel on that model's ARN grants just what the function needs. Rotated or vaulted access keys are still long-term credentials, and bedrock:* on every resource grants far more than needed. Read more: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKeys": [
+      "B",
+      "E"
+    ]
+  },
+  {
+    "id": "aws-aif-easy-d5-20",
+    "categoryKey": "security-governance",
+    "conceptId": "grounding-citations",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company builds an internal assistant on Amazon Bedrock Knowledge Bases. Employees must be able to check each answer against the document it came from.\n\nWhich capability supports this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A higher temperature for the model",
+        "explanation": "Temperature changes how varied the wording is; it does not link answers to their sources."
+      },
+      {
+        "key": "B",
+        "text": "Model invocation logging to Amazon S3",
+        "explanation": "Invocation logging keeps prompts and responses for audit, but it does not show employees which document supports an answer."
+      },
+      {
+        "key": "C",
+        "text": "A guardrail word filter on responses",
+        "explanation": "Word filters block listed words and phrases; they do not attach sources to answers."
+      },
+      {
+        "key": "D",
+        "text": "Source citations in each response"
+      }
+    ],
+    "explanation": "When an application queries a knowledge base with the RetrieveAndGenerate API, the response comes back with citations to the original source data. Users can open the cited source to verify the answer, which is what source citation in a RAG system is for. Temperature, invocation logging and word filters do nothing to tie an answer to its source. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve-generate.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve-generate.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d5-21",
+    "categoryKey": "security-governance",
+    "conceptId": "agent-security",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A refund agent runs on Amazon Bedrock AgentCore and calls a refund tool through AgentCore Gateway. Refunds above $500 must be allowed only when the user has a manager role. The rule must be enforced deterministically, outside the agent's code, so that a manipulated prompt cannot get around it.\n\nWhat should the team use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A system prompt instruction that lists the refund limits",
+        "explanation": "Prompt instructions are followed probabilistically and can be overridden by prompt injection, so they are not a deterministic control."
+      },
+      {
+        "key": "B",
+        "text": "Policy in AgentCore attached to the gateway"
+      },
+      {
+        "key": "C",
+        "text": "An Amazon Bedrock Guardrails denied topic for refunds",
+        "explanation": "A denied topic blocks a subject in text for every user; it cannot allow a tool call based on the amount and the user's role."
+      },
+      {
+        "key": "D",
+        "text": "AgentCore Identity with OAuth for the refund API",
+        "explanation": "AgentCore Identity manages agent identities and credentials for calling services; it does not check each call's parameters against business rules."
+      }
+    ],
+    "explanation": "Policy in AgentCore intercepts agent traffic through AgentCore Gateway and evaluates each tool call against deterministic policies, written in Cedar or in natural language, before allowing it. Policies can use the user's identity and the tool's input parameters, such as the refund amount, and they sit outside the agent's code, so prompt manipulation cannot bypass them. A system prompt is not deterministic, a denied topic cannot weigh amount and role, and Identity supplies credentials rather than rules. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d5-22",
+    "categoryKey": "security-governance",
+    "conceptId": "ai-security-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company lets its analysts use Amazon Bedrock. The security team has approved two foundation models, and analysts must be unable to invoke any other model.\n\nWhich control prevents the use of unapproved models?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An AWS Config rule that flags calls to other models",
+        "explanation": "AWS Config evaluates resource configurations; it does not block API calls, so analysts could still invoke other models."
+      },
+      {
+        "key": "B",
+        "text": "A guardrail with denied topics for the other models",
+        "explanation": "Guardrails filter the content of prompts and responses; they cannot stop a user from invoking a particular model."
+      },
+      {
+        "key": "C",
+        "text": "An IAM policy that allows invoking just the two model ARNs"
+      },
+      {
+        "key": "D",
+        "text": "An AWS CloudTrail alert on calls to other models",
+        "explanation": "CloudTrail records calls after they happen; an alert detects the use of other models but does not prevent it."
+      }
+    ],
+    "explanation": "IAM identity-based policies decide which Amazon Bedrock actions a principal can perform on which resources. Allowing the invoke actions only on the two approved models' ARNs leaves every other model implicitly denied, a preventive least-privilege control. Config and CloudTrail detect after the fact, and guardrails act on content rather than on which model is called. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_id-based-policy-examples.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_id-based-policy-examples.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d5-23",
+    "categoryKey": "security-governance",
+    "conceptId": "data-governance",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company fine-tunes models on raw customer call transcripts stored in Amazon S3. Its data retention policy says each transcript must be deleted 90 days after it is stored, without anyone having to remember to do it.\n\nWhich option meets the policy?",
+    "options": [
+      {
+        "key": "A",
+        "text": "An S3 Lifecycle rule with a 90-day expiration action"
+      },
+      {
+        "key": "B",
+        "text": "S3 Object Lock in compliance mode for 90 days",
+        "explanation": "Object Lock stops objects from being deleted during the retention period; it does not delete them when the period ends."
+      },
+      {
+        "key": "C",
+        "text": "S3 Intelligent-Tiering on the transcripts bucket",
+        "explanation": "Intelligent-Tiering moves objects between access tiers to save cost; it keeps them rather than deleting them."
+      },
+      {
+        "key": "D",
+        "text": "S3 Versioning with MFA delete turned on",
+        "explanation": "Versioning keeps older copies and MFA delete makes deletion harder, which works against a deletion deadline."
+      }
+    ],
+    "explanation": "An S3 Lifecycle configuration is a set of rules that Amazon S3 applies to a group of objects. An expiration action makes S3 delete objects on the company's behalf a set number of days after they are created, which enforces a retention limit automatically. Object Lock and Versioning keep data longer, and Intelligent-Tiering only changes storage tiers. Read more: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.2"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-hard-d5-24",
+    "categoryKey": "security-governance",
+    "conceptId": "secure-data-engineering",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A retailer and a bank want to analyze their shared customers to build a better offers model. Neither company may hand its raw customer records to the other, and the retailer must be unable to work out facts about any single customer by comparing query results.\n\nWhich option fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Macie scans of both companies' S3 buckets",
+        "explanation": "Macie finds sensitive data in Amazon S3; it does not let two companies analyze data together without sharing it."
+      },
+      {
+        "key": "B",
+        "text": "A guardrail sensitive information filter on queries",
+        "explanation": "Guardrails filter model prompts and responses; they do not protect individuals in joint analytics queries."
+      },
+      {
+        "key": "C",
+        "text": "Cross-account S3 access with AWS KMS encryption",
+        "explanation": "Cross-account access hands over the raw records; encryption protects data from outsiders, not from the other company."
+      },
+      {
+        "key": "D",
+        "text": "AWS Clean Rooms with differential privacy turned on"
+      }
+    ],
+    "explanation": "AWS Clean Rooms lets companies analyze combined data without sharing their raw records. With differential privacy turned on, Clean Rooms adds a calibrated amount of noise to query results, so a party cannot infer an individual's data by adding or removing records and comparing results. This is a privacy-enhancing technology. Macie and guardrails solve different problems, and cross-account access shares the data outright. Read more: https://docs.aws.amazon.com/clean-rooms/latest/userguide/differential-privacy.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/clean-rooms/latest/userguide/differential-privacy.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d5-25",
+    "categoryKey": "security-governance",
+    "conceptId": "secure-data-engineering",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "Before each training run, a data pipeline must test the incoming training data against rules, such as at most 2% missing values in the label column and ages between 18 and 100, and stop the run when a rule fails.\n\nWhich AWS feature fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker Model Monitor on the endpoint",
+        "explanation": "Model Monitor watches data sent to a deployed endpoint after training, not the data entering a training run."
+      },
+      {
+        "key": "B",
+        "text": "AWS Glue Data Quality rules written in DQDL"
+      },
+      {
+        "key": "C",
+        "text": "AWS Glue crawlers that update the Data Catalog",
+        "explanation": "Crawlers record where data lives and its schema; they do not test values against quality rules."
+      },
+      {
+        "key": "D",
+        "text": "An Amazon SageMaker Clarify pre-training bias report",
+        "explanation": "Clarify measures bias across groups; it does not enforce rules such as missing-value limits or value ranges."
+      }
+    ],
+    "explanation": "AWS Glue Data Quality measures and monitors data quality using rules written in Data Quality Definition Language (DQDL), such as completeness and value ranges, and a pipeline can act on the results. Assessing data quality before training is part of secure data engineering. Model Monitor works on a live endpoint, crawlers catalog schemas, and Clarify reports bias. Read more: https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d5-26",
+    "categoryKey": "security-governance",
+    "conceptId": "secure-data-engineering",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company keeps documents from every department in one Amazon Bedrock knowledge base. Answers drawn from HR documents must be limited to HR staff. The application already knows each user's department when it sends a query.\n\nWhat should the team do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add a guardrail denied topic for HR matters",
+        "explanation": "A denied topic blocks HR subjects for everyone, including the HR staff who should get those answers."
+      },
+      {
+        "key": "B",
+        "text": "Tell the model in the system prompt to hide HR content",
+        "explanation": "A prompt instruction can be manipulated and still lets HR chunks reach the model, so it is no access control."
+      },
+      {
+        "key": "C",
+        "text": "Attach group metadata to each file and filter retrieval on it"
+      },
+      {
+        "key": "D",
+        "text": "Turn on a contextual grounding check for responses",
+        "explanation": "Grounding checks test whether an answer is supported by its sources and relevant, not whether the user may see them."
+      }
+    ],
+    "explanation": "Knowledge base data sources can carry metadata attributes for each document, and each query can include a metadata filter. Tagging documents with a department attribute and filtering on the user's department means HR chunks are never retrieved for other users, so they never reach the model. A denied topic is too broad, a prompt instruction can be bypassed, and grounding checks are about accuracy rather than access. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-veryhard-d5-27",
+    "categoryKey": "security-governance",
+    "conceptId": "genai-scoping-matrix",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A company subscribes to a third-party CRM under an enterprise contract. The CRM has a built-in generative AI feature that drafts sales emails. The vendor fine-tunes its own model on data from many customers; the company writes no code and trains nothing itself.\n\nWhere does the company's use fall in the Generative AI Security Scoping Matrix?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Scope 1: Consumer app",
+        "explanation": "Scope 1 covers public services used under general terms of service; this company has an enterprise agreement with the vendor."
+      },
+      {
+        "key": "B",
+        "text": "Scope 2: Enterprise app"
+      },
+      {
+        "key": "C",
+        "text": "Scope 3: Pre-trained models",
+        "explanation": "Scope 3 is when the company builds its own application on an existing foundation model, and this company builds nothing."
+      },
+      {
+        "key": "D",
+        "text": "Scope 4: Fine-tuned models",
+        "explanation": "Scope 4 is when the company fine-tunes a model with its own data; the vendor's fine-tuning does not move the company's use into Scope 4."
+      }
+    ],
+    "explanation": "The scoping matrix classifies a use by what the organization itself builds and owns. Using a third-party enterprise application with generative AI features built in, under a business relationship with the vendor, is Scope 2. How the vendor built its model does not change the customer's scope: it would be Scope 4 if the company fine-tuned a model itself, and Scope 1 if it used a public consumer service. Read more: https://aws.amazon.com/ai/security/generative-ai-scoping-matrix/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/ai/security/generative-ai-scoping-matrix/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-veryhard-d5-28",
+    "categoryKey": "security-governance",
+    "conceptId": "governance-services",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "An internal audit team wants to assess, on an ongoing basis, whether the company's own use of Amazon Bedrock and Amazon SageMaker AI follows AWS-recommended controls for the safe, secure and responsible use of foundation models. It wants evidence collected automatically from AWS data sources and mapped to controls, ready for an assessment report.\n\nWhich option fits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "AWS Audit Manager with its generative AI best practices framework"
+      },
+      {
+        "key": "B",
+        "text": "AWS Artifact reports that cover Amazon Bedrock and SageMaker AI",
+        "explanation": "Artifact provides AWS's own audit reports about its infrastructure, not evidence about how the company uses the services."
+      },
+      {
+        "key": "C",
+        "text": "An AWS Config conformance pack for the AI resources in the account",
+        "explanation": "A conformance pack evaluates resource configurations against rules; it does not assemble evidence into an assessment against a generative AI framework."
+      },
+      {
+        "key": "D",
+        "text": "AWS Trusted Advisor checks that the audit team reviews each quarter",
+        "explanation": "Trusted Advisor gives general cost, availability and security recommendations; it does not collect evidence mapped to generative AI controls."
+      }
+    ],
+    "explanation": "AWS Audit Manager continuously collects evidence from AWS data sources, maps it to the controls of a framework and produces assessment reports for auditors. Its prebuilt AWS generative AI best practices framework v2 covers Amazon Bedrock and Amazon SageMaker AI. Artifact holds AWS's own reports about AWS, and Config and Trusted Advisor run checks without assembling audit evidence against this framework. Read more: https://docs.aws.amazon.com/audit-manager/latest/userguide/aws-generative-ai-best-practices.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/audit-manager/latest/userguide/aws-generative-ai-best-practices.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-5",
+      "task-5.2"
+    ],
+    "correctKey": "A"
+  },
+  {
     "id": "aws-aif-easy-d2-13",
     "categoryKey": "genai-fundamentals",
     "conceptId": "genai-core-concepts",
