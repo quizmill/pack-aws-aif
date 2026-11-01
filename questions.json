@@ -475,6 +475,1119 @@
     "correctKey": "D"
   },
   {
+    "id": "aws-aif-easy-d1-13",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-terms",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A hotel chain wants software to read thousands of written guest reviews, pick out the topics guests mention, and tell whether each review is positive or negative.\n\nWhich field of AI does this task belong to?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Computer vision",
+        "explanation": "Computer vision interprets images and video; these reviews are written text."
+      },
+      {
+        "key": "B",
+        "text": "Natural language processing (NLP)"
+      },
+      {
+        "key": "C",
+        "text": "Automatic speech recognition (ASR)",
+        "explanation": "Speech recognition turns spoken audio into text; the reviews are already written."
+      },
+      {
+        "key": "D",
+        "text": "Reinforcement learning",
+        "explanation": "Reinforcement learning is a way of training through rewards, not a field for understanding text."
+      }
+    ],
+    "explanation": "Understanding written language, such as finding topics and sentiment in reviews, is natural language processing (NLP). Computer vision works on images, speech recognition works on audio, and reinforcement learning is a training method rather than a task area. On AWS, Amazon Comprehend offers these NLP tasks as a managed API. Read more: https://aws.amazon.com/what-is/nlp/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/nlp/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d1-14",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-terms",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A model was trained last month on labeled plant photos. Now a mobile app sends it a new photo, and the model returns the plant's species.\n\nWhat is this step called?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Training",
+        "explanation": "Training is when the model learns from labeled data; that happened last month."
+      },
+      {
+        "key": "B",
+        "text": "Fine-tuning",
+        "explanation": "Fine-tuning further trains an existing model on new data; here the model only answers a request."
+      },
+      {
+        "key": "C",
+        "text": "Data labeling",
+        "explanation": "Data labeling adds the answers to training examples before training; no label is added here."
+      },
+      {
+        "key": "D",
+        "text": "Inference"
+      }
+    ],
+    "explanation": "Using a trained model to make a prediction on new data is inference. Training and fine-tuning change the model's parameters from data, and data labeling prepares the training examples; none of those happens when the app sends a photo and gets a species back. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d1-15",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-data-types",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company is listing the data it could use for machine learning.\n\nWhich TWO of these are unstructured data? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Recorded audio of customer support calls"
+      },
+      {
+        "key": "B",
+        "text": "A relational table of orders with fixed columns",
+        "explanation": "A relational table with fixed columns is the standard example of structured data."
+      },
+      {
+        "key": "C",
+        "text": "Free-text product reviews written by customers"
+      },
+      {
+        "key": "D",
+        "text": "A spreadsheet of monthly sales totals by region",
+        "explanation": "A spreadsheet of numbers in rows and columns is structured, tabular data."
+      },
+      {
+        "key": "E",
+        "text": "A customer table with name, email and signup date",
+        "explanation": "Short text and dates in named columns fit a data table, which makes them structured."
+      }
+    ],
+    "explanation": "Unstructured data does not fit neatly into a table: audio and video files and long free text are the usual examples, so the call recordings and the reviews are unstructured. Orders, sales totals and customer records sit in rows and columns of numbers, short text and dates, which is structured (tabular) data. Read more: https://aws.amazon.com/compare/the-difference-between-structured-data-and-unstructured-data/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/compare/the-difference-between-structured-data-and-unstructured-data/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKeys": [
+      "A",
+      "C"
+    ]
+  },
+  {
+    "id": "aws-aif-easy-d1-16",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ml-learning-types",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company trains software to steer a warehouse robot. In a simulator, the robot tries moves, gains points for reaching a shelf quickly, loses points for collisions, and gets better over thousands of attempts.\n\nWhich type of machine learning is this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Supervised learning",
+        "explanation": "Supervised learning needs labeled examples of the right answer; the robot learns from points it earns instead."
+      },
+      {
+        "key": "B",
+        "text": "Reinforcement learning"
+      },
+      {
+        "key": "C",
+        "text": "Unsupervised learning",
+        "explanation": "Unsupervised learning finds patterns in unlabeled data; it does not learn actions from rewards."
+      },
+      {
+        "key": "D",
+        "text": "Transfer learning",
+        "explanation": "Transfer learning reuses a model trained on one task for another; nothing here is reused."
+      }
+    ],
+    "explanation": "An agent that takes actions in an environment and learns from rewards and penalties is reinforcement learning. Supervised learning needs labeled answers, unsupervised learning looks for structure in unlabeled data, and transfer learning starts from a model built for a different task. Read more: https://aws.amazon.com/what-is/reinforcement-learning/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/reinforcement-learning/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d1-17",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "bias-variance",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A team trains a very simple linear model to predict house prices. The model scores poorly on its own training data and just as poorly on new data.\n\nWhat is the most likely problem?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Overfitting",
+        "explanation": "An overfit model scores well on training data and poorly on new data; this one is poor on both."
+      },
+      {
+        "key": "B",
+        "text": "Data drift",
+        "explanation": "Drift is a change in live data after deployment; the model is already poor on its training data."
+      },
+      {
+        "key": "C",
+        "text": "Underfitting"
+      },
+      {
+        "key": "D",
+        "text": "Data leakage",
+        "explanation": "Leakage lets the model see the answer during training, which inflates training scores rather than lowering them."
+      }
+    ],
+    "explanation": "A model that is poor on both training and new data has not captured the relationship in the data: it is underfit, often because it is too simple or has too few features. Overfitting shows a gap between good training and poor test scores, drift appears after deployment, and leakage makes training results look too good. Read more: https://aws.amazon.com/what-is/overfitting/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/overfitting/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d1-18",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "aws-ai-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A news website wants a Listen button on every article that reads the article aloud in a natural-sounding voice.\n\nWhich AWS service should it use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Polly"
+      },
+      {
+        "key": "B",
+        "text": "Amazon Transcribe",
+        "explanation": "Transcribe goes the other way: it turns speech into text."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Lex",
+        "explanation": "Lex builds conversational bots that understand requests; it is not for reading articles aloud."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Translate",
+        "explanation": "Translate converts text between languages; it does not produce audio."
+      }
+    ],
+    "explanation": "Amazon Polly turns text into lifelike speech, which is exactly a Listen button. Amazon Transcribe does the reverse (speech to text), Amazon Lex builds chat and voice bots, and Amazon Translate changes the language of text without speaking it. Read more: https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d1-19",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "aws-ai-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "An online store writes its product descriptions in English. It wants them shown automatically in Spanish, German and Japanese for shoppers in those markets.\n\nWhich AWS service fits this need?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Comprehend",
+        "explanation": "Comprehend can detect which language a text is in, but it does not translate it."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Polly",
+        "explanation": "Polly speaks text aloud; it does not change the text's language."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Translate"
+      },
+      {
+        "key": "D",
+        "text": "Amazon Transcribe",
+        "explanation": "Transcribe converts spoken audio to text; the descriptions are already text."
+      }
+    ],
+    "explanation": "Amazon Translate is a neural machine translation service that converts text from one language to another. Amazon Comprehend analyzes text (including detecting its language), Amazon Polly turns text into speech, and Amazon Transcribe turns speech into text. Read more: https://docs.aws.amazon.com/translate/latest/dg/what-is.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/translate/latest/dg/what-is.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d1-20",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "aws-ai-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A clinic wants patients to book and change appointments by chatting on its website or by phone. The system must understand requests such as \"move my appointment to Friday\".\n\nWhich AWS service is built for this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Polly",
+        "explanation": "Polly can give a bot a voice, but it does not understand what the patient asks."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Comprehend",
+        "explanation": "Comprehend analyzes documents for sentiment and entities; it does not run a conversation."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Transcribe",
+        "explanation": "Transcribe writes down speech, but it does not work out the intent or carry on a dialog."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Lex"
+      }
+    ],
+    "explanation": "Amazon Lex builds conversational interfaces for text and voice: it recognizes the user's intent (change an appointment), collects details such as the new day, and replies. Polly only speaks text, Transcribe only converts speech to text, and Comprehend analyzes text without holding a conversation. Read more: https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d1-21",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-use-cases",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "An online bookshop wants a \"Recommended for you\" row on each customer's home page, based on what that customer has browsed and bought. It has no ML team.\n\nWhich AWS service fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Kendra",
+        "explanation": "Kendra is an intelligent search service for documents; it does not learn from shopping behaviour."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Personalize"
+      },
+      {
+        "key": "C",
+        "text": "Amazon Comprehend",
+        "explanation": "Comprehend analyzes text for sentiment and entities; it does not recommend items to users."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Bedrock Knowledge Bases",
+        "explanation": "Knowledge bases retrieve passages from documents for a model; they do not rank products per customer."
+      }
+    ],
+    "explanation": "Amazon Personalize is a fully managed ML service that uses a business's interaction data to generate item recommendations, such as \"Recommended for you\" or \"Frequently bought together\", without ML expertise. Kendra and Bedrock Knowledge Bases retrieve documents, and Comprehend analyzes text. Read more: https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d1-22",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ml-lifecycle",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "Before training, a data scientist turns a raw signup timestamp into \"days since signup\" and combines height and weight columns into a single body mass index column.\n\nWhich stage of the ML pipeline is this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hyperparameter tuning",
+        "explanation": "Hyperparameter tuning searches for the best training settings, such as learning rate; it does not create input columns."
+      },
+      {
+        "key": "B",
+        "text": "Feature engineering"
+      },
+      {
+        "key": "C",
+        "text": "Model evaluation",
+        "explanation": "Evaluation measures a trained model on held-out data; no model has been trained yet."
+      },
+      {
+        "key": "D",
+        "text": "Data labeling",
+        "explanation": "Labeling adds the target answer to each example; these are new input variables, not labels."
+      }
+    ],
+    "explanation": "Creating new input variables from raw data, such as deriving days since signup or combining columns, is feature engineering, part of data processing before training. Hyperparameter tuning and evaluation come after a model exists, and labeling adds target values rather than inputs. Read more: https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/feature-engineering.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/feature-engineering.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d1-23",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ml-metrics",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company is deciding whether its new product recommendation model is worth keeping in production.\n\nWhich TWO of these are business metrics rather than model performance metrics? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "F1 score",
+        "explanation": "F1 score combines precision and recall; it measures the model's predictions, not business value."
+      },
+      {
+        "key": "B",
+        "text": "Return on investment (ROI)"
+      },
+      {
+        "key": "C",
+        "text": "Recall",
+        "explanation": "Recall measures how many real positives the model finds; it is a model performance metric."
+      },
+      {
+        "key": "D",
+        "text": "Cost per user"
+      },
+      {
+        "key": "E",
+        "text": "Area under the ROC curve (AUC)",
+        "explanation": "AUC measures how well a classifier ranks positives above negatives; it is a model performance metric."
+      }
+    ],
+    "explanation": "Return on investment and cost per user judge whether the model pays off for the business, alongside development costs and customer feedback. F1 score, recall and AUC measure how good the model's predictions are, which matters but does not by itself show business value. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKeys": [
+      "B",
+      "D"
+    ]
+  },
+  {
+    "id": "aws-aif-hard-d1-24",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "inference-options",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An internal HR tool uses a small CPU-based model. It gets a few dozen requests a day at unpredictable times, and users accept a delay of a few seconds on the first request after a quiet spell. The team wants no instances to choose or manage, and no compute charges while the tool is idle.\n\nWhich Amazon SageMaker AI inference option fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A real-time endpoint on the smallest available instance",
+        "explanation": "A real-time endpoint keeps instances running and billing all day, even with no requests."
+      },
+      {
+        "key": "B",
+        "text": "Asynchronous Inference that scales to zero when idle",
+        "explanation": "Asynchronous Inference is built for large payloads and long jobs, and the team still picks and manages instances."
+      },
+      {
+        "key": "C",
+        "text": "Serverless Inference"
+      },
+      {
+        "key": "D",
+        "text": "A Batch Transform job for each incoming request",
+        "explanation": "Batch Transform runs offline jobs over a dataset; starting a job per request is slow and awkward for an interactive tool."
+      }
+    ],
+    "explanation": "Serverless Inference provisions and scales compute for you, scales to zero between requests and suits intermittent traffic that can tolerate cold starts; you pay only while requests are processed. A real-time endpoint bills while idle, Asynchronous Inference still uses instances you choose, and Batch Transform is for offline datasets. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d1-25",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-terms",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A support team compares two assistants. Assistant 1 drafts a reply to a customer's email for a human agent to send. Assistant 2 reads the email, looks up the order, issues a refund through the billing API, checks that it went through, and then replies to the customer.\n\nWhat makes Assistant 2 an example of agentic AI?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It generates natural-language text in response to a prompt",
+        "explanation": "Both assistants generate text; that makes them generative AI, not agentic."
+      },
+      {
+        "key": "B",
+        "text": "It was trained on labeled examples of past refunds",
+        "explanation": "Learning from labeled examples is supervised learning, which says nothing about acting toward a goal."
+      },
+      {
+        "key": "C",
+        "text": "It plans steps and calls tools to reach a goal on its own"
+      },
+      {
+        "key": "D",
+        "text": "It runs on a larger language model with more parameters",
+        "explanation": "Model size does not make a system agentic; a small model can drive an agent and a large one can just draft text."
+      }
+    ],
+    "explanation": "Agentic AI acts toward a goal with little human oversight: it plans steps, calls tools such as APIs, checks results and decides what to do next. Generating text is what any generative AI assistant does, labeled training describes supervised learning, and model size is unrelated to agency. Read more: https://aws.amazon.com/what-is/agentic-ai/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/agentic-ai/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d1-26",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-terms",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A data scientist chooses XGBoost, trains it on two years of sales data, and deploys the result to an endpoint that answers prediction requests.\n\nWhich statement uses the terms algorithm and model correctly?",
+    "options": [
+      {
+        "key": "A",
+        "text": "XGBoost is the model; the trained file on the endpoint is the algorithm",
+        "explanation": "This swaps the terms: XGBoost is the learning procedure, and what it produces from data is the model."
+      },
+      {
+        "key": "B",
+        "text": "XGBoost is the algorithm; the trained artifact it produced is the model"
+      },
+      {
+        "key": "C",
+        "text": "XGBoost and the trained artifact are both models; inference is the algorithm",
+        "explanation": "Inference is the act of using a model to predict, not an algorithm, and XGBoost itself is not yet a model."
+      },
+      {
+        "key": "D",
+        "text": "The sales data is the model; XGBoost turns it into the inference endpoint",
+        "explanation": "Data is what the algorithm learns from; the model is the learned result, not the data."
+      }
+    ],
+    "explanation": "An algorithm is the procedure that learns patterns from data; XGBoost implements gradient boosted trees. Running it on the sales data produces a model, the trained artifact that is deployed and used for inference. The other options swap or blur these roles: data is the input, and inference is the use of the model. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d1-27",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-dev-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company is adding a demand forecasting model to its operations. Its developers want an AI agent in their editor that turns a feature request into requirements, a design and a task list before writing the integration code. Its business analysts want dashboards of the forecasts and to ask questions about them in natural language.\n\nWhich pairing fits these two groups?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Quick for the developers; Kiro for the analysts",
+        "explanation": "This swaps the tools: Kiro is the developer environment with specs, and Amazon Quick serves business users."
+      },
+      {
+        "key": "B",
+        "text": "Amazon SageMaker Ground Truth for the developers; Amazon Quick for the analysts",
+        "explanation": "Ground Truth manages human data labeling; it does not help developers plan and write code."
+      },
+      {
+        "key": "C",
+        "text": "Kiro for the developers; Amazon SageMaker Model Monitor for the analysts",
+        "explanation": "Model Monitor detects drift in endpoint data for ML teams; it does not give analysts dashboards or chat."
+      },
+      {
+        "key": "D",
+        "text": "Kiro for the developers; Amazon Quick for the analysts"
+      }
+    ],
+    "explanation": "Kiro is an AI-powered development environment whose specs turn a feature into requirements, design and tasks before the agent writes code. Amazon Quick gives business users dashboards (Amazon Quick Sight) and natural-language chat over connected data, with no ML expertise. Ground Truth labels data and Model Monitor watches deployed models. Read more: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d1-28",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "aws-ai-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A finance team scans thousands of supplier invoices each month. From each scan it needs the invoice number, the total, and every line item from the table on the page, returned as structured data.\n\nWhich AWS service fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Rekognition",
+        "explanation": "Rekognition can detect words in an image, but it does not return form fields or table rows as structured data."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Textract"
+      },
+      {
+        "key": "C",
+        "text": "Amazon Comprehend",
+        "explanation": "Comprehend analyzes the meaning of text it is given; it is not built to pull tables and fields out of scanned pages."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Kendra",
+        "explanation": "Kendra indexes documents for search; it does not extract fields and line items into structured output."
+      }
+    ],
+    "explanation": "Amazon Textract extracts printed and handwritten text, form key-value pairs and tables from scanned documents, keeping their structure. Rekognition's text detection finds words in images without the document layout, Comprehend analyzes text for meaning, and Kendra searches documents. Read more: https://docs.aws.amazon.com/textract/latest/dg/what-is.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/textract/latest/dg/what-is.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d1-29",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "choosing-ml",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A small travel agency receives about 150 booking emails a month. A simple rule routes each email to a desk by the prefix of its booking reference and gets 99% right; staff fix the rest by hand in a few minutes. A consultant proposes using machine learning instead.\n\nWhat is the best recommendation?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Train an Amazon Comprehend custom classifier on past emails to replace the rule",
+        "explanation": "A custom classifier adds training, cost and upkeep to replace a rule that already handles almost every email."
+      },
+      {
+        "key": "B",
+        "text": "Keep the rule, because a model's gain would not cover its cost to build and run"
+      },
+      {
+        "key": "C",
+        "text": "Send each email to a foundation model in Amazon Bedrock to choose the desk",
+        "explanation": "Paying per email for a foundation model adds cost and variability to a task a deterministic rule already does well."
+      },
+      {
+        "key": "D",
+        "text": "Label a year of emails with SageMaker Ground Truth, then train a routing model",
+        "explanation": "Labeling and training a custom model is a large effort for a tiny gain at this volume."
+      }
+    ],
+    "explanation": "Before choosing ML, weigh its cost against the benefit. Some problems are better served by simple business rules, and here a rule already routes 99% of a small volume correctly. Every ML option adds build, labeling, inference or maintenance cost to recover a few minutes of manual work a month. Read more: https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/ml-problem-framing.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/ml-problem-framing.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d1-30",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-use-cases",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An insurer is reviewing ideas for AI projects.\n\nWhich idea is an example of AI assisting human decision making, rather than automating a task end to end?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A chatbot that answers routine policy questions around the clock with no staff involved",
+        "explanation": "This is automation and scalability: the bot handles the questions itself, with no person deciding."
+      },
+      {
+        "key": "B",
+        "text": "A model that reads claim forms and enters the fields into the claims system unreviewed",
+        "explanation": "This automates data entry end to end; no human makes a decision with the model's help."
+      },
+      {
+        "key": "C",
+        "text": "A fixed rule that rejects any claim filed more than 90 days after the incident",
+        "explanation": "A fixed rule written by people is not AI; nothing is learned from data."
+      },
+      {
+        "key": "D",
+        "text": "A model that scores each claim for fraud risk so investigators review the riskiest first"
+      }
+    ],
+    "explanation": "Scoring claims so that investigators decide where to look first is AI assisting human decisions: the model prioritizes, and people make the call. The chatbot and the form-reading model are valuable too, but as automation and scale with no person in the decision, and a fixed 90-day rule is not AI at all. Read more: https://aws.amazon.com/what-is/artificial-intelligence/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/artificial-intelligence/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d1-31",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "mlops",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An ML team retrains its churn model every month. It needs a catalog of every model version with its evaluation metrics, and a way for the team lead to mark a version as approved before it can be deployed to production.\n\nWhich Amazon SageMaker AI feature meets this need?",
+    "options": [
+      {
+        "key": "A",
+        "text": "SageMaker Model Registry"
+      },
+      {
+        "key": "B",
+        "text": "SageMaker Model Cards",
+        "explanation": "Model Cards document a model's intended use, risks and training details; they do not hold approval status for deployment."
+      },
+      {
+        "key": "C",
+        "text": "SageMaker ML Lineage Tracking",
+        "explanation": "Lineage Tracking records which data and steps produced a model; it is not where versions are approved."
+      },
+      {
+        "key": "D",
+        "text": "SageMaker Pipelines",
+        "explanation": "Pipelines runs the retraining steps; the versions it produces are catalogued and approved in the registry."
+      }
+    ],
+    "explanation": "SageMaker Model Registry catalogs models in groups of versions, stores their metadata and metrics, and manages each version's approval status, which can gate deployment. Model Cards hold governance documentation, Lineage Tracking records how a model was built, and Pipelines orchestrates the steps that produce new versions. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-hard-d1-32",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "mlops",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A team prepares data, trains, evaluates and registers a model by running notebook cells by hand. Results differ depending on who runs it. The team wants the same steps to run the same way every time, on a schedule or when new data arrives.\n\nWhich AWS feature should it use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker Data Wrangler",
+        "explanation": "Data Wrangler builds data preparation flows; it does not orchestrate training, evaluation and registration."
+      },
+      {
+        "key": "B",
+        "text": "Amazon SageMaker Model Monitor",
+        "explanation": "Model Monitor checks a deployed model's data and quality; it does not run the build steps."
+      },
+      {
+        "key": "C",
+        "text": "Amazon SageMaker Pipelines"
+      },
+      {
+        "key": "D",
+        "text": "Amazon SageMaker Model Registry",
+        "explanation": "The registry stores and approves model versions; it does not run the steps that create them."
+      }
+    ],
+    "explanation": "Amazon SageMaker Pipelines is a workflow orchestration service for ML: it defines data preparation, training, evaluation and registration as steps that run the same way each time, which is the repeatable process MLOps calls for. Data Wrangler covers only data preparation, Model Monitor watches deployed models, and Model Registry stores versions. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d1-33",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ml-metrics",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An email provider's spam filter moves suspected spam to a junk folder. Users complain most about important emails, such as invoices, landing in junk. A few spam emails reaching the inbox is acceptable.\n\nWhich metric should the team focus on improving?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Recall",
+        "explanation": "Recall measures how much real spam is caught; pushing it up tends to send more good emails to junk."
+      },
+      {
+        "key": "B",
+        "text": "Precision"
+      },
+      {
+        "key": "C",
+        "text": "Accuracy",
+        "explanation": "Accuracy mixes both kinds of error into one number and can stay high while good emails still land in junk."
+      },
+      {
+        "key": "D",
+        "text": "Root mean squared error (RMSE)",
+        "explanation": "RMSE measures error for regression on numeric targets; spam filtering is classification."
+      }
+    ],
+    "explanation": "The costly error is a false positive: a good email flagged as spam. Precision is the share of flagged emails that really are spam, so raising it means fewer good emails in junk. Recall focuses on missed spam, which users tolerate, accuracy hides which error is happening, and RMSE is a regression metric. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d1-34",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "mlops",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "Data scientists run hundreds of training jobs with different hyperparameters and dataset versions. They need to log each run's parameters and metrics and compare runs side by side to pick the best one.\n\nWhich AWS capability fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker Debugger",
+        "explanation": "Debugger watches a training job for problems such as vanishing gradients; it is not for comparing many runs."
+      },
+      {
+        "key": "B",
+        "text": "AWS CloudTrail",
+        "explanation": "CloudTrail records API calls for auditing, not model parameters and metrics."
+      },
+      {
+        "key": "C",
+        "text": "Amazon SageMaker Model Monitor",
+        "explanation": "Model Monitor checks deployed models for drift; these are training experiments."
+      },
+      {
+        "key": "D",
+        "text": "Managed MLflow on Amazon SageMaker AI"
+      }
+    ],
+    "explanation": "Experimentation is a core MLOps practice, and managed MLflow on SageMaker AI tracks experiments: it logs each run's parameters and metrics so runs can be compared and the best model registered. Debugger diagnoses a single training job, CloudTrail audits API activity, and Model Monitor watches production endpoints. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-veryhard-d1-35",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "choosing-ml",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A factory wants to classify readings from 40 numeric sensors on a production line as normal or faulty. It has a year of labeled readings. Predictions must run on the line's local hardware, which has no internet connection, and return in under 10 milliseconds, thousands of times a second.\n\nWhich approach best fits these constraints?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Send batches of readings in a prompt to a large language model in Amazon Bedrock",
+        "explanation": "A cloud model call needs a network connection and adds far more latency than 10 milliseconds."
+      },
+      {
+        "key": "B",
+        "text": "Use Amazon Bedrock Model Distillation to create a smaller model and call it on demand",
+        "explanation": "A distilled model is smaller but still invoked through Bedrock over the network, which the line does not have."
+      },
+      {
+        "key": "C",
+        "text": "Train a gradient boosted tree model such as XGBoost in SageMaker AI and run it locally"
+      },
+      {
+        "key": "D",
+        "text": "Host an open-weight LLM on a SageMaker AI real-time endpoint in the nearest Region",
+        "explanation": "Any Region endpoint needs connectivity, and an LLM is heavy for millisecond decisions on numeric data."
+      }
+    ],
+    "explanation": "Labeled numeric sensor data is a supervised classification problem that traditional ML handles well. A compact gradient boosted tree model such as XGBoost can be trained in SageMaker AI and run offline on local hardware within milliseconds. Every foundation model option depends on a network call, and LLMs are a poor fit for high-volume, low-latency numeric classification. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-veryhard-d1-36",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ml-metrics",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A team compares two models that flag faulty parts, where faults are rare. Missed faults and false alarms both carry a real cost, so it wants one number that balances the two. Model A has precision 0.90 and recall 0.50. Model B has precision 0.75 and recall 0.72.\n\nWhich metric should the team use, and which model does it favour?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Accuracy, which favours model A",
+        "explanation": "With rare faults, accuracy rewards predicting \"no fault\" and hides the trade-off between the two errors."
+      },
+      {
+        "key": "B",
+        "text": "Precision, which favours model A",
+        "explanation": "Precision only counts false alarms and ignores the many faults model A misses."
+      },
+      {
+        "key": "C",
+        "text": "F1 score, which favours model B"
+      },
+      {
+        "key": "D",
+        "text": "F1 score, which favours model A",
+        "explanation": "F1 punishes model A's low recall: its F1 is about 0.64, below model B's 0.73."
+      }
+    ],
+    "explanation": "F1 score is the harmonic mean of precision and recall, so it balances false alarms and missed faults and suits imbalanced classes. Model A: 2 x 0.90 x 0.50 / 1.40 = about 0.64. Model B: 2 x 0.75 x 0.72 / 1.47 = about 0.73, so B wins. Accuracy misleads on rare classes, and precision alone ignores misses. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-veryhard-d1-37",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "mlops",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "SageMaker Model Monitor already reports data drift for a model on a SageMaker AI endpoint. Today a data scientist retrains the model by hand in a notebook whenever they notice the report. The company wants retraining to start automatically and run the same way each time, with a person approving each new version before it serves traffic.\n\nWhich design meets these requirements?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Schedule the notebook to run nightly and deploy whatever model it produces",
+        "explanation": "A nightly notebook ignores the drift signal and deploys with no human approval."
+      },
+      {
+        "key": "B",
+        "text": "Have the drift alert start a SageMaker Pipelines run that registers a version for approval"
+      },
+      {
+        "key": "C",
+        "text": "Turn on auto scaling for the endpoint so more instances absorb the drifted traffic",
+        "explanation": "More instances handle more load; they do nothing about predictions degrading on drifted data."
+      },
+      {
+        "key": "D",
+        "text": "Run a SageMaker Clarify bias report each week and retrain by hand when bias rises",
+        "explanation": "Clarify measures bias, not data drift, and retraining stays manual."
+      }
+    ],
+    "explanation": "Model monitoring and re-training close the MLOps loop: a Model Monitor violation raises an alert that starts a SageMaker Pipelines run, which retrains the same way every time and registers the new version in Model Registry with a pending approval status, so a person approves it before deployment. The other designs skip drift, approval or automation. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-veryhard-d1-38",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "ai-dev-services",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A company is deciding where its foundation model should come from: an existing pretrained model, or one it trains itself.\n\nWhich TWO statements about these sources are correct? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Open-weight models from SageMaker JumpStart run on instances in the company's own account"
+      },
+      {
+        "key": "B",
+        "text": "Training a new foundation model from scratch typically needs very large datasets and heavy compute"
+      },
+      {
+        "key": "C",
+        "text": "Models offered as a managed service in Amazon Bedrock can be downloaded as weights to run on premises",
+        "explanation": "Bedrock gives API access to provider models; it does not hand out their weights for on-premises use."
+      },
+      {
+        "key": "D",
+        "text": "Prompts sent to a model in Amazon Bedrock are shared with its provider to train the next release",
+        "explanation": "Model providers have no access to Bedrock's deployment accounts, so they cannot see customer prompts or completions."
+      },
+      {
+        "key": "E",
+        "text": "Fine-tuning a pretrained model needs more labeled data than training a comparable model from scratch",
+        "explanation": "This is backwards: starting from a pretrained model is what lets fine-tuning work with far less data."
+      }
+    ],
+    "explanation": "SageMaker JumpStart offers pretrained, open-weight models that the company deploys, fine-tunes and evaluates on infrastructure in its own account. Training a foundation model from scratch is possible but takes very large datasets and compute, so most teams start from a pretrained model. Bedrock serves provider models through an API without sharing weights, and providers cannot see customer prompts. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.3"
+    ],
+    "correctKeys": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "id": "aws-aif-veryhard-d1-39",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "aws-ai-services",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "An insurer wants to route incoming customer emails into 12 categories specific to its business, such as \"windscreen claim\" or \"policy transfer\". It has 8,000 past emails already labeled with these categories. The team has no ML specialists and wants a managed API.\n\nWhich approach fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Route on the output of Amazon Comprehend's built-in sentiment and key phrase detection",
+        "explanation": "Built-in Comprehend features are pretrained for general tasks; they do not know the insurer's 12 categories."
+      },
+      {
+        "key": "B",
+        "text": "Train an Amazon Comprehend custom classifier on the 8,000 past examples"
+      },
+      {
+        "key": "C",
+        "text": "Create an intent per category in Amazon Lex and pass each email to the bot",
+        "explanation": "Lex is built for interactive chat and voice conversations, not for classifying a stream of documents."
+      },
+      {
+        "key": "D",
+        "text": "Write a custom training script and deploy the model to a SageMaker AI endpoint",
+        "explanation": "A hand-written training script needs the ML skills the team lacks, when a managed classifier already fits."
+      }
+    ],
+    "explanation": "Amazon Comprehend custom classification trains a classifier on your own labeled documents to sort text into the categories you define, such as routing support requests, and serves it through a managed API without ML expertise. Built-in sentiment and key phrases do not know the insurer's categories, Lex runs conversations, and custom SageMaker code needs specialists. Read more: https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-veryhard-d1-40",
+    "categoryKey": "ai-ml-fundamentals",
+    "conceptId": "inference-options",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A photo app runs an image segmentation model that needs a GPU. Users upload a photo and wait on screen for the result, which must come back in under a second. Traffic is steady through the day. The team would prefer to avoid managing instances where it can.\n\nWhich Amazon SageMaker AI inference option should it choose?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Serverless Inference at the largest memory setting",
+        "explanation": "Serverless Inference does not support GPUs, so it cannot run this model however much memory it has."
+      },
+      {
+        "key": "B",
+        "text": "Asynchronous Inference that scales to zero between requests",
+        "explanation": "Asynchronous requests are queued and results are written to Amazon S3, which does not fit a user waiting on screen."
+      },
+      {
+        "key": "C",
+        "text": "Batch Transform jobs started at short intervals",
+        "explanation": "Batch Transform is offline processing of a dataset; users would wait minutes, not under a second."
+      },
+      {
+        "key": "D",
+        "text": "A real-time endpoint on GPU instances with auto scaling"
+      }
+    ],
+    "explanation": "An interactive, sub-second, GPU-backed workload with steady traffic calls for a real-time endpoint on GPU instances, with auto scaling to follow demand. The preference for no instances points to Serverless Inference, but it does not support GPUs. Asynchronous Inference queues requests and writes results to S3, and Batch Transform is offline. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-1",
+      "task-1.1"
+    ],
+    "correctKey": "D"
+  },
+  {
     "id": "aws-aif-easy-d2-1",
     "categoryKey": "genai-fundamentals",
     "conceptId": "bedrock-pricing",
