@@ -5,8 +5,8 @@ name: Deploy
 # (quizmill/quizmill/.github/workflows/deploy-pack.yml) so every pack app
 # builds and deploys identically.
 #
-# A custom domain, if any, is attached to the Pages project `aws-aif` in
-# Cloudflare, not set here.
+# Served at https://aws-aif.quizmill.dev — the custom domain is attached to
+# the Pages project `aws-aif` in Cloudflare, not set here.
 #
 # Required repo (or org) secrets:
 #   CLOUDFLARE_API_TOKEN    token with "Cloudflare Pages — Edit"
