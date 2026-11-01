@@ -2154,8 +2154,8 @@
       },
       {
         "key": "B",
-        "text": "AWS Glue Data Catalog",
-        "explanation": "The Glue Data Catalog stores table metadata for analytics; it does not store or search embeddings."
+        "text": "Amazon DocumentDB (with MongoDB compatibility)",
+        "explanation": "DocumentDB offers vector search for its own applications, but it is not one of the vector stores a Bedrock knowledge base can connect to."
       },
       {
         "key": "C",
@@ -2163,16 +2163,16 @@
       },
       {
         "key": "D",
-        "text": "Amazon Timestream for LiveAnalytics",
-        "explanation": "Timestream is a time-series database; it is not a supported knowledge base vector store."
+        "text": "Amazon MemoryDB",
+        "explanation": "MemoryDB offers in-memory vector search for applications, but Bedrock Knowledge Bases do not list it as a supported vector store."
       },
       {
         "key": "E",
-        "text": "Amazon Athena",
-        "explanation": "Athena runs SQL queries over data in Amazon S3; it is not a vector store for a knowledge base."
+        "text": "Amazon DynamoDB",
+        "explanation": "DynamoDB is a key-value and document database without native similarity search, and it is not a supported knowledge base vector store."
       }
     ],
-    "explanation": "Amazon Bedrock Knowledge Bases support several vector stores, including Amazon OpenSearch Serverless, Amazon Aurora PostgreSQL (with pgvector), Amazon Neptune Analytics and Amazon S3 Vectors, plus some third-party stores. Athena, the Glue Data Catalog and Timestream are analytics and time-series services, not vector stores. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html",
+    "explanation": "Amazon Bedrock Knowledge Bases connect to a set list of vector stores: Amazon OpenSearch Serverless, Amazon OpenSearch Service managed clusters, Amazon Aurora PostgreSQL (with pgvector), Amazon Neptune Analytics and Amazon S3 Vectors, plus third-party stores such as Pinecone. DocumentDB and MemoryDB can run vector search for applications that call them directly, but a knowledge base cannot use them, and DynamoDB has no native similarity search. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html",
     "reviewStatus": "draft",
@@ -2240,8 +2240,8 @@
       },
       {
         "key": "B",
-        "text": "A guardrail with denied topics for refund requests",
-        "explanation": "A guardrail filters content; it blocks or allows topics but cannot perform actions."
+        "text": "A flow that links a prompt node to a knowledge base node",
+        "explanation": "A flow runs the nodes you link in advance; with only a prompt node and a knowledge base node it retrieves text but calls neither API."
       },
       {
         "key": "C",
@@ -2253,7 +2253,7 @@
         "text": "An agent with action groups that call the order and refund APIs"
       }
     ],
-    "explanation": "Amazon Bedrock Agents use a foundation model to break a request into steps and call actions, defined in action groups backed by API schemas or Lambda functions, to complete them. That is what multi-step work across two APIs needs. Knowledge bases retrieve information, guardrails filter content and Prompt Management stores prompts; none of them takes actions. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
+    "explanation": "Amazon Bedrock Agents use a foundation model to break a request into steps and call actions, defined in action groups backed by API schemas or Lambda functions, to complete them. That is what deciding the steps from a conversation across two APIs needs. A knowledge base retrieves information, a flow built from a prompt node and a knowledge base node follows a fixed path and only retrieves text, and Prompt Management stores prompts; none of them calls the APIs. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
     "reviewStatus": "draft",
@@ -2309,7 +2309,7 @@
     "conceptId": "prompt-engineering",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A model often gets multi-step word problems wrong: it jumps straight to a final number. The team cannot change the model.\n\nWhich prompt change is most likely to improve accuracy?",
+    "prompt": "A model on Amazon Bedrock gets multi-step word problems wrong, although it handles each single calculation correctly. The team cannot retrain or replace the model.\n\nWhich change is most likely to improve accuracy?",
     "options": [
       {
         "key": "A",
@@ -2317,21 +2317,21 @@
       },
       {
         "key": "B",
-        "text": "Raise the temperature so the model explores more possible answers",
-        "explanation": "Higher temperature adds randomness; it does not make the model work through the steps."
+        "text": "Set the temperature to 0 so the model returns its most likely answer",
+        "explanation": "Temperature 0 makes output more deterministic, but a model that skips the reasoning gives the same wrong answer more consistently."
       },
       {
         "key": "C",
-        "text": "Lower the maximum output tokens so the model answers more concisely",
-        "explanation": "Shorter output leaves less room for intermediate reasoning, which is what the model is skipping."
+        "text": "Tell the model in the system prompt that it is an expert mathematician",
+        "explanation": "A role can set tone and focus, but on its own it does not make the model lay out the intermediate steps where it goes wrong."
       },
       {
         "key": "D",
-        "text": "Add a few-shot example that shows only the question and the final number",
-        "explanation": "An example with only the final number teaches the model to skip the reasoning, which is the problem here."
+        "text": "Add few-shot examples that pair each question with just its final number",
+        "explanation": "Examples that give just the final number teach the model to skip the reasoning, which is where the errors come from."
       }
     ],
-    "explanation": "Chain-of-thought prompting asks the model to reason through intermediate steps before giving the answer, which improves results on multi-step problems such as arithmetic and logic. More randomness, a tighter output limit or examples that skip the working do not help the model reason. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/design-a-prompt.html",
+    "explanation": "The model gets single steps right but fails when steps must be chained, which is the case chain-of-thought prompting addresses: asking the model to reason through intermediate steps before answering improves results on multi-step problems such as arithmetic and logic. A temperature of 0 only makes the same answer repeatable, an expert role alone does not add the missing reasoning, and examples that skip the working encourage the model to skip it too. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/design-a-prompt.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/design-a-prompt.html",
     "reviewStatus": "draft",
@@ -2352,8 +2352,8 @@
     "options": [
       {
         "key": "A",
-        "text": "Training data poisoning, detected by the denied topics policy",
-        "explanation": "Poisoning corrupts training data before a model is built; this attack arrives in a user's prompt at run time."
+        "text": "Criminal misuse, detected by the misconduct content filter",
+        "explanation": "The misconduct category catches requests for help with crime or fraud; this user is trying to override instructions and expose the system prompt."
       },
       {
         "key": "B",
@@ -2370,7 +2370,7 @@
         "explanation": "That filter finds PII such as names and card numbers; it is not built to spot instruction override attempts."
       }
     ],
-    "explanation": "Telling a model to disregard its instructions, take on a new persona or reveal its system prompt is a prompt attack (prompt injection, goal hijacking or jailbreaking). Amazon Bedrock Guardrails has a prompt attack filter for these; tagging user input lets it check the user's text separately from the developer's system prompt. Poisoning is about training data, the grounding check targets hallucinations, and the sensitive information filter targets PII. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
+    "explanation": "Telling a model to disregard its instructions, take on a new persona or reveal its system prompt is a prompt attack (prompt injection, goal hijacking or jailbreaking). Amazon Bedrock Guardrails has a prompt attack filter for these; tagging user input lets it check the user's text separately from the developer's system prompt. The misconduct filter targets requests for help with criminal activity, the grounding check targets hallucinations, and the sensitive information filter targets PII. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
     "reviewStatus": "draft",
@@ -6344,21 +6344,21 @@
       },
       {
         "key": "B",
-        "text": "An Amazon DynamoDB table keyed on each embedding",
-        "explanation": "DynamoDB looks items up by key; it does not run nearest-neighbor similarity search on vectors, and it adds a second database."
+        "text": "The pg_trgm extension in the existing database",
+        "explanation": "pg_trgm compares strings by shared three-character sequences for fuzzy text matching; it does not store embeddings or measure vector distance."
       },
       {
         "key": "C",
-        "text": "Amazon Timestream for LiveAnalytics",
-        "explanation": "Timestream stores time-series data such as sensor readings; it is not built for vector similarity search."
+        "text": "PostgreSQL full-text search on tsvector columns",
+        "explanation": "Full-text search matches words and their stems; it does not store embedding vectors or rank results by vector similarity."
       },
       {
         "key": "D",
-        "text": "Amazon Athena queries over files in Amazon S3",
-        "explanation": "Athena runs SQL over files in S3 for analytics; it is not a vector database and adds a separate service."
+        "text": "An Amazon OpenSearch Service domain with a k-NN index",
+        "explanation": "OpenSearch Service supports k-NN vector search, but it is a second data store, which the company wants to avoid."
       }
     ],
-    "explanation": "The pgvector extension adds a vector type and similarity search to PostgreSQL, and Amazon RDS for PostgreSQL supports it, so the embeddings can sit beside the product rows in the same database. DynamoDB looks up items by key, Timestream stores time series, and Athena queries files for analytics; none adds vector search to the existing database. Read more: https://aws.amazon.com/about-aws/whats-new/2023/05/amazon-rds-postgresql-pgvector-ml-model-integration/",
+    "explanation": "The pgvector extension adds a vector data type and similarity search to PostgreSQL, and Amazon RDS for PostgreSQL supports it, so the embeddings can sit beside the product rows in the same database. pg_trgm compares strings character by character and full-text search matches keywords; neither works with embeddings. OpenSearch Service can run vector search, but it means adding a new store. Read more: https://aws.amazon.com/about-aws/whats-new/2023/05/amazon-rds-postgresql-pgvector-ml-model-integration/",
     "source": "original",
     "sourceRef": "https://aws.amazon.com/about-aws/whats-new/2023/05/amazon-rds-postgresql-pgvector-ml-model-integration/",
     "reviewStatus": "draft",
@@ -6829,11 +6829,11 @@
       },
       {
         "key": "D",
-        "text": "Overfitting",
-        "explanation": "Overfitting is a training problem where a model memorizes its data; it is not something a user does in a chat."
+        "text": "Prompt leaking",
+        "explanation": "Prompt leaking tries to make a model reveal its hidden system prompt; this user wants content the safety rules forbid."
       }
     ],
-    "explanation": "Jailbreaking is crafting prompts, often role-play or hypothetical framing, to get a model to bypass its safety controls. The 'game' asks the chatbot to drop its rules so it will answer what it normally refuses. Poisoning targets data before inference, and hallucination and overfitting are model behaviors, not user attacks. Amazon Bedrock Guardrails has a prompt attack filter that detects jailbreak attempts. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
+    "explanation": "Jailbreaking is crafting prompts, often role-play or hypothetical framing, to get a model to bypass its safety controls. The 'game' asks the chatbot to drop its rules so it will answer what it normally refuses. Prompt leaking aims to extract the system prompt rather than forbidden content, poisoning targets data before inference, and hallucination is a model behavior, not a user attack. Amazon Bedrock Guardrails has a prompt attack filter that detects jailbreak attempts. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
     "reviewStatus": "draft",
@@ -6932,8 +6932,8 @@
     "options": [
       {
         "key": "A",
-        "text": "Raise the temperature so the model is less predictable",
-        "explanation": "Higher temperature makes output more random; it makes behavior harder to control, not safer."
+        "text": "Turn on model invocation logging for each summary request",
+        "explanation": "Invocation logging records requests and responses for later review; it helps spot misuse afterwards but does not stop injected text being followed."
       },
       {
         "key": "B",
@@ -6942,8 +6942,8 @@
       },
       {
         "key": "C",
-        "text": "Increase the maximum output tokens for each summary",
-        "explanation": "A higher output limit allows longer summaries; it has no effect on which instructions the model follows."
+        "text": "Set the temperature to 0 so the summaries are deterministic",
+        "explanation": "Temperature 0 makes output repeatable, but a deterministic model still follows an injected instruction it would otherwise follow."
       },
       {
         "key": "D",
@@ -6954,7 +6954,7 @@
         "text": "Validate and sanitize the email text before it reaches the model"
       }
     ],
-    "explanation": "Instructions hidden in content the model processes are a prompt injection. Amazon Bedrock Guardrails can detect prompt attacks in user input, and AWS recommends validating and sanitizing input before it is passed to the model. Used together, with least-privilege access for anything the assistant can reach, they cut the risk. Temperature, extra fine-tuning on ordinary emails and output limits do nothing to stop injected instructions. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
+    "explanation": "Instructions hidden in content the model processes are a prompt injection. Amazon Bedrock Guardrails can detect prompt attacks in user input, and AWS recommends validating and sanitizing input before it is passed to the model. Used together, with least-privilege access for anything the assistant can reach, they cut the risk. Invocation logging records what happened after the fact, a temperature of 0 makes output repeatable without making it safer, and fine-tuning on ordinary emails teaches nothing about injected instructions. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
     "reviewStatus": "draft",
@@ -7056,13 +7056,13 @@
     "options": [
       {
         "key": "A",
-        "text": "Pre-training from scratch is the cheapest way to add company knowledge",
-        "explanation": "Pre-training from scratch is the most expensive option; RAG or fine-tuning adds company knowledge for far less."
+        "text": "An existing model already holds the startup's internal product data",
+        "explanation": "Foundation models learn from broad public data; the startup's private data still has to be added through RAG or fine-tuning."
       },
       {
         "key": "B",
-        "text": "An existing model ties the team to one provider's pricing",
-        "explanation": "Amazon Bedrock offers models from many providers that can be swapped; vendor choice is not what makes pre-training from scratch a poor fit."
+        "text": "An existing model is already validated for the startup's own tasks",
+        "explanation": "General pre-training does not prove a model fits a specific use case; the startup still has to evaluate it on its own prompts."
       },
       {
         "key": "C",
@@ -7070,11 +7070,11 @@
       },
       {
         "key": "D",
-        "text": "Pre-training uses a small set of labeled examples",
-        "explanation": "Pre-training uses very large amounts of mostly unlabeled data; small labeled sets are for fine-tuning."
+        "text": "Pre-training suits small labeled datasets, which the startup lacks",
+        "explanation": "Pre-training uses very large amounts of mostly unlabeled data; small labeled sets are what fine-tuning uses."
       }
     ],
-    "explanation": "Foundation models are pre-trained on a broad range of generalized, unlabeled data, which takes vast amounts of data and compute. Starting from an existing model reuses that investment, so a team can build applications faster and at lower cost and then adapt the model with prompting, RAG or fine-tuning. Pre-training from scratch is the most expensive path, and it relies on unlabeled data at scale. Read more: https://aws.amazon.com/what-is/foundation-models/",
+    "explanation": "Foundation models are pre-trained on a broad range of generalized, unlabeled data, which takes vast amounts of data and compute. Starting from an existing model reuses that investment, so a team can build applications faster and at lower cost. The model does not know the startup's private data and has not been tested on its tasks, so the team still adapts it with prompting, RAG or fine-tuning and evaluates it. Pre-training relies on unlabeled data at scale, not small labeled sets. Read more: https://aws.amazon.com/what-is/foundation-models/",
     "source": "original",
     "sourceRef": "https://aws.amazon.com/what-is/foundation-models/",
     "reviewStatus": "draft",
@@ -7173,8 +7173,8 @@
     "options": [
       {
         "key": "A",
-        "text": "A folder of PDF files with no expected outputs",
-        "explanation": "Raw documents with no expected outputs suit continued pre-training or a knowledge base, not supervised fine-tuning."
+        "text": "A CSV file with a prompt column and a completion column",
+        "explanation": "Bedrock customization jobs read .jsonl files with one JSON record per line; a CSV file is not an accepted training format."
       },
       {
         "key": "B",
@@ -7182,16 +7182,16 @@
       },
       {
         "key": "C",
-        "text": "A CSV file of embedding vectors",
-        "explanation": "Embeddings are the output of an embedding model for search; fine-tuning trains on text examples."
+        "text": "JSON Lines records, each holding a single input text field",
+        "explanation": "Records with input text and no expected output give supervised fine-tuning nothing to learn the target response from."
       },
       {
         "key": "D",
-        "text": "A relational table in Amazon RDS",
-        "explanation": "Bedrock customization jobs read training files from Amazon S3, not from a database table."
+        "text": "One JSON array that holds all the prompt and completion pairs",
+        "explanation": "Bedrock expects JSON Lines, with each record on its own line; a single JSON array does not match that format."
       }
     ],
-    "explanation": "Amazon Bedrock fine-tuning reads training and validation datasets from .jsonl files, where each line is a JSON record. For supervised fine-tuning of a text model, each record has a prompt field with the input and a completion field with the expected output. Raw documents without expected outputs suit continued pre-training, and embeddings or database tables are not training inputs. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
+    "explanation": "Amazon Bedrock fine-tuning reads training and validation datasets from .jsonl files, where each line is a separate JSON record. For supervised fine-tuning of a text model, each record has a prompt field with the input and a completion field with the expected output. A CSV file or a single JSON array is the wrong file format, and records with input text alone have no expected output to learn from. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
     "reviewStatus": "draft",
@@ -7247,29 +7247,29 @@
     "conceptId": "fine-tuning-data",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A bank fine-tunes a model on 50,000 support chats, all from its UK customers. After launch, answers to customers in Canada and Australia are noticeably worse, often citing UK rules.\n\nWhich data preparation issue most likely caused this?",
+    "prompt": "A bank fine-tunes a model on 50,000 support chats exported from its UK contact centre. After launch, answers to customers in Canada and Australia are noticeably worse, often citing UK rules.\n\nWhich data preparation issue most likely caused this?",
     "options": [
       {
         "key": "A",
-        "text": "The dataset was too large for fine-tuning",
-        "explanation": "50,000 examples is a workable size; the problem is whom the examples cover, not how many there are."
+        "text": "Duplicate chats over-weighted a few common support topics",
+        "explanation": "Duplicates skew which topics the model favors, but they would not make it apply UK rules to customers in other countries."
       },
       {
         "key": "B",
-        "text": "The chats were stored as JSON Lines",
-        "explanation": "JSON Lines is the expected format for fine-tuning records; the format does not decide which customers the data covers."
+        "text": "Long chats were truncated at the model token limit",
+        "explanation": "Truncation cuts off parts of examples and can hurt long answers, but it does not tie answers to one country’s rules."
       },
       {
         "key": "C",
-        "text": "The model's temperature was set too low",
-        "explanation": "Temperature is an inference setting; it would not make answers cite UK rules for other countries."
+        "text": "The validation split overlapped the training data",
+        "explanation": "Overlap inflates validation scores before launch; it does not change what the model learned about other markets."
       },
       {
         "key": "D",
-        "text": "The training data was unrepresentative"
+        "text": "The training data was unrepresentative of the customers served"
       }
     ],
-    "explanation": "A fine-tuning dataset should represent the inputs the model will meet in production. Training only on UK chats taught the model UK products and rules, so it carries them over to customers elsewhere. Curating examples that cover each market the assistant serves fixes the gap. The dataset size, file format and temperature do not explain answers skewed toward one country. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
+    "explanation": "A fine-tuning dataset should represent the inputs the model will meet in production. Training only on chats from the UK contact centre taught the model UK products and rules, so it carries them over to customers elsewhere. Curating examples that cover each market the assistant serves fixes the gap. Duplicates, truncation and train-validation overlap are real data-quality problems, but none of them explains answers skewed toward one country. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
     "reviewStatus": "draft",
@@ -7382,13 +7382,13 @@
       },
       {
         "key": "D",
-        "text": "Distilling a smaller model from the base model, then few-shot prompting",
-        "explanation": "A student distilled from the same base model inherits its gaps with clinical shorthand."
+        "text": "Fine-tuning on the 3,000 pairs, then RAG over the 2 million notes",
+        "explanation": "Retrieving notes at query time adds context but does not teach the model to read clinical shorthand; the notes suit domain adaptation."
       }
     ],
-    "explanation": "The two datasets fit two steps. Continued pre-training uses large amounts of unlabeled domain text, so the clinical notes teach the model the shorthand and vocabulary. Supervised fine-tuning then uses the labeled pairs to teach the specific task of writing discharge summaries. Reversing the order risks diluting the task training, supervised fine-tuning cannot use unlabeled notes, and distilling from the same base model keeps its gaps. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html",
+    "explanation": "The two datasets fit two steps. Continued pre-training uses large amounts of unlabeled domain text, so the clinical notes teach the model the shorthand and vocabulary. Supervised fine-tuning then uses the labeled pairs to teach the specific task of writing discharge summaries. Reversing the order risks diluting the task training, supervised fine-tuning cannot use unlabeled notes, and retrieving notes at query time supplies context without teaching the model to read them. Read more: https://aws.amazon.com/blogs/aws/customize-models-in-amazon-bedrock-with-your-own-data-using-fine-tuning-and-continued-pre-training/",
     "source": "original",
-    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html",
+    "sourceRef": "https://aws.amazon.com/blogs/aws/customize-models-in-amazon-bedrock-with-your-own-data-using-fine-tuning-and-continued-pre-training/",
     "reviewStatus": "draft",
     "tags": [
       "aif-c01",
@@ -7412,8 +7412,8 @@
       },
       {
         "key": "B",
-        "text": "A data format error; convert the dataset to CSV",
-        "explanation": "A format error stops the job or skews both curves; fine-tuning datasets are JSON Lines, not CSV."
+        "text": "Validation data leaked into training; re-split the dataset",
+        "explanation": "Leakage makes validation loss look as good as training loss; a validation loss that rises while training loss falls points the other way."
       },
       {
         "key": "C",
@@ -7425,7 +7425,7 @@
         "text": "Overfitting; use fewer epochs or more varied training data"
       }
     ],
-    "explanation": "Training loss shows how well the model fits its training data; validation loss shows how well it fits data it has not trained on. When training loss keeps falling while validation loss rises, the model is memorizing the training set instead of generalizing: overfitting. Fewer epochs, or more and more varied data, are the usual remedies. Underfitting would leave both losses high. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-analyze.html",
+    "explanation": "Training loss shows how well the model fits its training data; validation loss shows how well it fits data it has not trained on. When training loss keeps falling while validation loss rises, the model is memorizing the training set instead of generalizing: overfitting. Fewer epochs, or more and more varied data, are the usual remedies. Underfitting would leave both losses high, and leakage between the sets would make validation loss track training loss rather than diverge. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-analyze.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-analyze.html",
     "reviewStatus": "draft",
@@ -7442,31 +7442,31 @@
     "conceptId": "fm-evaluation",
     "level": "easy",
     "difficulty": 2,
-    "prompt": "A team wants a quick first comparison of two models in Amazon Bedrock on general text generation, before it has built a prompt dataset of its own.\n\nWhich option fits best?",
+    "prompt": "A team wants a quick first comparison of two models in Amazon Bedrock on general text generation. It has yet to write any test prompts of its own.\n\nWhich option fits best?",
     "options": [
       {
         "key": "A",
-        "text": "An automatic model evaluation job with a built-in dataset"
+        "text": "Automatic evaluation jobs on the same built-in dataset"
       },
       {
         "key": "B",
-        "text": "A model evaluation job with a team of human workers",
-        "explanation": "Human evaluation needs a work team and a prompt dataset; it is slower and suits subjective qualities, not a quick first pass."
+        "text": "A human-based evaluation job with the team as raters",
+        "explanation": "Human evaluation jobs run on a prompt dataset the team supplies and need people to rate every response, so they are slower and need prompts it lacks."
       },
       {
         "key": "C",
-        "text": "A guardrail with content filters on both models",
-        "explanation": "Guardrails block harmful content at run time; they do not score or compare models."
+        "text": "An automatic evaluation job with a custom dataset in S3",
+        "explanation": "A custom prompt dataset is what the team has yet to write; a built-in dataset lets the same kind of job run without one."
       },
       {
         "key": "D",
-        "text": "A fine-tuning job on each of the two models",
-        "explanation": "Fine-tuning changes a model; it does not measure how two models compare."
+        "text": "An LLM-as-a-judge evaluation job for each model",
+        "explanation": "Judge-model jobs score responses to prompts from a custom dataset the team supplies, which it has yet to write."
       }
     ],
-    "explanation": "Amazon Bedrock automatic model evaluation jobs can use built-in datasets, which are public benchmark sets, and compute metrics such as accuracy, robustness and toxicity for each task type. That gives a quick, repeatable comparison before the team writes its own prompts; later it should evaluate on its own data. Human evaluation is slower, guardrails filter content, and fine-tuning changes models instead of measuring them. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-tasks.html",
+    "explanation": "Amazon Bedrock provides built-in prompt datasets, each sampled from a public benchmark, for automatic model evaluation jobs, and computes metrics such as accuracy, robustness and toxicity for general text generation. Each automatic job evaluates one model, so the team runs one job per model on the same built-in dataset and compares the scores. That gives a quick, repeatable comparison before the team writes its own prompts; later it should evaluate on its own data. Custom-dataset automatic jobs, LLM-as-a-judge jobs and human-based jobs all need a prompt dataset the team has yet to write, and human review is also slower. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-prompt-datasets.html",
     "source": "original",
-    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-tasks.html",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-prompt-datasets.html",
     "reviewStatus": "draft",
     "tags": [
       "aif-c01",
@@ -7481,7 +7481,7 @@
     "conceptId": "fm-evaluation",
     "level": "easy",
     "difficulty": 2,
-    "prompt": "A luxury brand must choose between two models for writing customer emails. The deciding factor is whether the emails feel on-brand and gracious, a judgment its marketing staff are best placed to make.\n\nWhich evaluation approach fits best?",
+    "prompt": "A luxury brand must choose between two models for writing customer emails. The deciding factor is whether the emails feel on-brand and gracious.\n\nWhich evaluation approach fits best?",
     "options": [
       {
         "key": "A",
@@ -7490,7 +7490,7 @@
       },
       {
         "key": "B",
-        "text": "A human-worker job with its brand team as raters"
+        "text": "A human-based job with marketing staff as raters"
       },
       {
         "key": "C",
@@ -7499,11 +7499,11 @@
       },
       {
         "key": "D",
-        "text": "Each model's average response latency",
-        "explanation": "Latency matters for responsiveness, but it does not tell the team which emails sound right."
+        "text": "BERTScore similarity to a set of approved emails",
+        "explanation": "BERTScore measures how close the meaning is to reference emails; it cannot tell whether a new email feels gracious and on-brand."
       }
     ],
-    "explanation": "Subjective qualities such as tone, style and brand fit are hard to score automatically. Amazon Bedrock model evaluation jobs that use human workers let a company's own employees or subject-matter experts rate responses, and here the marketing staff are the right judges. Overlap metrics, public benchmarks and latency measure other things. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
+    "explanation": "Subjective qualities such as tone, style and brand fit are hard to score automatically. Amazon Bedrock model evaluation jobs that use human workers let a company's own employees or subject-matter experts rate responses, and marketing staff know the brand voice best. ROUGE and BERTScore compare outputs with reference text by words or meaning, not by feel, and public benchmarks measure general abilities. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "reviewStatus": "draft",
@@ -7559,29 +7559,29 @@
     "conceptId": "fm-evaluation",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A team must rate 20,000 chatbot responses each week for correctness and helpfulness. Human review of that volume is too slow and costly, and the responses are free-form, so word-overlap metrics miss what matters.\n\nWhich evaluation approach fits best?",
+    "prompt": "A team must score the 20,000 free-form responses its chatbot gives each week for correctness and helpfulness. No reference answers exist for these responses, and every response needs a score.\n\nWhich evaluation approach fits best?",
     "options": [
       {
         "key": "A",
-        "text": "Weekly human review of the 20,000 responses",
-        "explanation": "Human review of every response is the slow, costly option the team needs to avoid; people suit smaller samples."
+        "text": "A human-based evaluation job on a weekly sample of 200 responses",
+        "explanation": "Human raters suit a small sample, but a 200-response sample leaves most of the week's responses without a score."
       },
       {
         "key": "B",
-        "text": "BLEU scores against one reference answer per question",
-        "explanation": "BLEU counts n-gram overlap with references, which is the word-overlap approach that misses free-form quality."
+        "text": "An automatic evaluation job that reports BERTScore per response",
+        "explanation": "BERTScore compares each response with a reference answer, and these responses have none to compare against."
       },
       {
         "key": "C",
-        "text": "Amazon CloudWatch metrics on invocation latency",
-        "explanation": "Latency metrics show speed, not whether responses are correct or helpful."
+        "text": "Amazon Comprehend sentiment analysis of each response",
+        "explanation": "Sentiment analysis rates whether text sounds positive or negative, not whether an answer is correct or helpful."
       },
       {
         "key": "D",
         "text": "An Amazon Bedrock evaluation job that uses an LLM as a judge"
       }
     ],
-    "explanation": "With LLM-as-a-judge, a second model scores each response against chosen metrics, such as correctness and helpfulness, and explains its score. Amazon Bedrock runs this as a model evaluation job, which scales to volumes that human reviewers cannot cover each week. Overlap metrics such as BLEU reward matching words rather than quality, and latency metrics measure speed. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html",
+    "explanation": "With LLM-as-a-judge, a second model scores each response against chosen metrics, such as correctness and helpfulness, and explains its score. Amazon Bedrock runs this as a model evaluation job, can score responses you have already generated, and can rate correctness without a ground-truth answer, so it scales to every response. A human sample leaves most responses unscored, BERTScore needs reference answers, and sentiment analysis measures tone rather than quality. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html",
     "reviewStatus": "draft",
@@ -7616,11 +7616,11 @@
       },
       {
         "key": "D",
-        "text": "Exact match",
-        "explanation": "Exact match rewards identical text, so paraphrased summaries would score even lower."
+        "text": "BLEU",
+        "explanation": "BLEU counts n-gram overlap with reference text, so it penalizes paraphrases just as the current word-overlap metric does."
       }
     ],
-    "explanation": "BERTScore compares embeddings of the generated and reference text, so a summary that paraphrases the reference can still score well when the meaning matches. ROUGE-N and exact match reward the same words, which is why paraphrases score low, and perplexity measures token prediction rather than agreement with a reference. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
+    "explanation": "BERTScore compares embeddings of the generated and reference text, so a summary that paraphrases the reference can still score well when the meaning matches. ROUGE-N and BLEU both reward shared n-grams, which is why paraphrases score low, and perplexity measures token prediction rather than agreement with a reference. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
     "reviewStatus": "draft",
@@ -7675,7 +7675,7 @@
     "categoryKey": "fm-applications",
     "conceptId": "fm-evaluation",
     "level": "hard",
-    "difficulty": 4,
+    "difficulty": 3,
     "prompt": "Model X tops a public reasoning benchmark and Model Y scores lower there. On 300 of the company's own support questions, with answers checked by its agents, Model Y does better.\n\nWhich model should the company prefer for its support assistant, and why?",
     "options": [
       {
@@ -7685,8 +7685,8 @@
       },
       {
         "key": "B",
-        "text": "Model X, because a higher benchmark score predicts user satisfaction",
-        "explanation": "Benchmark scores do not reliably predict satisfaction on a specific workload; the company's own test is closer to it."
+        "text": "Model X, because 300 questions are too few to outweigh a large benchmark",
+        "explanation": "Several hundred expert-checked questions from the real workload are strong evidence; a large generic benchmark measures other tasks."
       },
       {
         "key": "C",
@@ -7694,11 +7694,11 @@
       },
       {
         "key": "D",
-        "text": "Neither, until both are fine-tuned on the benchmark data",
-        "explanation": "Fine-tuning on a public benchmark would tune the models toward that test, not toward support questions."
+        "text": "Model Y, because a lower benchmark score signals less overfitting to tests",
+        "explanation": "Nothing here shows Model X was overfit to the benchmark; the evidence for Model Y is its result on the company's own questions."
       }
     ],
-    "explanation": "Benchmark datasets give a standard way to compare models on general abilities, but they may not reflect a specific use case. An evaluation on the company's own prompts with expert-checked answers measures performance on the task that matters, so its result should carry more weight. Amazon Bedrock evaluations accept a custom prompt dataset tailored to a use case for this reason. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
+    "explanation": "Benchmark datasets give a standard way to compare models on general abilities, but they may not reflect a specific use case. An evaluation on the company's own prompts with expert-checked answers measures performance on the task that matters, so its result should carry more weight than a larger generic test. A low benchmark score is no evidence of less overfitting; the case for Model Y rests on the company's own results. Amazon Bedrock evaluations accept a custom prompt dataset tailored to a use case for this reason. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "reviewStatus": "draft",
@@ -7753,7 +7753,7 @@
     "categoryKey": "fm-applications",
     "conceptId": "genai-app-evaluation",
     "level": "hard",
-    "difficulty": 4,
+    "difficulty": 3,
     "prompt": "A bank's leadership asks whether its new customer-service assistant is worth its running cost. The team must report metrics that tie the assistant to that business question.\n\nWhich TWO metrics fit best? (Select TWO.)",
     "options": [
       {
@@ -7772,15 +7772,15 @@
       },
       {
         "key": "D",
-        "text": "Number of parameters in the model",
-        "explanation": "Model size affects cost and latency indirectly but does not measure the assistant's value to the bank."
+        "text": "P95 response latency of the assistant",
+        "explanation": "Latency is an operational metric for responsiveness; it does not show whether the assistant is worth its cost to the bank."
       },
       {
         "key": "E",
         "text": "Customer satisfaction score after chats"
       }
     ],
-    "explanation": "Business alignment metrics connect an AI application to outcomes leadership cares about. Cost per interaction shows what each conversation costs compared with the alternative, and customer satisfaction shows whether the service is good enough to keep. Task completion rate is another such metric. ROUGE-L, perplexity and parameter count describe the model, not the business case. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+    "explanation": "Business alignment metrics connect an AI application to outcomes leadership cares about. Cost per interaction shows what each conversation costs compared with the alternative, and customer satisfaction shows whether the service is good enough to keep. Task completion rate is another such metric. ROUGE-L and perplexity describe the model, and latency describes system performance; none answers whether the assistant pays for itself. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
     "reviewStatus": "draft",
