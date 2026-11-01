@@ -405,7 +405,7 @@
   {
     "id": "governance-services",
     "title": "Governance and audit services",
-    "body": "- AWS CloudTrail: who called which API, when, from where.\n- Amazon Bedrock model invocation logging: full prompts and responses to Amazon S3 or CloudWatch Logs.\n- AWS Config: records resource configurations and evaluates them against rules over time.\n- AWS Artifact: AWS's compliance reports (SOC, ISO) and agreements.\n- AWS Audit Manager: collects evidence about your own controls.\n- AWS Trusted Advisor: best-practice checks.\n- Amazon Inspector: vulnerability scanning.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html",
+    "body": "- AWS CloudTrail: who called which API, when, from where.\n- Amazon Bedrock model invocation logging: full prompts and responses to Amazon S3 or CloudWatch Logs.\n- AWS Config: records resource configurations and evaluates them against rules over time.\n- AWS Artifact: AWS's compliance reports (SOC, ISO) and agreements.\n- AWS Audit Manager: collects evidence about your own controls, including against its AWS generative AI best practices framework for Amazon Bedrock and SageMaker AI.\n- AWS Trusted Advisor: best-practice checks.\n- Amazon Inspector: vulnerability scanning.\n- Amazon CloudWatch: metrics and alarms, such as Amazon Bedrock InvocationThrottles.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html",
     "commonMistakes": [
       "Expecting CloudTrail to hold full prompt and response text.",
       "Looking for AWS's audit reports in Audit Manager instead of Artifact."
@@ -439,6 +439,45 @@
     "tags": [
       "domain-5",
       "task-5.2"
+    ]
+  },
+  {
+    "id": "agent-security",
+    "title": "Securing AI agents: AgentCore Identity and Policy",
+    "body": "Agents act on their own and call tools, so they need limits that hold even when a prompt tries to talk them out of it.\n\n- AgentCore Identity: identities and credentials for agents, including OAuth access to third-party services on a user's behalf.\n- Policy in AgentCore: policy engines attached to AgentCore Gateway that check every tool call against deterministic rules, written in Cedar or in natural language, before it runs. Rules can use the user's identity and the tool's input parameters, such as a refund amount.\n- Least-privilege IAM roles for the agent's runtime.\n\nControls outside the agent's code cannot be bypassed by a manipulated prompt; instructions in the system prompt can.\n\nRead more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+    "commonMistakes": [
+      "Relying on system prompt instructions to enforce business rules on tool calls.",
+      "Expecting AgentCore Identity to decide which tool calls are allowed: Identity supplies credentials, Policy decides."
+    ],
+    "tags": [
+      "domain-5",
+      "task-5.1"
+    ]
+  },
+  {
+    "id": "secure-data-engineering",
+    "title": "Secure data engineering for AI",
+    "body": "- Data quality: test data against rules before training, for example with AWS Glue Data Quality rules written in DQDL.\n- Privacy-enhancing technologies: analyze data without exposing individuals. AWS Clean Rooms lets companies work on combined data without sharing raw records, and its differential privacy adds calibrated noise to query results.\n- Data access control: least-privilege access to datasets and, in RAG, metadata filters so that a query retrieves only documents the user may see.\n- Data integrity: encryption, versioning and logs of who changed what.\n\nRead more: https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html",
+    "commonMistakes": [
+      "Relying on a system prompt to keep restricted documents from some users: filter them out at retrieval.",
+      "Using SageMaker Model Monitor to check data before training: it watches a deployed endpoint."
+    ],
+    "tags": [
+      "domain-5",
+      "task-5.1"
+    ]
+  },
+  {
+    "id": "grounding-citations",
+    "title": "Source citations, grounding and hallucination checks",
+    "body": "- RAG grounding: retrieve relevant documents and pass them to the model, so answers rest on the company's data rather than on what the model memorized.\n- Source citations: Amazon Bedrock Knowledge Bases return citations with RetrieveAndGenerate responses, so users can check an answer against its source.\n- Output validation: Amazon Bedrock Guardrails contextual grounding checks flag responses that the sources do not support or that miss the question; Automated Reasoning checks test answers against formal rules.\n- Confidence scoring: send low-confidence outputs to human review.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve-generate.html",
+    "commonMistakes": [
+      "Treating model invocation logging as a way for users to verify answers: it is an audit record.",
+      "Lowering temperature to stop hallucinations: it makes output less varied, not grounded."
+    ],
+    "tags": [
+      "domain-5",
+      "task-5.1"
     ]
   },
   {
