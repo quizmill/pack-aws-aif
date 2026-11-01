@@ -518,5 +518,83 @@
       "domain-2",
       "task-2.3"
     ]
+  },
+  {
+    "id": "fm-selection-criteria",
+    "title": "Choosing a foundation model for an application",
+    "body": "Match the model to the application before comparing price:\n\n- Modality: what goes in and what comes out (text, image, video, audio, embeddings). A photo-plus-question app needs a multimodal model that accepts images.\n- Input and output length: the context window caps the tokens in one request; the maximum output setting caps the reply.\n- Latency and model size: smaller models answer faster and cost less per token. Pick the smallest model that passes your own evaluation.\n- Languages, customization options (fine-tuning, distillation) and Region availability.\n- Cost: price per input and output token. Prompt caching cuts the cost and latency of a long prefix that repeats across requests.\n\nRead more: https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+    "commonMistakes": [
+      "Raising the maximum output tokens to fit a long document: the context window limits the input.",
+      "Choosing an image generation model to read photos: reading images needs a multimodal model that accepts image input."
+    ],
+    "tags": [
+      "domain-3",
+      "task-3.1"
+    ]
+  },
+  {
+    "id": "vector-stores",
+    "title": "Vector stores for embeddings on AWS",
+    "body": "A vector store keeps embeddings and finds the ones nearest to a query vector (similarity search). It is the retrieval step of RAG.\n\n- Amazon OpenSearch Serverless and Amazon OpenSearch Service: search engines with vector search, for frequent low-latency queries.\n- Amazon Aurora PostgreSQL and Amazon RDS for PostgreSQL: the pgvector extension stores vectors beside relational data.\n- Amazon Neptune Analytics: graph plus vector search. It powers GraphRAG in Amazon Bedrock Knowledge Bases, which links entities across documents.\n- Amazon S3 Vectors: low-cost, durable vector storage in S3 with sub-second queries, best for large, infrequently queried data.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html",
+    "commonMistakes": [
+      "Picking a time-series or key-value database for similarity search: it needs vector search support.",
+      "Expecting bigger chunks to answer questions that link entities across documents: that is a GraphRAG job."
+    ],
+    "tags": [
+      "domain-3",
+      "task-3.1"
+    ]
+  },
+  {
+    "id": "agents-vs-workflows",
+    "title": "Agents, workflows and their business uses",
+    "body": "- AI agent: a model plans the steps toward a goal, calls tools such as APIs, keeps memory and decides when it is done. It fits open-ended tasks that act in other systems: rebooking travel, processing a refund, triaging IT tickets.\n- Workflow: a fixed sequence of steps defined in advance. Amazon Bedrock Flows links prompts, models, knowledge bases and other AWS services into such a sequence, so every run follows the same auditable path.\n- A single model call is enough for one-step tasks such as translation, summarization or classification.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/flows.html",
+    "commonMistakes": [
+      "Using an agent where the steps never change: a workflow is cheaper and more predictable.",
+      "Building an agent for a task that is one request and one response."
+    ],
+    "tags": [
+      "domain-3",
+      "task-3.1"
+    ]
+  },
+  {
+    "id": "prompt-management",
+    "title": "Prompt templates and versions in Amazon Bedrock Prompt Management",
+    "body": "Prompt Management stores prompts with their model and inference settings so teams can share and reuse them.\n\n- Variables turn a stored prompt into a reusable template that the application fills in at run time.\n- While testing, compare variants of a prompt and keep the one with the best output.\n- Saving edits updates the working draft.\n- Creating a version takes a snapshot of the prompt. Applications call a specific version, so draft edits reach production only after a new version is created and the application points at it.\n- To roll back, point the application at an earlier version.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html",
+    "commonMistakes": [
+      "Expecting a draft edit to change what production returns: production calls a saved version.",
+      "Using a model registry to version prompts: it versions models."
+    ],
+    "tags": [
+      "domain-3",
+      "task-3.2"
+    ]
+  },
+  {
+    "id": "fine-tuning-data",
+    "title": "Preparing data to fine-tune a foundation model",
+    "body": "- Format: in Amazon Bedrock, training and validation sets are .jsonl files; for supervised fine-tuning each record pairs a prompt with its expected completion.\n- Curation: quality beats volume. Remove duplicates, errors and off-task examples.\n- Governance: detect and redact personal data (for example with Amazon Comprehend) and confirm the right to use the data before training.\n- Representativeness: cover every kind of input, user group and market the model will serve.\n- Size and validation: hold out a validation set. Training loss falling while validation loss rises means overfitting.\n- Labels: supervised and instruction fine-tuning need labeled pairs; RLHF uses human preferences between responses to train a reward model; reinforcement fine-tuning uses reward functions instead of labels.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html",
+    "commonMistakes": [
+      "Encrypting a dataset and calling it governed: the model still trains on the personal data inside.",
+      "Reading falling training loss alone as success: check validation loss for overfitting."
+    ],
+    "tags": [
+      "domain-3",
+      "task-3.3"
+    ]
+  },
+  {
+    "id": "genai-app-evaluation",
+    "title": "Evaluating GenAI applications and their business value",
+    "body": "Evaluate the whole application, not only the model:\n\n- RAG: Amazon Bedrock RAG evaluations run retrieve-only jobs (are the right passages returned?) or retrieve-and-generate jobs (are the answers good too?).\n- Agents: score the trajectory as well as the reply. Amazon Bedrock AgentCore Evaluations scores agent traces for goal attainment and tool use with LLM-as-a-judge evaluators.\n- Custom rules: a judge-model evaluation job with a custom metric scores business-specific criteria without reference answers.\n- Business alignment: task completion rate, user satisfaction, cost per interaction, time saved (productivity) and user engagement.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-kb.html",
+    "commonMistakes": [
+      "Judging an agent on its final text alone: wrong tool calls can hide behind a plausible reply.",
+      "Reporting ROUGE or perplexity when leadership asks about business value."
+    ],
+    "tags": [
+      "domain-3",
+      "task-3.4"
+    ]
   }
 ]
