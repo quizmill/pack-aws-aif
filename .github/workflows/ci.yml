@@ -1,0 +1,25 @@
+name: CI
+
+# Validate the pack on every PR and push to `main`. Deploying is
+# deploy.yml's job.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # The engine's own major (deploy-pack.yml builds on the same).
+          node-version: 26
+      - name: Validate
+        run: npx --yes quizmill@latest validate .
