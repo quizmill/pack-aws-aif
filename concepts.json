@@ -104,6 +104,58 @@
     ]
   },
   {
+    "id": "ai-data-types",
+    "title": "Types of data in AI models",
+    "body": "- Labeled data carries the answer (the target) for each example and is needed for supervised learning; unlabeled data has no answer and suits unsupervised learning.\n- Structured (tabular) data fits rows and columns: numbers, short text, dates, as in a relational table or spreadsheet.\n- Unstructured data does not fit a table: free text, images, audio and video.\n- Time-series data is a sequence of values ordered by time, such as hourly sensor readings or daily sales, and is used for forecasting.\n- Image data feeds computer vision; text data feeds natural language processing.\n\nRead more: https://aws.amazon.com/compare/the-difference-between-structured-data-and-unstructured-data/",
+    "commonMistakes": [
+      "Calling free-text reviews structured because they are stored in a database column.",
+      "Assuming unlabeled data can train a model to predict a known target."
+    ],
+    "tags": [
+      "domain-1",
+      "task-1.1"
+    ]
+  },
+  {
+    "id": "ai-use-cases",
+    "title": "Real-world AI applications and where they add value",
+    "body": "AI and ML add value by assisting human decisions (ranking claims for review), by scaling a task to volumes people cannot handle, and by automating repetitive work.\n\nCommon applications and an AWS fit:\n\n- Computer vision: Amazon Rekognition; documents: Amazon Textract.\n- NLP: Amazon Comprehend; translation: Amazon Translate.\n- Speech recognition: Amazon Transcribe; speech output: Amazon Polly; chat and voice bots: Amazon Lex.\n- Recommendations: Amazon Personalize.\n- Fraud and anomaly detection, forecasting: models built in Amazon SageMaker AI.\n- Knowledge bases: Amazon Bedrock Knowledge Bases.\n- Agentic AI: agents that plan and call tools, built with Amazon Bedrock and AgentCore.\n\nRead more: https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html",
+    "commonMistakes": [
+      "Using a document search service for personalized recommendations.",
+      "Calling a fixed rule written by people an AI application."
+    ],
+    "tags": [
+      "domain-1",
+      "task-1.2"
+    ]
+  },
+  {
+    "id": "mlops",
+    "title": "MLOps on SageMaker AI",
+    "body": "MLOps applies engineering practice to ML so models reach production and stay healthy:\n\n- Experimentation: managed MLflow on SageMaker AI logs each run's parameters and metrics for comparison.\n- Repeatable processes: SageMaker Pipelines runs data preparation, training, evaluation and registration the same way every time.\n- Versioning and approval: SageMaker Model Registry catalogs model versions and their approval status.\n- Monitoring: SageMaker Model Monitor detects data and model quality drift against a baseline.\n- Re-training: a drift alert can start a pipeline that retrains and registers a new version for approval.\n- Managing technical debt: avoid one-off notebooks and manual steps that nobody can reproduce.\n\nRead more: https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html",
+    "commonMistakes": [
+      "Treating Model Registry as an orchestrator: Pipelines runs the steps, the registry stores the versions.",
+      "Retraining on a fixed schedule with no monitoring signal and no approval step."
+    ],
+    "tags": [
+      "domain-1",
+      "task-1.3"
+    ]
+  },
+  {
+    "id": "ai-dev-services",
+    "title": "Where models come from and the AWS tools around them",
+    "body": "Sources of foundation models:\n\n- Managed API: Amazon Bedrock serves provider models without exposing their weights; providers cannot see customer prompts.\n- Open-weight pretrained models: SageMaker JumpStart deploys and fine-tunes them on instances in your own account (self-hosted).\n- Custom models: training from scratch needs very large datasets and compute; most teams start from a pretrained model.\n\nTools for each stage:\n\n- Amazon SageMaker AI: build, train, deploy and monitor ML models.\n- Amazon Bedrock: build generative AI applications and agents on foundation models.\n- Kiro: an AI-powered development environment; specs turn a feature into requirements, design and tasks.\n- Amazon Quick: an AI workspace for business users with dashboards (Quick Sight), research, flows and chat over company data.\n\nRead more: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "commonMistakes": [
+      "Expecting to download the weights of a model used through Bedrock.",
+      "Mixing up Kiro (for developers) and Amazon Quick (for business users)."
+    ],
+    "tags": [
+      "domain-1",
+      "task-1.3"
+    ]
+  },
+  {
     "id": "genai-core-concepts",
     "title": "Generative AI building blocks",
     "body": "- Token: the unit of text a model reads and writes (roughly a word piece). Pricing and context limits count tokens.\n- Context window: the maximum tokens a model can take in one request.\n- Embedding: a vector of numbers that captures meaning; similar content sits close together.\n- Vector store: a database that indexes embeddings for similarity search.\n- Chunking: splitting documents into pieces before embedding them.\n- Transformer: the neural network architecture behind LLMs; attention lets it weigh every token against the others.\n- Foundation model (FM): a large model pre-trained on broad data and adapted to many tasks.\n- Diffusion model: generates images by removing noise step by step.\n- Multimodal model: takes or produces more than one type of data, such as text and images.\n\nRead more: https://aws.amazon.com/what-is/embeddings-in-machine-learning/",
