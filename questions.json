@@ -3486,5 +3486,1423 @@
       "task-5.2"
     ],
     "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d2-13",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-core-concepts",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A product team is reading about how large language models (LLMs) work. They learn that most LLMs use a neural network architecture with a self-attention mechanism that weighs how every token in the input relates to every other token.\n\nWhich architecture is this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Transformer"
+      },
+      {
+        "key": "B",
+        "text": "Convolutional neural network (CNN)",
+        "explanation": "A CNN slides filters over local regions, which suits images; it has no self-attention across every token of a sequence."
+      },
+      {
+        "key": "C",
+        "text": "Recurrent neural network (RNN)",
+        "explanation": "An RNN reads a sequence one step at a time and carries a hidden state forward; self-attention was introduced to replace that step-by-step processing."
+      },
+      {
+        "key": "D",
+        "text": "Generative adversarial network (GAN)",
+        "explanation": "A GAN trains a generator against a discriminator, mostly for images; it is defined by that contest, not by self-attention over tokens."
+      }
+    ],
+    "explanation": "The transformer is the architecture behind modern LLMs. Its self-attention mechanism lets the model weigh every token against every other token in parallel, which captures long-range context in text. CNNs work on local patterns, RNNs process tokens one at a time, and GANs pit a generator against a discriminator. Read more: https://aws.amazon.com/what-is/transformers-in-artificial-intelligence/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/transformers-in-artificial-intelligence/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d2-14",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-core-concepts",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company loads 500-page technical manuals into a knowledge base for a question-answering assistant. During ingestion, each manual is split into smaller pieces before embeddings are created.\n\nWhat is the main purpose of this step?",
+    "options": [
+      {
+        "key": "A",
+        "text": "To compress the manuals so they use less storage in Amazon S3",
+        "explanation": "Splitting text does not compress it; the full content is still stored, now as many smaller pieces with their own embeddings."
+      },
+      {
+        "key": "B",
+        "text": "To retrieve only the passages relevant to a question and fit them into the prompt"
+      },
+      {
+        "key": "C",
+        "text": "To translate each section into the language of the embedding model",
+        "explanation": "Chunking only divides the text; it does not change its language, and multilingual embedding models handle many languages directly."
+      },
+      {
+        "key": "D",
+        "text": "To remove personal data from the manuals before they reach the model",
+        "explanation": "Removing sensitive data is a job for redaction or guardrails; chunking splits text by size or meaning and keeps what is in it."
+      }
+    ],
+    "explanation": "Chunking splits documents into pieces that are each embedded and indexed. At question time the knowledge base retrieves only the chunks closest to the question, which keeps the prompt within the context window and focused on relevant text. Chunking does not compress, translate or redact content. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-chunking.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-chunking.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d2-15",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-core-concepts",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "An insurance app lets a customer upload a photo of a damaged car and type a question. The model looks at the photo and the question together and answers in text.\n\nWhich type of model does the app need?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A text embedding model",
+        "explanation": "An embedding model turns input into vectors for search and similarity; it does not answer a question in text."
+      },
+      {
+        "key": "B",
+        "text": "A diffusion model",
+        "explanation": "A diffusion model generates images from noise; the app needs to understand an image and reply in text."
+      },
+      {
+        "key": "C",
+        "text": "A large language model that reads text",
+        "explanation": "A text model accepts text input and cannot look at the uploaded photo."
+      },
+      {
+        "key": "D",
+        "text": "A multimodal model"
+      }
+    ],
+    "explanation": "A multimodal model accepts more than one type of input, such as an image and text, and reasons over them together; Amazon Nova Lite and Nova Pro are examples that take images and text and reply in text. A text LLM cannot see the photo, a diffusion model creates images rather than reading them, and an embedding model only produces vectors. Read more: https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d2-16",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-core-concepts",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A retailer is listing possible AI projects for the coming year.\n\nWhich project is the best fit for generative AI?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Draft product descriptions from each item's attributes and photos"
+      },
+      {
+        "key": "B",
+        "text": "Forecast next month's sales for each store from past sales",
+        "explanation": "Predicting a number from historical data is a forecasting task that traditional ML handles well and more cheaply."
+      },
+      {
+        "key": "C",
+        "text": "Flag card payments as fraudulent or legitimate from labeled history",
+        "explanation": "Sorting transactions into two known classes is supervised classification, a classic ML task."
+      },
+      {
+        "key": "D",
+        "text": "Group customers into segments by purchase behavior",
+        "explanation": "Finding groups in unlabeled data is clustering, an unsupervised ML task with no new content created."
+      }
+    ],
+    "explanation": "Generative AI creates new content such as text, images, audio or code, so writing product descriptions is a natural fit. Forecasting a number, classifying payments and clustering customers are prediction or pattern-finding tasks that traditional ML solves well without generating content. Read more: https://aws.amazon.com/what-is/generative-ai/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/generative-ai/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d2-17",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "fm-lifecycle",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A team has selected a foundation model and fine-tuned it on its own support transcripts.\n\nWhich step should come next, before the model is deployed to customers?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Pre-train the model again from scratch on public web data",
+        "explanation": "Pre-training happens before fine-tuning and is done by the model provider; repeating it would undo the point of starting from a foundation model."
+      },
+      {
+        "key": "B",
+        "text": "Evaluate it on representative test cases against success criteria"
+      },
+      {
+        "key": "C",
+        "text": "Collect thumbs-up and thumbs-down feedback from customers",
+        "explanation": "Customer feedback comes from a deployed model, so it follows deployment rather than gating it."
+      },
+      {
+        "key": "D",
+        "text": "Select the data that the provider used for pre-training",
+        "explanation": "Data selection for pre-training is an early step owned by the model builder, long before this team fine-tuned the model."
+      }
+    ],
+    "explanation": "The FM lifecycle runs roughly from data selection and model selection, through pre-training and fine-tuning, to evaluation, deployment and feedback. After fine-tuning, the team evaluates the model on representative tasks to confirm it meets the success criteria before deploying it. Feedback follows deployment, and pre-training and its data selection come much earlier. Read more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d2-18",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "agentic-ai",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company compares a chatbot that answers each question with one model call against an AI agent that books travel for employees.\n\nWhich capability sets the agent apart from the chatbot?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It uses a model with a larger context window",
+        "explanation": "Context window size is a model property; a chatbot and an agent can use the same model."
+      },
+      {
+        "key": "B",
+        "text": "It is fine-tuned on the company's travel policy",
+        "explanation": "Fine-tuning changes model weights; an agent is defined by planning and acting, and many agents use base models."
+      },
+      {
+        "key": "C",
+        "text": "It plans steps toward a goal and calls tools to act on them"
+      },
+      {
+        "key": "D",
+        "text": "It returns the same answer each time it gets the same request",
+        "explanation": "An agent still samples tokens from a model, so its output is no more deterministic than a chatbot's."
+      }
+    ],
+    "explanation": "An AI agent uses a model to break a goal into steps, call tools such as booking APIs, observe the results and decide what to do next until the task is done. A larger context window, fine-tuning or consistent output can apply to a chatbot as well; none of them makes a system an agent. Read more: https://aws.amazon.com/what-is/ai-agents/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/ai-agents/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d2-19",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-limits",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A bank replaces its menu-based support bot, which offered a fixed list of buttons, with an assistant built on a foundation model.\n\nWhich advantage of generative AI does this change most directly bring?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Identical wording for identical questions, which simplifies testing",
+        "explanation": "Foundation models sample tokens, so wording usually varies between runs; that is a known limitation, not an advantage."
+      },
+      {
+        "key": "B",
+        "text": "A clear trace of how each answer was derived from the model's weights",
+        "explanation": "Foundation models are hard to interpret; a clear trace through the weights is exactly what they lack."
+      },
+      {
+        "key": "C",
+        "text": "Answers that can go to customers with no accuracy review",
+        "explanation": "Foundation models can hallucinate, so answers that matter still need grounding, guardrails or review."
+      },
+      {
+        "key": "D",
+        "text": "Understanding free-form questions and replying conversationally"
+      }
+    ],
+    "explanation": "Generative AI understands free-form questions in natural language: customers can ask in their own words and get a conversational reply, which a fixed menu cannot do. Nondeterministic wording, low interpretability and the risk of inaccurate output are disadvantages to manage, not benefits. Read more: https://aws.amazon.com/what-is/generative-ai/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/generative-ai/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d2-20",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-limits",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A lender uses a foundation model to summarize loan applications for underwriters. An auditor asks the team to show which parts of the model's internal reasoning led to a specific summary. The team has no way to trace it.\n\nWhich limitation of generative AI is this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hallucination",
+        "explanation": "Hallucination is output that is false or ungrounded; the issue here is explaining an output, whether or not it is correct."
+      },
+      {
+        "key": "B",
+        "text": "Interpretability"
+      },
+      {
+        "key": "C",
+        "text": "Nondeterminism",
+        "explanation": "Nondeterminism is variation between runs of the same prompt; the auditor is asking why one output was produced."
+      },
+      {
+        "key": "D",
+        "text": "Knowledge cutoff",
+        "explanation": "A knowledge cutoff limits what the model knows about recent events; it says nothing about tracing its reasoning."
+      }
+    ],
+    "explanation": "Interpretability is the ability to understand why a model produced a given output. Large foundation models have billions of parameters, so tracing a specific summary back through them is hard, which matters in regulated settings. Hallucination concerns false content, nondeterminism concerns variation between runs, and a knowledge cutoff concerns missing recent facts. Read more: https://aws.amazon.com/what-is/generative-ai/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/generative-ai/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-easy-d2-21",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "model-selection",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A telecom company adds a generative AI assistant to its app. The goal is to keep subscribers for more years by resolving their problems quickly.\n\nWhich business metric best shows whether the assistant meets this goal?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Customer lifetime value"
+      },
+      {
+        "key": "B",
+        "text": "Average time to first token",
+        "explanation": "Time to first token is a technical latency measure; it can improve while subscribers still leave."
+      },
+      {
+        "key": "C",
+        "text": "ROUGE score on a summarization test set",
+        "explanation": "ROUGE compares generated text with reference text; it measures model output, not whether customers stay."
+      },
+      {
+        "key": "D",
+        "text": "Conversion rate of a single upgrade campaign",
+        "explanation": "A campaign conversion rate measures one short-term action, while the goal is how long subscribers stay and spend."
+      }
+    ],
+    "explanation": "Customer lifetime value (CLV) captures the total revenue a customer brings over the whole relationship, so it rises when subscribers stay longer. Latency and ROUGE are technical measures of the model, and a single campaign's conversion rate tracks a one-off action rather than retention. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d2-22",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-builder-tools",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "Business analysts want an AI assistant that answers natural-language questions over company documents and dashboards, produces cited research reports, and automates routine tasks in connected apps. They want a fully managed service with no models to host and no application to build.\n\nWhich AWS service fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker AI",
+        "explanation": "SageMaker AI is for building, training and deploying models; analysts would still have to build and host the assistant themselves."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Bedrock AgentCore",
+        "explanation": "AgentCore gives developers infrastructure to deploy and run their own agents; it is a building block, not a ready-made assistant for analysts."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Quick"
+      },
+      {
+        "key": "D",
+        "text": "Amazon Kendra",
+        "explanation": "Kendra provides intelligent enterprise search; it does not offer dashboards, research reports or task automation."
+      }
+    ],
+    "explanation": "Amazon Quick is a fully managed, AI-powered workspace: chat agents answer questions grounded in connected data (Quick Index), Quick Research produces cited reports, Quick Sight covers dashboards, and Quick Flows and Quick Automate handle workflows. SageMaker AI and AgentCore are for developers building their own solutions, and Kendra covers search only. Read more: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-easy-d2-23",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-builder-tools",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A software team wants an AI-powered development environment that turns a feature idea into written requirements, a design document and a list of implementation tasks before an agent writes the code.\n\nWhich AWS offering is built for this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Kiro"
+      },
+      {
+        "key": "B",
+        "text": "Amazon Bedrock Flows",
+        "explanation": "Bedrock Flows links prompts, models and other steps into a generative AI workflow; it is not a coding environment that plans features."
+      },
+      {
+        "key": "C",
+        "text": "Strands Agents",
+        "explanation": "Strands Agents is an SDK for writing your own agents in code; it does not provide a development environment with specs."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Quick",
+        "explanation": "Amazon Quick is an AI workspace for business users working with data and documents, not a software development environment."
+      }
+    ],
+    "explanation": "Kiro is an AI-powered development environment from AWS. Its specs turn an idea into requirements.md, design.md and tasks.md, and its agent then implements the tasks; steering files and hooks keep the agent aligned with project conventions. Bedrock Flows orchestrates generative AI workflows, Strands Agents is an agent SDK, and Amazon Quick serves business users. Read more: https://kiro.dev/docs/specs/",
+    "source": "original",
+    "sourceRef": "https://kiro.dev/docs/specs/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-easy-d2-24",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-builder-tools",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "Python developers want an open-source SDK to write an AI agent in a few lines of code. The model should drive the reasoning and tool choice, and the code should work with Amazon Bedrock and with other model providers.\n\nWhich option fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Bedrock AgentCore Runtime",
+        "explanation": "AgentCore Runtime hosts and scales agents that are already written; it is not the SDK used to write them."
+      },
+      {
+        "key": "B",
+        "text": "Amazon SageMaker JumpStart",
+        "explanation": "JumpStart is a hub of pre-trained models and solutions to deploy on SageMaker AI; it is not an agent SDK."
+      },
+      {
+        "key": "C",
+        "text": "Kiro",
+        "explanation": "Kiro is an AI development environment that helps write software; it is not a library that the agent code itself is built on."
+      },
+      {
+        "key": "D",
+        "text": "Strands Agents"
+      }
+    ],
+    "explanation": "Strands Agents is an open-source SDK, first released by AWS, that takes a model-first approach: the foundation model plans and chooses tools inside the agent loop. It supports Amazon Bedrock and other providers, MCP tools, and multi-agent patterns. AgentCore Runtime can host a Strands agent but does not replace the SDK; JumpStart and Kiro serve other purposes. Read more: https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-frameworks/strands-agents.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-frameworks/strands-agents.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d2-25",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-builder-tools",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A company wants employees with no coding background to learn prompt design by building small generative AI apps in a browser. Setup should take minutes and need no AWS infrastructure.\n\nWhich option fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon SageMaker JumpStart",
+        "explanation": "JumpStart deploys models to SageMaker AI endpoints, which needs an AWS account, instances and some ML knowledge."
+      },
+      {
+        "key": "B",
+        "text": "Amazon Bedrock AgentCore",
+        "explanation": "AgentCore is for developers deploying production agents, which is far more setup than a learning exercise needs."
+      },
+      {
+        "key": "C",
+        "text": "Amazon EC2 with an open-weight model",
+        "explanation": "Hosting a model on EC2 means choosing instances and managing software, the opposite of a no-code start."
+      },
+      {
+        "key": "D",
+        "text": "PartyRock"
+      }
+    ],
+    "explanation": "PartyRock is a no-code generative AI playground from Amazon: people build small AI apps in the browser by describing them, which makes it a low-barrier way to learn prompt design. JumpStart, AgentCore and self-hosting on EC2 all need AWS infrastructure and technical skills. Read more: https://partyrock.aws/",
+    "source": "original",
+    "sourceRef": "https://partyrock.aws/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-easy-d2-26",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-services",
+    "level": "easy",
+    "difficulty": 2,
+    "prompt": "A healthcare company plans to call a third-party foundation model through Amazon Bedrock. Its security team worries that patient details in prompts could reach the model provider or be used to train the provider's models.\n\nWhat does Amazon Bedrock provide that addresses this concern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Model providers review a sample of prompts to check for misuse",
+        "explanation": "Model providers have no access to Bedrock prompts or completions; AWS runs the models in accounts the providers cannot reach."
+      },
+      {
+        "key": "B",
+        "text": "Prompts and responses are kept from model providers and are excluded from training"
+      },
+      {
+        "key": "C",
+        "text": "Encryption applies to prompts once the customer supplies its own key",
+        "explanation": "Bedrock encrypts data in transit and at rest by default; a customer managed key is an option, not a requirement for encryption."
+      },
+      {
+        "key": "D",
+        "text": "Data stays private once the model is copied to the customer's EC2 instances",
+        "explanation": "Bedrock does not hand base model weights to customers; it is a managed service, and privacy comes from how it isolates data."
+      }
+    ],
+    "explanation": "With Amazon Bedrock, customer inputs and outputs are not shared with model providers and are not used to train the base models. Bedrock runs each provider's model in AWS-owned deployment accounts the provider cannot access, and data is encrypted in transit and at rest by default. Read more: https://aws.amazon.com/bedrock/faqs/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/bedrock/faqs/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d2-27",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "context-engineering",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A chat assistant on Amazon Bedrock sends the whole conversation history with every request so the model can follow the thread. The team notices that each turn costs more than the one before it, even though users type short messages.\n\nWhat explains the rising cost?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Bedrock bills chat sessions by the minute once they pass a threshold",
+        "explanation": "On-demand text models are billed per input and output token; there is no per-minute session charge."
+      },
+      {
+        "key": "B",
+        "text": "Every request re-sends earlier turns, so input tokens grow each turn"
+      },
+      {
+        "key": "C",
+        "text": "The price per output token rises as a conversation gets longer",
+        "explanation": "The per-token rate is fixed for a model and tier; what grows is the number of tokens sent."
+      },
+      {
+        "key": "D",
+        "text": "The model raises its temperature as the history grows",
+        "explanation": "Temperature is set by the caller and does not change by itself; it also has no effect on price."
+      }
+    ],
+    "explanation": "Models are stateless, so a chat app re-sends prior turns as input tokens on every call. Each new turn adds to that history, so input tokens, and the cost per request, climb steadily. Trimming or summarizing history, or caching a fixed prefix, keeps this in check. Rates per token stay the same and there is no session-time charge. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/count-tokens.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/count-tokens.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d2-28",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "context-engineering",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A support agent holds long conversations. After many turns, the history approaches the model's context window and the agent starts losing facts the customer gave early on. The team wants to keep those facts while staying under the token limit.\n\nWhich approach should the team take?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Raise the maximum output tokens setting for each response",
+        "explanation": "Maximum output tokens caps the length of the reply; it does nothing to fit a growing input history into the context window."
+      },
+      {
+        "key": "B",
+        "text": "Fine-tune the model on transcripts of past support conversations",
+        "explanation": "Fine-tuning teaches general patterns from old data; it cannot hold the facts of the current customer's live conversation."
+      },
+      {
+        "key": "C",
+        "text": "Drop the oldest turns once the history reaches a fixed length",
+        "explanation": "A plain sliding window stays under the limit but discards the early facts the team wants to keep."
+      },
+      {
+        "key": "D",
+        "text": "Summarize older turns and keep the most recent turns verbatim"
+      }
+    ],
+    "explanation": "Context engineering decides what goes into the limited context window. Summarizing older turns keeps their key facts in a few tokens while recent turns stay word for word; Strands Agents ships a summarizing conversation manager for this. A sliding window loses early facts, output token limits do not shrink the input, and fine-tuning cannot store a live conversation. Read more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/agents/conversation-management/",
+    "source": "original",
+    "sourceRef": "https://strandsagents.com/latest/documentation/docs/user-guide/concepts/agents/conversation-management/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d2-29",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "context-engineering",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A team is improving the quality of an assistant's answers by changing what goes into the model's context window for each request, without changing the model.\n\nWhich TWO are context engineering practices? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add only the most relevant retrieved chunks instead of whole documents"
+      },
+      {
+        "key": "B",
+        "text": "Switch the model to Provisioned Throughput to remove throttling",
+        "explanation": "Provisioned Throughput changes capacity and billing; it does not change what information the model sees."
+      },
+      {
+        "key": "C",
+        "text": "Store user preferences in long-term memory and inject the relevant ones"
+      },
+      {
+        "key": "D",
+        "text": "Raise the temperature so the model explores more possible answers",
+        "explanation": "Temperature changes how tokens are sampled from the same context; it adds no information to the context."
+      },
+      {
+        "key": "E",
+        "text": "Move to a model with more parameters trained on more data",
+        "explanation": "Changing the model is model selection; the team is working on what goes into the context, with the model fixed."
+      }
+    ],
+    "explanation": "Context engineering is the practice of choosing and shaping everything a model sees for a request: instructions, retrieved passages, memory, tool results and history. Retrieving only relevant chunks and injecting relevant stored preferences, for example from AgentCore long-term memory, give the model better information within the token budget. Capacity, sampling settings and model size do not change the context. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKeys": [
+      "A",
+      "C"
+    ]
+  },
+  {
+    "id": "aws-aif-hard-d2-30",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "multi-agent-patterns",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A travel agent built by one team needs to delegate hotel bookings to a separate booking agent that another team builds and runs as its own service. The two agents must exchange tasks and results.\n\nWhich protocol is designed for this communication?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Agent2Agent (A2A)"
+      },
+      {
+        "key": "B",
+        "text": "Model Context Protocol (MCP)",
+        "explanation": "MCP standardizes how an agent connects to tools and data sources; communication between independent agents is what A2A was designed for."
+      },
+      {
+        "key": "C",
+        "text": "OpenAPI schema in a Bedrock action group",
+        "explanation": "An action group describes APIs or Lambda functions one agent can call as tools; it is not a protocol for peer agents to exchange tasks."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Bedrock AgentCore Gateway",
+        "explanation": "Gateway turns APIs and Lambda functions into MCP tools for an agent; it is not the protocol two peer agents use to exchange tasks."
+      }
+    ],
+    "explanation": "Agent2Agent (A2A) is an open protocol that lets agents built by different teams or frameworks discover each other and exchange tasks and results across services. MCP connects an agent to tools and data; an OpenAPI action group gives a Bedrock agent callable APIs; AgentCore Gateway exposes tools over MCP. AgentCore Runtime and Strands Agents both support A2A. Read more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "source": "original",
+    "sourceRef": "https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-hard-d2-31",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "multi-agent-patterns",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company built one Amazon Bedrock agent for billing, technical support and returns. It has 40 tools and long instructions, and it often calls the wrong tool for a request.\n\nWhich design change most directly addresses this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Give the agent a model with a larger context window",
+        "explanation": "A larger window fits the instructions but leaves one agent choosing among all 40 tools, which is what causes the errors."
+      },
+      {
+        "key": "B",
+        "text": "A supervisor agent that routes each request to specialist agents"
+      },
+      {
+        "key": "C",
+        "text": "Fine-tune the model on examples from the three areas",
+        "explanation": "Fine-tuning is costly and slow to change, and one agent still sees every tool for every request."
+      },
+      {
+        "key": "D",
+        "text": "Put the documentation for the three areas in a knowledge base",
+        "explanation": "A knowledge base adds retrieval of documents; it does not reduce the number of tools the agent has to choose from."
+      }
+    ],
+    "explanation": "Amazon Bedrock multi-agent collaboration lets a supervisor agent pass each request to collaborator agents, each with a narrow role, its own instructions and a small set of tools. Smaller toolsets make tool choice more reliable and each specialist easier to test. A bigger context window, fine-tuning or a knowledge base all leave one agent juggling every tool. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agent-collaboration.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agent-collaboration.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d2-32",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "agentcore-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An airline's booking agent runs on Amazon Bedrock AgentCore. When a customer returns weeks later in a new session, the agent should remember that the customer prefers aisle seats.\n\nWhich capability meets this requirement?",
+    "options": [
+      {
+        "key": "A",
+        "text": "AgentCore Memory short-term memory",
+        "explanation": "Short-term memory keeps turn-by-turn context within a single session, so the preference is gone when a new session starts weeks later."
+      },
+      {
+        "key": "B",
+        "text": "A model with a larger context window",
+        "explanation": "A context window holds what is sent in the current request; it keeps nothing between sessions."
+      },
+      {
+        "key": "C",
+        "text": "AgentCore Memory long-term memory"
+      },
+      {
+        "key": "D",
+        "text": "Prompt caching on the agent's instructions",
+        "explanation": "Prompt caching reuses a repeated prompt prefix for a few minutes to save cost; it does not store facts about a user."
+      }
+    ],
+    "explanation": "AgentCore long-term memory extracts key facts such as user preferences from conversations and keeps them across sessions, so the agent can offer an aisle seat next time. Short-term memory covers one session, a context window covers one request, and prompt caching only reuses identical prefixes briefly. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d2-33",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "fm-lifecycle",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A deployed writing assistant lets users rate each draft. After three months the team has thousands of ratings, many low ones on legal topics.\n\nWhat is the best use of this data in the FM lifecycle?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Archive it for compliance and keep the current model unchanged",
+        "explanation": "Keeping the data for audit is fine, but ignoring it skips the feedback stage that drives the next improvement."
+      },
+      {
+        "key": "B",
+        "text": "Pre-train a new foundation model from scratch on the ratings",
+        "explanation": "A few thousand ratings are far too little for pre-training, which needs very large unlabeled datasets and heavy compute."
+      },
+      {
+        "key": "C",
+        "text": "Switch to the largest available model without further testing",
+        "explanation": "A bigger model may or may not fix legal drafts, and deploying without evaluation skips a lifecycle step."
+      },
+      {
+        "key": "D",
+        "text": "Use it to refine prompts or tuning data, re-evaluate, then redeploy"
+      }
+    ],
+    "explanation": "Feedback closes the FM lifecycle loop: production signals show where the model falls short, the team improves prompts, retrieval or fine-tuning data for those cases, evaluates again and redeploys. Ignoring the signal stalls improvement, ratings are not pre-training material, and swapping models without evaluation skips a step. Read more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d2-34",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-limits",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An internal assistant answers questions about company tax rules. Several rules changed after the foundation model was trained, and the assistant quotes the old rates. The rules change several times a year.\n\nWhich approach fixes this with the least ongoing effort?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Lower the temperature so answers stay close to what the model knows",
+        "explanation": "Lower temperature makes output more consistent, but the model still knows only the old rates."
+      },
+      {
+        "key": "B",
+        "text": "Fine-tune the model on the new rules each time they change",
+        "explanation": "Fine-tuning can add the new rules, but retraining several times a year costs far more effort than updating documents."
+      },
+      {
+        "key": "C",
+        "text": "Retrieve the current rules from company documents and add them to the prompt"
+      },
+      {
+        "key": "D",
+        "text": "Move to a larger foundation model from the same provider",
+        "explanation": "A larger model has its own training cutoff and still lacks company rules published after it."
+      }
+    ],
+    "explanation": "The problem is a knowledge cutoff: the model only knows its training data. Retrieval augmented generation (RAG) pulls the current rules into each prompt, so an update is just a document change. Lower temperature and a bigger model do not add new facts, and repeated fine-tuning is costly for facts that change often. Read more: https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d2-35",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "model-selection",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A legal team wants each 300-page contract summarized in a single request. A contract is about 180,000 tokens. Two models score the same on the team's quality tests: Model A has a 32,000-token context window and is cheaper per token; Model B has a 300,000-token context window.\n\nWhich model should the team choose?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Model A, because its lower price per token matters most at scale",
+        "explanation": "Price only matters among models that can do the job, and a 180,000-token contract does not fit in a 32,000-token window."
+      },
+      {
+        "key": "B",
+        "text": "Model B, because the whole contract fits in its context window"
+      },
+      {
+        "key": "C",
+        "text": "Model A, with the maximum output tokens set high enough for the contract",
+        "explanation": "Maximum output tokens limits the reply length; it does not raise the input context window."
+      },
+      {
+        "key": "D",
+        "text": "Model B, because larger context windows give more accurate summaries",
+        "explanation": "The two models scored the same on quality; the deciding factor is that only Model B can take the whole input."
+      }
+    ],
+    "explanation": "Model choice starts with hard constraints. A single-request summary of a 180,000-token contract needs a context window larger than that, so only Model B qualifies; cost per token is then irrelevant. Output token limits do not change input capacity, and a larger window is not in itself a sign of better quality. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d2-36",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "model-selection",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A company wants one foundation model to draft content for its legal, marketing and engineering departments. Leadership asks whether a candidate model performs well across all three.\n\nWhich evaluation answers that question?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Score the model on a public general-knowledge benchmark",
+        "explanation": "A general benchmark gives one overall number and says little about this company's three specific kinds of content."
+      },
+      {
+        "key": "B",
+        "text": "Score it on test prompts from each department and compare per department"
+      },
+      {
+        "key": "C",
+        "text": "Measure the average latency of its responses under load",
+        "explanation": "Latency is a performance requirement, but it says nothing about whether the content is good in each department."
+      },
+      {
+        "key": "D",
+        "text": "Count the tokens it produces per request for each department",
+        "explanation": "Token counts reflect length and cost, not whether the drafts are accurate or useful."
+      }
+    ],
+    "explanation": "Cross-domain performance means checking quality in each domain the model will serve. A test set with prompts from each department, scored separately (for example with an Amazon Bedrock model evaluation job), shows whether the model holds up everywhere or is weak in one area. A general benchmark, latency or token counts do not answer that. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-hard-d2-37",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "agentcore-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A team has built an agent with the open-source LangGraph framework. They want to run it in production with each user session isolated from the others, fast scaling, and no servers to manage, while keeping their LangGraph code.\n\nWhich option fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Bedrock Agents",
+        "explanation": "Bedrock Agents is a managed way to define agents in Bedrock's own format, so the team would have to rebuild the LangGraph agent."
+      },
+      {
+        "key": "B",
+        "text": "Amazon SageMaker JumpStart",
+        "explanation": "JumpStart deploys pre-trained models to endpoints; it does not host agent code with per-session isolation."
+      },
+      {
+        "key": "C",
+        "text": "An Amazon EC2 Auto Scaling group running the agent",
+        "explanation": "EC2 can run the code, but the team would manage servers, scaling and session isolation themselves."
+      },
+      {
+        "key": "D",
+        "text": "Amazon Bedrock AgentCore Runtime"
+      }
+    ],
+    "explanation": "AgentCore Runtime is a serverless runtime for agents and tools built with any framework, including LangGraph, CrewAI and Strands Agents, and any model. It isolates each session and scales automatically. Bedrock Agents would need a rebuild, JumpStart hosts models rather than agents, and EC2 puts server management back on the team. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-hard-d2-38",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "agentcore-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "An agent on Amazon Bedrock AgentCore must read each user's calendar in a third-party SaaS app on that user's behalf. Users grant consent through OAuth, and the team wants no credentials stored in the agent's code.\n\nWhich AgentCore service handles this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "AgentCore Identity"
+      },
+      {
+        "key": "B",
+        "text": "AgentCore Memory",
+        "explanation": "Memory stores conversation context and user facts; it does not manage OAuth consent or access tokens."
+      },
+      {
+        "key": "C",
+        "text": "AgentCore Observability",
+        "explanation": "Observability provides traces, metrics and logs of agent behavior; it does not authorize access to other services."
+      },
+      {
+        "key": "D",
+        "text": "AgentCore Code Interpreter",
+        "explanation": "Code Interpreter runs code in a sandbox for the agent; it does not broker access to a user's accounts."
+      }
+    ],
+    "explanation": "AgentCore Identity manages agent identities and credential providers, so an agent can access AWS resources and third-party services on behalf of a user, with OAuth consent and tokens held by the service rather than in code. Memory, Observability and Code Interpreter solve other problems. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-hard-d2-39",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "bedrock-service-tiers",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A customer-facing app on Amazon Bedrock needs the fastest possible responses during busy business hours. Traffic is low at night, so the company wants to avoid paying for reserved capacity around the clock, and it accepts a higher per-token price for these requests.\n\nWhich option fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The Reserved tier with a one-month term",
+        "explanation": "The Reserved tier bills for reserved tokens-per-minute capacity for the whole term, which the company wants to avoid."
+      },
+      {
+        "key": "B",
+        "text": "The Flex tier",
+        "explanation": "Flex trades longer processing times for a discount, the opposite of the fastest responses."
+      },
+      {
+        "key": "C",
+        "text": "The Priority tier"
+      },
+      {
+        "key": "D",
+        "text": "Batch inference with results written to Amazon S3",
+        "explanation": "Batch jobs return results asynchronously in S3, which cannot serve users waiting in the app."
+      }
+    ],
+    "explanation": "The Priority tier serves requests ahead of Standard and Flex traffic for a premium over on-demand pricing, with no reservation; you set service_tier to priority on each request. The Reserved tier bills for capacity around the clock, Flex is slower and cheaper, and batch inference is asynchronous. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/service-tiers-inference.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/service-tiers-inference.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-hard-d2-40",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "genai-services",
+    "level": "hard",
+    "difficulty": 4,
+    "prompt": "A data science team fine-tuned an open-weight Llama model in Amazon SageMaker AI. They want to call the resulting model through the same serverless Amazon Bedrock API their applications use for other models, with no endpoint to manage.\n\nWhich feature should they use?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Amazon Bedrock Custom Model Import"
+      },
+      {
+        "key": "B",
+        "text": "Amazon Bedrock Marketplace",
+        "explanation": "Bedrock Marketplace offers models from providers to deploy on endpoints; it is not how you bring weights you trained yourself."
+      },
+      {
+        "key": "C",
+        "text": "Amazon Bedrock Model Distillation",
+        "explanation": "Distillation trains a smaller student model from a teacher's responses; it does not bring in a model trained elsewhere."
+      },
+      {
+        "key": "D",
+        "text": "Amazon SageMaker JumpStart",
+        "explanation": "JumpStart deploys models to SageMaker AI endpoints the team manages, which the team wants to avoid."
+      }
+    ],
+    "explanation": "Custom Model Import brings model weights customized elsewhere, such as in SageMaker AI, into Amazon Bedrock for supported architectures like Llama, and serves them on demand through the Bedrock runtime API. Marketplace lists provider models, Distillation creates a new student model, and JumpStart leaves the team running an endpoint. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-import-model.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-import-model.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "A"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-41",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "bedrock-pricing",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A help-desk assistant on Amazon Bedrock uses a large model for every request. About 70% of questions are simple and a smaller model in the same family answers them just as well; the rest need the large model. Questions arrive in any order, and the team wants to cut cost with little engineering effort and no quality loss on hard questions.\n\nWhich option meets these requirements?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Switch the assistant to the smaller model in the same family",
+        "explanation": "This cuts cost but lowers quality on the 30% of hard questions, which breaks a stated requirement."
+      },
+      {
+        "key": "B",
+        "text": "Enable prompt caching for the assistant's requests",
+        "explanation": "Caching saves cost on a repeated prompt prefix, but these short, varied questions share little that could be cached."
+      },
+      {
+        "key": "C",
+        "text": "Provisioned Throughput for the large model",
+        "explanation": "Reserved capacity still runs every simple question on the large model, and hourly billing suits steady, high traffic."
+      },
+      {
+        "key": "D",
+        "text": "Intelligent prompt routing in the same model family"
+      }
+    ],
+    "explanation": "Intelligent prompt routing gives one serverless endpoint that predicts, per request, which model in a family will answer well, and sends simple prompts to the cheaper model and hard ones to the larger model. That cuts cost without building a classifier. Moving everything to the small model hurts hard questions, caching needs a repeated prefix, and Provisioned Throughput does not change which model answers. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-routing.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-routing.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-42",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "fm-customization",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A large model in Amazon Bedrock gives the quality a company needs for classifying insurance claims, but at the planned volume its cost and latency are too high. A smaller model in the same family is fast and cheap but less accurate on this task. The company has thousands of real claim prompts but no reviewed answers for them.\n\nWhich approach best meets the goal?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Supervised fine-tuning of the smaller model on the claim prompts",
+        "explanation": "Supervised fine-tuning needs labeled prompt-and-response pairs, and the company has prompts without reviewed answers."
+      },
+      {
+        "key": "B",
+        "text": "Model distillation with the large model as teacher"
+      },
+      {
+        "key": "C",
+        "text": "Provisioned Throughput for the large model",
+        "explanation": "Reserved capacity can steady latency under load, but every request still runs on the expensive large model."
+      },
+      {
+        "key": "D",
+        "text": "Continued pre-training of the smaller model on the prompts",
+        "explanation": "Continued pre-training adapts a model to a domain's language from large unlabeled text; it does not transfer the large model's task skill."
+      }
+    ],
+    "explanation": "Amazon Bedrock Model Distillation takes prompts, has the larger teacher model generate responses, and fine-tunes the smaller student model on them. The student gains task accuracy close to the teacher at the student's lower cost and latency, and no human-labeled answers are needed. Supervised fine-tuning needs labeled pairs, Provisioned Throughput keeps the expensive model, and continued pre-training targets domain language rather than the task. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/model-distillation.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-distillation.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-43",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "bedrock-pricing",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A report generator on Amazon Bedrock sends about 500 input tokens per request and receives about 4,000 output tokens. For the chosen model, an output token costs four times as much as an input token. The team wants the biggest cost reduction.\n\nWhich change should the team make?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Enable prompt caching on the 500-token prompt",
+        "explanation": "Caching discounts repeated input tokens, and input is only about 500 of the 16,500 cost units per request here."
+      },
+      {
+        "key": "B",
+        "text": "Shorten the report instructions to save 200 input tokens",
+        "explanation": "Saving 200 input tokens trims little, because output tokens make up most of the cost."
+      },
+      {
+        "key": "C",
+        "text": "Ask for a tighter report and cap the maximum output tokens"
+      },
+      {
+        "key": "D",
+        "text": "Send requests through a cross-Region inference profile",
+        "explanation": "Cross-Region inference raises throughput and availability; it does not reduce how many tokens are billed."
+      }
+    ],
+    "explanation": "Cost is input tokens times the input price plus output tokens times the output price. Here input is 500 units and output is 4,000 x 4 = 16,000 units, so output drives about 97% of the cost. Asking for a tighter report and capping output tokens attacks that share; caching or trimming the short prompt saves little, and cross-Region routing does not change the token bill. Read more: https://aws.amazon.com/bedrock/pricing/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/bedrock/pricing/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-44",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "model-selection",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A company is choosing a model in Amazon Bedrock for a claims app. Requirements: accept a photo and a text description in one request; process data in an EU Region; respond within 2 seconds at the 95th percentile; and, among models that qualify, cost the least. The candidates:\n\n- Model A: text only, available in the EU, 1 s, lowest cost\n- Model B: image and text, available in the EU, 1.5 s, medium cost\n- Model C: image and text, available in US Regions only, 1 s, low cost\n- Model D: image and text, available in the EU, 4 s, low cost\n\nWhich model should the company choose?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Model A",
+        "explanation": "Model A is fast, cheap and in the EU, but it cannot accept the photo, so it fails the first requirement."
+      },
+      {
+        "key": "B",
+        "text": "Model B"
+      },
+      {
+        "key": "C",
+        "text": "Model C",
+        "explanation": "Model C is fast and multimodal, but processing in US Regions breaks the EU data requirement."
+      },
+      {
+        "key": "D",
+        "text": "Model D",
+        "explanation": "Model D is multimodal, in the EU and cheaper than B, but its 4-second response time misses the 2-second target."
+      }
+    ],
+    "explanation": "Apply the hard constraints first (modality, Region, latency), then pick the cheapest model that passes. Model A lacks image input, Model C is outside the EU, and Model D is too slow. Model B is the only one that meets every constraint, so its medium cost is the lowest that qualifies. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "B"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-45",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "multi-agent-patterns",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A finance team builds a multi-agent system with Strands Agents for a monthly report. Every run must follow the same steps: extract the data, run three independent analyses in parallel, then write the report. Auditors need the same sequence each month.\n\nWhich multi-agent pattern fits best?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Swarm, where agents hand tasks to each other as they see fit",
+        "explanation": "In a swarm, agents decide among themselves who acts next, so the path is emergent and can differ from run to run."
+      },
+      {
+        "key": "B",
+        "text": "Graph, where a model decision at each node picks the next path",
+        "explanation": "A graph lets model decisions choose branches and loops, which allows the sequence to change between runs."
+      },
+      {
+        "key": "C",
+        "text": "A single agent that plans the steps fresh on each run",
+        "explanation": "An agent planning from scratch each month may reorder or skip steps, which the auditors do not accept."
+      },
+      {
+        "key": "D",
+        "text": "Workflow, a developer-defined task graph with parallel steps"
+      }
+    ],
+    "explanation": "The Strands Workflow pattern runs a fixed, developer-defined task graph, with independent tasks in parallel, as one repeatable action, which suits a process that must run the same way every time. Swarm hands off between agents autonomously and Graph lets model decisions choose the path, so both allow variation; a single planning agent offers no fixed sequence. Read more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "source": "original",
+    "sourceRef": "https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "D"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-46",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "bedrock-pricing",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A company is deciding between fine-tuning a model in Amazon Bedrock and keeping its base model with better prompts and retrieval.\n\nWhich TWO costs come with the fine-tuned custom model but are absent from the base model approach? (Select TWO.)",
+    "options": [
+      {
+        "key": "A",
+        "text": "A training charge based on the tokens processed during customization"
+      },
+      {
+        "key": "B",
+        "text": "Charges for Amazon Bedrock Guardrails checks on prompts",
+        "explanation": "Guardrails are priced separately by text processed and apply to base models and custom models alike, so this cost is shared."
+      },
+      {
+        "key": "C",
+        "text": "A monthly storage fee for each custom model"
+      },
+      {
+        "key": "D",
+        "text": "A charge for each embedding used by a knowledge base",
+        "explanation": "Embedding costs belong to the retrieval approach, which the custom model path does not add."
+      },
+      {
+        "key": "E",
+        "text": "A higher per-token on-demand rate for the base model",
+        "explanation": "Base model on-demand rates do not change because a custom model exists in the account."
+      }
+    ],
+    "explanation": "Amazon Bedrock prices model customization by the tokens processed in training, plus a monthly fee to store each custom model, and some custom models are served through Provisioned Throughput billed by the hour. Guardrails apply to both approaches, embeddings belong to the retrieval approach, and the base model's rates stay the same. Read more: https://aws.amazon.com/bedrock/pricing/",
+    "source": "original",
+    "sourceRef": "https://aws.amazon.com/bedrock/pricing/",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.3"
+    ],
+    "correctKeys": [
+      "A",
+      "C"
+    ]
+  },
+  {
+    "id": "aws-aif-veryhard-d2-47",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "context-engineering",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "An assistant on Amazon Bedrock builds each prompt from four parts: the user's question, the current date and time, a fixed 6,000-token system instruction, and a fixed tool list. The team turns on prompt caching but sees almost no cache hits.\n\nWhich prompt order gives the best chance of cache hits?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Date and time, system instruction, tool list, question",
+        "explanation": "Putting the timestamp first changes the very start of every prompt, so the prefix differs on each request."
+      },
+      {
+        "key": "B",
+        "text": "Question, system instruction, tool list, date and time",
+        "explanation": "The question changes on every request, so starting with it means no two prompts share a prefix."
+      },
+      {
+        "key": "C",
+        "text": "System instruction, tool list, date and time, question"
+      },
+      {
+        "key": "D",
+        "text": "System instruction, question, tool list, date and time",
+        "explanation": "The question in second place splits the fixed parts, so only the system instruction can be reused as a prefix."
+      }
+    ],
+    "explanation": "Prompt caching reuses an identical prefix, so static content goes first and changing content last. Putting the fixed system instruction and tool list first, followed by the date and the question, gives every request the same long prefix to reuse. Starting with the question or the timestamp, or placing the question between fixed parts, breaks or shortens the shared prefix. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.1"
+    ],
+    "correctKey": "C"
+  },
+  {
+    "id": "aws-aif-veryhard-d2-48",
+    "categoryKey": "genai-fundamentals",
+    "conceptId": "model-selection",
+    "level": "veryhard",
+    "difficulty": 5,
+    "prompt": "A contact center deploys a generative AI assistant that drafts replies for agents. Monthly costs are $6,000 for model inference and $4,000 for operations. The assistant saves 500 agent hours a month, valued at $40 an hour.\n\nWhat is the monthly return on investment (ROI)?",
+    "options": [
+      {
+        "key": "A",
+        "text": "50%",
+        "explanation": "This divides the $10,000 cost by the $20,000 benefit, which inverts the ratio."
+      },
+      {
+        "key": "B",
+        "text": "100%"
+      },
+      {
+        "key": "C",
+        "text": "200%",
+        "explanation": "This divides the $20,000 benefit by the $10,000 cost without first subtracting the cost, which is a benefit-cost ratio of 2."
+      },
+      {
+        "key": "D",
+        "text": "233%",
+        "explanation": "This uses only the $6,000 inference cost and leaves out $4,000 of operations, which understates the investment."
+      }
+    ],
+    "explanation": "ROI is (benefit - cost) / cost. The benefit is 500 hours x $40 = $20,000; the cost is $6,000 + $4,000 = $10,000; ROI = ($20,000 - $10,000) / $10,000 = 100%. Dividing benefit by cost gives the benefit-cost ratio (200%), inverting the ratio gives 50%, and leaving out operations inflates the result. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "source": "original",
+    "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "reviewStatus": "draft",
+    "tags": [
+      "aif-c01",
+      "domain-2",
+      "task-2.2"
+    ],
+    "correctKey": "B"
   }
 ]

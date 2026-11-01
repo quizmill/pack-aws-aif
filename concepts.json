@@ -440,5 +440,83 @@
       "domain-5",
       "task-5.2"
     ]
+  },
+  {
+    "id": "fm-lifecycle",
+    "title": "The foundation model lifecycle",
+    "body": "A foundation model moves through these stages:\n\n- Data selection: gather and curate the data for pre-training (model builder) or customization (you).\n- Model selection: pick a model by task, modality, quality on your tests, cost, latency and compliance.\n- Pre-training: the provider trains the model on very large unlabeled datasets; this is rarely repeated by a user.\n- Fine-tuning or other customization: adapt the model to your task with your own data.\n- Evaluation: test against representative cases and success criteria before release.\n- Deployment: serve the model, for example on demand in Amazon Bedrock or on a SageMaker AI endpoint.\n- Feedback: production ratings and errors drive the next round of prompt, data or tuning changes, then re-evaluation.\n\nRead more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "commonMistakes": [
+      "Putting user feedback before deployment: it comes from a model people are already using.",
+      "Treating pre-training as something each customer does: it is the provider's step, before fine-tuning."
+    ],
+    "tags": [
+      "domain-2",
+      "task-2.1"
+    ]
+  },
+  {
+    "id": "context-engineering",
+    "title": "Context engineering",
+    "body": "Context engineering is choosing and shaping everything a model sees in one request, within its context window: system instructions, retrieved passages, memory, tool definitions and results, and conversation history.\n\n- Models are stateless: a chat app re-sends history as input tokens, so cost and latency grow every turn.\n- Keep history in budget: a sliding window drops old turns; summarizing keeps their key facts in fewer tokens.\n- Retrieve only relevant chunks rather than whole documents.\n- Store durable facts, such as user preferences, in long-term memory and inject only the relevant ones.\n- Put static content first and changing content last, so prompt caching can reuse the prefix.\n\nRead more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/agents/conversation-management/",
+    "commonMistakes": [
+      "Raising maximum output tokens to fit a long history: it caps the reply, not the input.",
+      "Putting a timestamp or the user question at the start of a prompt and expecting cache hits."
+    ],
+    "tags": [
+      "domain-2",
+      "task-2.1"
+    ]
+  },
+  {
+    "id": "multi-agent-patterns",
+    "title": "Multi-agent patterns and protocols",
+    "body": "When one agent has too many tools or roles, split the work:\n\n- Supervisor (agents as tools): a supervisor routes each request to specialist agents with narrow roles and small toolsets. Amazon Bedrock multi-agent collaboration works this way.\n- Swarm: specialist agents hand tasks to each other; the path is emergent.\n- Graph: a flowchart of agents where a model decision at each node picks the next step, with branches and loops.\n- Workflow: a fixed, developer-defined task graph, with independent steps in parallel; the same sequence every run.\n\nProtocols: MCP connects an agent to tools and data sources. Agent2Agent (A2A) lets independent agents, often run by different teams, exchange tasks and results.\n\nRead more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "commonMistakes": [
+      "Choosing a swarm for a process auditors need to see run identically each time.",
+      "Using MCP to describe agent-to-agent delegation: that is A2A."
+    ],
+    "tags": [
+      "domain-2",
+      "task-2.1"
+    ]
+  },
+  {
+    "id": "agentcore-services",
+    "title": "Amazon Bedrock AgentCore services",
+    "body": "AgentCore runs agents built with any framework (Strands Agents, LangGraph, CrewAI and others) and any model, with no infrastructure to manage. Its modular services:\n\n- Runtime: serverless hosting for agents and tools, with session isolation.\n- Memory: short-term memory for turns within a session; long-term memory for facts and preferences across sessions.\n- Gateway: turns APIs and Lambda functions into MCP tools, and connects existing MCP servers.\n- Identity: agent identities and credentials, including OAuth access to other services on a user's behalf.\n- Code Interpreter and Browser: sandboxed tools to run code and use websites.\n- Observability: traces, metrics and logs of agent behavior.\n\nRead more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+    "commonMistakes": [
+      "Expecting short-term memory to remember a user in a new session weeks later.",
+      "Rebuilding a working LangGraph or Strands agent as a Bedrock agent just to host it: Runtime hosts it as is."
+    ],
+    "tags": [
+      "domain-2",
+      "task-2.3"
+    ]
+  },
+  {
+    "id": "genai-builder-tools",
+    "title": "Amazon Quick, Kiro, Strands Agents and PartyRock",
+    "body": "- Amazon Quick: a fully managed AI workspace for business users. Chat agents answer from connected data (Quick Index), Quick Research writes cited reports, Quick Sight covers dashboards, and Quick Flows and Quick Automate automate tasks. It evolved from Amazon QuickSight.\n- Kiro: an AI development environment (IDE, CLI, web). Specs turn an idea into requirements, design and tasks; steering files hold project conventions; hooks automate actions.\n- Strands Agents: an open-source SDK, first released by AWS, for writing agents in a few lines with a model-first agent loop; supports Amazon Bedrock and other providers, MCP and multi-agent patterns.\n- PartyRock: a no-code generative AI playground for learning and building small apps in the browser.\n\nRead more: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "commonMistakes": [
+      "Picking AgentCore when business users want a ready-made assistant: AgentCore is for developers running their own agents.",
+      "Calling Strands Agents a hosting service: it is the SDK; AgentCore Runtime can host what you build with it."
+    ],
+    "tags": [
+      "domain-2",
+      "task-2.3"
+    ]
+  },
+  {
+    "id": "bedrock-service-tiers",
+    "title": "Amazon Bedrock service tiers and cost levers",
+    "body": "On-demand requests can choose a service tier with the service_tier parameter:\n\n- Standard (default): consistent performance for everyday tasks.\n- Priority: fastest responses, served ahead of other tiers, for a premium; no reservation.\n- Flex: a discount for workloads that tolerate longer processing, such as evaluations and summarization.\n- Reserved: tokens-per-minute capacity reserved for 1 or 3 months, billed monthly, for mission-critical traffic; overflow goes to Standard.\n\nOther levers: batch inference for asynchronous jobs, Provisioned Throughput for model units by the hour, intelligent prompt routing between models in a family, distillation to a smaller model, and Custom Model Import to serve your own weights on demand.\n\nRead more: https://docs.aws.amazon.com/bedrock/latest/userguide/service-tiers-inference.html",
+    "commonMistakes": [
+      "Choosing Flex for a latency-sensitive app: Flex trades speed for price.",
+      "Reserving capacity around the clock for traffic that peaks only a few hours a day."
+    ],
+    "tags": [
+      "domain-2",
+      "task-2.3"
+    ]
   }
 ]
