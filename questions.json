@@ -2776,30 +2776,30 @@
     "categoryKey": "responsible-ai",
     "conceptId": "responsible-ai-practices",
     "level": "hard",
-    "difficulty": 4,
+    "difficulty": 3,
     "prompt": "A company wants its new text classification feature to have a smaller environmental footprint, without missing its accuracy target.\n\nWhich practice helps most?",
     "options": [
       {
         "key": "A",
-        "text": "Use the largest available model so that it has headroom for future tasks",
-        "explanation": "The largest model uses the most compute for every request, whether or not the task needs it."
+        "text": "Prompt a large general-purpose foundation model with a few labeled examples, so no training run is needed",
+        "explanation": "Skipping training saves energy once, but a large model spends far more compute on every request for the life of the feature."
       },
       {
         "key": "B",
-        "text": "Choose the smallest model that meets the accuracy target"
+        "text": "Benchmark candidate models and deploy the smallest one that reaches the accuracy target"
       },
       {
         "key": "C",
-        "text": "Pre-train a custom foundation model from scratch on in-house data",
-        "explanation": "Pre-training from scratch is the most compute-intensive option and rarely needed for classification."
+        "text": "Host the model in the AWS Region closest to the company's headquarters to keep latency low",
+        "explanation": "Latency to head office is a business criterion; the Region choice for sustainability weighs the carbon footprint of each Region, and it leaves the model's compute unchanged."
       },
       {
         "key": "D",
-        "text": "Retrain the model every night so that it stays as accurate as possible",
-        "explanation": "Retraining on a fixed schedule with no evidence of drift spends compute without a measured benefit."
+        "text": "Retrain the model each week on all accumulated data so that it stays above the accuracy target",
+        "explanation": "Retraining on a fixed schedule with no measured drift repeats a compute-heavy job without evidence that accuracy has slipped."
       }
     ],
-    "explanation": "Responsible model selection includes environmental cost: a smaller model that meets the requirement uses less compute and energy per request, and its training and hosting footprint is smaller too. The AWS Well-Architected sustainability guidance favors right-sizing over the largest or most frequently retrained option. Read more: https://docs.aws.amazon.com/wellarchitected/latest/sustainability-pillar/sustainability-pillar.html",
+    "explanation": "Responsible model selection includes environmental cost: the smallest model that meets the requirement uses less compute and energy on every request, and its hosting footprint is smaller too, so right-sizing is the biggest lever. A large prompted model avoids one training run but pays more per request indefinitely, choosing a Region by distance to head office ignores its carbon footprint, and weekly retraining with no sign of drift spends compute without a measured benefit. Read more: https://docs.aws.amazon.com/wellarchitected/latest/sustainability-pillar/sustainability-pillar.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/sustainability-pillar/sustainability-pillar.html",
     "reviewStatus": "draft",
@@ -2894,12 +2894,12 @@
     "conceptId": "transparency-explainability",
     "level": "veryhard",
     "difficulty": 5,
-    "prompt": "A bank compares a decision tree with 88% accuracy and a deep neural network with 93% accuracy for credit decisions. Each declined applicant must get a reason they can understand.\n\nWhich statement is accurate?",
+    "prompt": "A bank compares a decision tree with 88% accuracy and a deep neural network with 93% accuracy for credit decisions. Each declined applicant must get a reason they can understand.\n\nWhich statement about explaining each model's decisions is accurate?",
     "options": [
       {
         "key": "A",
-        "text": "Applying SHAP to the network makes it interpretable by design, like the tree",
-        "explanation": "SHAP gives post-hoc approximations of a black-box model; it does not make the network interpretable by design."
+        "text": "Adding SHAP feature attributions to the network makes it interpretable by design",
+        "explanation": "SHAP gives post-hoc approximations of a black-box model's reasoning; it does not change how the network works, so the network stays opaque."
       },
       {
         "key": "B",
@@ -2907,8 +2907,8 @@
       },
       {
         "key": "C",
-        "text": "Both models are equally explainable, because each can list the rules it learned",
-        "explanation": "A neural network has no readable rule list; its behavior is spread over many learned weights."
+        "text": "Both models need post-hoc explanation methods, because neither shows how it reaches a decision",
+        "explanation": "A decision tree's path from root to leaf can be read directly, so the tree explains its own decisions without a post-hoc method."
       },
       {
         "key": "D",
@@ -2916,7 +2916,7 @@
         "explanation": "A model card documents the model for reviewers; it does not give each declined applicant a reason for their decision."
       }
     ],
-    "explanation": "A decision tree's path to a decision can be read directly, so it is transparent. A deep neural network is a black box: tools such as SHAP feature attributions approximate its reasoning after the fact. The bank must weigh 5 points of accuracy against how faithfully it can explain each decision. Post-hoc methods do not make a model transparent, and a model card documents the model rather than each decision. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html",
+    "explanation": "A decision tree's path to a decision can be read directly, so it is transparent. A deep neural network is a black box: tools such as SHAP feature attributions approximate its reasoning after the fact. The bank must weigh 5 points of accuracy against how faithfully it can explain each decision. Post-hoc methods do not make a model interpretable by design, the tree needs no post-hoc method to show its path, and a model card documents the model rather than each decision. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html",
     "reviewStatus": "draft",
@@ -2941,17 +2941,17 @@
       },
       {
         "key": "B",
-        "text": "Delete the age column and retrain, which removes the bias",
+        "text": "Delete the age column from the training data and retrain the model",
         "explanation": "Other features, such as years of credit history, can act as a proxy for age, so bias can remain after the column is gone."
       },
       {
         "key": "C",
-        "text": "Compare approval and error rates for each age group (subgroup analysis)"
+        "text": "Compare approval and error rates for each age group"
       },
       {
         "key": "D",
-        "text": "Train for more epochs so that the model learns the minority group",
-        "explanation": "More training on the same data does not fix missing or skewed examples of a group."
+        "text": "Measure the model's overall accuracy on a held-out test set",
+        "explanation": "One overall accuracy figure averages across all applicants and can look good while one age group fares much worse."
       },
       {
         "key": "E",
@@ -2959,7 +2959,7 @@
         "explanation": "One threshold change for everyone shifts all approval rates and leaves the gap between groups in place."
       }
     ],
-    "explanation": "Subgroup analysis shows where outcomes and errors differ by group, and checking the training data for balance and representativeness finds a common cause. Removing a sensitive column does not remove proxies for it, and a single threshold change or longer training leaves the imbalance in place. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-bias-metric-class-imbalance.html",
+    "explanation": "Comparing outcomes and errors for each age group shows where the model treats groups differently, and checking the training data for balance and representativeness finds a common cause. Removing a sensitive column does not remove proxies for it, an overall accuracy figure hides gaps between groups, and a single threshold change for everyone leaves the gap in place. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-bias-metric-class-imbalance.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-bias-metric-class-imbalance.html",
     "reviewStatus": "draft",
@@ -3256,8 +3256,8 @@
     "options": [
       {
         "key": "A",
-        "text": "The largest possible volume of recordings from the head-office region",
-        "explanation": "Volume from one region leaves out the other accents, so the model still fails many callers."
+        "text": "A large set of recordings from the bank's busiest call centre",
+        "explanation": "One call centre's callers cover only some of the accents, so volume from it still leaves other callers underrepresented."
       },
       {
         "key": "B",
@@ -3266,7 +3266,7 @@
       },
       {
         "key": "C",
-        "text": "Diverse, inclusive coverage of accents and age groups"
+        "text": "Recordings that span the callers' range of accents and ages"
       },
       {
         "key": "D",
@@ -3274,9 +3274,9 @@
         "explanation": "Recent data helps with drift, but recent calls can still underrepresent some accents and ages."
       }
     ],
-    "explanation": "A model performs worst for groups that are missing or underrepresented in its training data. Diverse and inclusive data that covers the accents and age groups of real callers lets the model serve all of them. A large volume from one region, clean studio audio or recent data can each still leave groups out, which leads to biased results for those callers. Read more: https://aws.amazon.com/what-is/overfitting/",
+    "explanation": "A model performs worst for groups that have fewer training samples than others; this class imbalance puts it at risk of biased results for those groups. Training data that covers the accents and age groups of real callers lets the model serve all of them. A large volume from one call centre, clean studio audio or recent data can each still leave groups underrepresented. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-bias-metric-class-imbalance.html",
     "source": "original",
-    "sourceRef": "https://aws.amazon.com/what-is/overfitting/",
+    "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-bias-metric-class-imbalance.html",
     "reviewStatus": "draft",
     "tags": [
       "aif-c01",
@@ -3295,13 +3295,13 @@
     "options": [
       {
         "key": "A",
-        "text": "Run SageMaker Clarify post-training bias metrics on the predictions",
-        "explanation": "Post-training bias metrics compare outcomes across groups; they do not show whether the labels themselves are wrong."
+        "text": "Run SageMaker Clarify pre-training bias metrics on the label distribution",
+        "explanation": "Pre-training bias metrics compare label proportions across groups; they do not show whether an individual label is wrong."
       },
       {
         "key": "B",
-        "text": "Train for more epochs so that the model averages out the label noise",
-        "explanation": "More training on inconsistent labels teaches the model the noise; it does not fix the labels."
+        "text": "Augment the photos with flips and crops to enlarge the training set",
+        "explanation": "Augmented copies inherit the labels of their originals, so the wrong labels are multiplied rather than corrected."
       },
       {
         "key": "C",
@@ -3309,11 +3309,11 @@
       },
       {
         "key": "D",
-        "text": "Add a contextual grounding check to filter the classifier's outputs",
-        "explanation": "Contextual grounding checks compare generated text with a source document; they do not apply to image labels."
+        "text": "Remove the near-duplicate photos from the training set and retrain",
+        "explanation": "Dropping duplicates keeps one label at random and leaves the workforce's errors on every other photo untouched."
       }
     ],
-    "explanation": "Inconsistent labels point to a label-quality problem, so the fix starts with the data. Having two or more workers annotate each item and consolidating their answers gives a more accurate label, and auditing the items where workers disagree finds unclear guidelines and errors. Bias metrics, longer training and grounding checks do not repair wrong labels. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html",
+    "explanation": "Inconsistent labels point to a label-quality problem, so the fix starts with how the data is labeled. Having two or more workers annotate each item and consolidating their answers gives a more accurate label, and auditing the items where workers disagree finds unclear guidelines and errors. Bias metrics on label proportions, augmentation and de-duplication all keep the wrong labels in place. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html",
     "reviewStatus": "draft",
@@ -3330,11 +3330,11 @@
     "conceptId": "responsible-ai-tools",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "Before launch, a team wants to measure how likely a candidate LLM is to produce stereotyped statements about groups defined by gender, race or religion, using a standard prompt dataset.\n\nWhich option fits?",
+    "prompt": "Before launch, a team wants to measure how likely a candidate LLM is to favor biased statements about groups defined by gender, race or religion, using a standard prompt dataset.\n\nWhich AWS capability should the team use to take this measurement?",
     "options": [
       {
         "key": "A",
-        "text": "Amazon Bedrock Guardrails content filters on the live application",
+        "text": "Amazon Bedrock Guardrails content filters applied to the model's responses",
         "explanation": "Content filters block harmful content at run time; they do not measure a model's tendency toward stereotypes before launch."
       },
       {
@@ -3344,15 +3344,15 @@
       },
       {
         "key": "C",
-        "text": "Amazon Comprehend toxicity detection on a few hand-written prompts",
-        "explanation": "Toxicity detection flags offensive text, and a few hand-written prompts are no standard benchmark for stereotyping."
+        "text": "A SageMaker Clarify foundation model evaluation for toxicity",
+        "explanation": "The toxicity task scores offensive language such as insults, threats and obscenity; it does not measure whether the model favors stereotypes about groups."
       },
       {
         "key": "D",
         "text": "A SageMaker Clarify foundation model evaluation for prompt stereotyping"
       }
     ],
-    "explanation": "SageMaker Clarify foundation model evaluations (FMEval) include a prompt stereotyping task that measures the probability that a model encodes biases about race, gender, religion, age and other attributes in its responses, using a built-in dataset such as CrowS-Pairs. Guardrails act at run time, pre-training bias metrics analyze tabular training data and toxicity detection measures offensive language rather than stereotyping. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
+    "explanation": "SageMaker Clarify foundation model evaluations (FMEval) include a prompt stereotyping task that measures the probability that a model encodes biases about race, gender, religion and other attributes in its responses, using the built-in CrowS-Pairs dataset. Guardrails act at run time, pre-training bias metrics analyze tabular training data and the FMEval toxicity task measures offensive language rather than stereotyping. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate-overview.html",
     "reviewStatus": "draft",
@@ -3369,29 +3369,29 @@
     "conceptId": "transparency-explainability",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A social platform uses a model to detect abusive posts. Regulators ask for transparency, but the trust team worries that publishing the exact blocked phrases and score thresholds would help abusers evade the model.\n\nWhich approach best balances transparency and safety?",
+    "prompt": "A social platform uses a model to detect abusive posts. Regulators want the platform to be transparent with its users about the model, but the trust team worries that revealing the exact blocked phrases and score thresholds would help abusers evade it.\n\nWhich approach best balances transparency and safety?",
     "options": [
       {
         "key": "A",
-        "text": "Publish its intended use, limitations and evaluation results, and keep filter settings internal"
+        "text": "Publish the model's intended use, limitations and evaluation results; keep filter settings internal"
       },
       {
         "key": "B",
-        "text": "Publish the full phrase list and thresholds so that anyone can audit each decision",
-        "explanation": "Full disclosure of filter settings maximizes transparency but hands abusers a guide to evading the model."
+        "text": "Publish the model's overall accuracy figure and keep all other model details internal",
+        "explanation": "One accuracy number tells users little about what the model is for or where it fails, so it falls short of the transparency asked for."
       },
       {
         "key": "C",
-        "text": "Keep all model details confidential until a regulator requests a formal audit",
-        "explanation": "Waiting for an audit fails the transparency request; describing use and limits gives evaders little help."
+        "text": "Share the full phrase list and thresholds with regulators under NDA, and publish nothing",
+        "explanation": "This informs regulators, but the request is for transparency with users, who would learn nothing about the model."
       },
       {
         "key": "D",
-        "text": "Replace the model with a keyword list, which is transparent by design",
-        "explanation": "A keyword list is easy to explain but easier to evade and less accurate, so safety drops."
+        "text": "Show each user whose post is blocked the exact score and the threshold it crossed",
+        "explanation": "Revealing scores and thresholds lets abusers probe the model and tune posts to fall just under the line."
       }
     ],
-    "explanation": "Transparency and safety can pull in opposite directions: the more detail is published about how a safety model works, the easier it is to bypass. Documenting intended use, limitations, risk and evaluation results, as a SageMaker model card does, informs regulators and users without publishing the exact settings. Full disclosure helps evaders, secrecy fails the request and a keyword list trades away safety. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
+    "explanation": "Transparency and safety can pull in opposite directions: the more detail is published about how a safety model works, the easier it is to bypass. Documenting intended use, limitations, risk and evaluation results, as a SageMaker model card does, informs users without publishing the exact settings. A lone accuracy figure says too little, private disclosure to regulators leaves users uninformed, and exposing per-post scores and thresholds helps evaders. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
     "reviewStatus": "draft",
@@ -3421,8 +3421,8 @@
       },
       {
         "key": "C",
-        "text": "A download of the model's weights and training code",
-        "explanation": "Weights and code are unreadable to most applicants and do not explain an individual decision."
+        "text": "A confidence score for each decision, shown as a percentage",
+        "explanation": "A confidence score says how sure the model is, but not why it decided or what the applicant can do about it."
       },
       {
         "key": "D",
@@ -3434,7 +3434,7 @@
         "explanation": "An audit report supports oversight but gives the applicant no explanation when the decision is made."
       }
     ],
-    "explanation": "Human-centered explainable AI puts the explanation in front of the person affected: show the main factors behind the decision in terms they can follow (AI decision transparency), and let them understand, challenge and give feedback on the output, with a route to a human reviewer. Overall accuracy, raw weights and auditor reports serve other audiences and leave the applicant without a reason or recourse. Read more: https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raiuc04-bp01.html",
+    "explanation": "Human-centered explainable AI puts the explanation in front of the person affected: show the main factors behind the decision in terms they can follow (AI decision transparency), and let them understand, challenge and give feedback on the output, with a route to a human reviewer. Overall accuracy and a confidence score describe how reliable the model is rather than why it decided, and auditor reports serve another audience, so each leaves the applicant without a reason or recourse. Read more: https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raiuc04-bp01.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raiuc04-bp01.html",
     "reviewStatus": "draft",
@@ -3454,29 +3454,29 @@
     "conceptId": "model-transparency-docs",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A company's auditors must be able to inspect a model's architecture and weights, and the company plans to sell a product built on the model. It is considering a publicly available model from Amazon SageMaker JumpStart.\n\nWhich statement is accurate?",
+    "prompt": "A company's auditors need to inspect a model's architecture and weights, so the company is considering an open-weight model from Amazon SageMaker JumpStart. It plans to sell a product built on the model.\n\nWhat should the company do about the model's terms of use before it sells the product?",
     "options": [
       {
         "key": "A",
-        "text": "Because the weights are public, the model can be used commercially without conditions",
+        "text": "Rely on the public release of the weights, which permits commercial use by default",
         "explanation": "Public weights do not waive the license; licenses such as the Responsible AI Licenses attach conditions to use."
       },
       {
         "key": "B",
-        "text": "The weights can be inspected, but the team must check that the model's license allows its use"
+        "text": "Review the model's license terms to confirm they allow the planned commercial use"
       },
       {
         "key": "C",
-        "text": "SageMaker JumpStart publishes the full training dataset alongside each model it offers",
-        "explanation": "JumpStart hosts models from many providers; it does not publish their training datasets."
+        "text": "Rely on the AWS service terms for JumpStart, which replace the provider's license",
+        "explanation": "JumpStart models stay under the license their provider chose, and the customer is responsible for reviewing and complying with it."
       },
       {
         "key": "D",
-        "text": "Inspecting the weights makes each individual prediction explainable without other tools",
-        "explanation": "Weights alone do not explain an individual output; post-hoc methods such as SHAP are still needed."
+        "text": "Fine-tune the model on company data, which frees the result from the original license",
+        "explanation": "A fine-tuned model is derived from the original weights, so the original license terms still apply to it."
       }
     ],
-    "explanation": "Open-weight models support transparency because their architecture and weights can be examined. JumpStart models come from many providers under licenses those providers choose, such as Apache 2.0 or Responsible AI Licenses, and some require accepting a EULA; you are responsible for reviewing the terms for your use case. Public weights don't mean unconditional use, training data isn't published with each model and weights don't explain single predictions. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html",
+    "explanation": "Open-weight models support transparency because their architecture and weights can be examined, but access to the weights is separate from the right to use them. JumpStart models come from many providers under licenses those providers choose, such as Apache 2.0 or Responsible AI Licenses, and some require accepting a EULA; you are responsible for reviewing and complying with the terms for your use case. Public release doesn't grant unconditional use, JumpStart doesn't replace the provider's license, and fine-tuning produces a derivative still bound by it. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html",
     "reviewStatus": "draft",
