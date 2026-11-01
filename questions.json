@@ -441,29 +441,29 @@
     "conceptId": "inference-options",
     "level": "easy",
     "difficulty": 2,
-    "prompt": "Every night a company scores its full customer table of 5 million rows with a churn model. Results are needed by the next morning, and nobody calls the model during the day.\n\nWhich Amazon SageMaker AI inference option is the most cost-effective fit?",
+    "prompt": "Every night a company scores its full customer table, about 20 GB in Amazon S3, with a churn model. Results are needed by the next morning, and nobody calls the model during the day.\n\nWhich Amazon SageMaker AI inference option is the most cost-effective fit?",
     "options": [
       {
         "key": "A",
-        "text": "A real-time inference endpoint that runs all day",
-        "explanation": "A real-time endpoint keeps instances running around the clock for requests that never come during the day."
+        "text": "Real-time Inference",
+        "explanation": "A real-time endpoint keeps provisioned instances running around the clock, so the company pays all day for a model nobody calls."
       },
       {
         "key": "B",
-        "text": "Serverless Inference with one request per customer",
-        "explanation": "Serverless Inference handles individual requests; millions of separate calls for one dataset add overhead and cost."
+        "text": "Serverless Inference",
+        "explanation": "Serverless Inference scales to zero, but it serves small individual requests, so the 20 GB table would have to be split into many separate calls."
       },
       {
         "key": "C",
-        "text": "Asynchronous Inference with one request per customer",
-        "explanation": "Asynchronous Inference queues individual requests; sending 5 million of them is the wrong shape for a single nightly dataset."
+        "text": "Asynchronous Inference",
+        "explanation": "Asynchronous Inference queues individual requests of up to 1 GB on an endpoint, so a 20 GB table would still have to be broken up and sent request by request."
       },
       {
         "key": "D",
         "text": "Batch Transform"
       }
     ],
-    "explanation": "Batch Transform runs inference over an entire dataset in Amazon S3, starts the compute it needs, writes the results back to S3 and shuts down, so nothing runs during the day. Real-time, serverless and asynchronous endpoints are built for individual requests, not one large offline dataset. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html",
+    "explanation": "Batch Transform is built to get inferences from large datasets when no persistent endpoint is needed: it reads the whole dataset from Amazon S3, starts the compute it needs, writes results back to S3 and shuts down. Real-time Inference bills for idle instances all day. Serverless and Asynchronous Inference can scale to zero, but both work request by request with payload limits, which fits individual calls rather than one 20 GB offline table. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html",
     "reviewStatus": "draft",
@@ -1000,8 +1000,8 @@
     "categoryKey": "ai-ml-fundamentals",
     "conceptId": "ai-terms",
     "level": "hard",
-    "difficulty": 4,
-    "prompt": "A data scientist chooses XGBoost, trains it on two years of sales data, and deploys the result to an endpoint that answers prediction requests.\n\nWhich statement uses the terms algorithm and model correctly?",
+    "difficulty": 3,
+    "prompt": "A data scientist chooses XGBoost, sets its hyperparameters, trains it on two years of sales data, and deploys the result to an endpoint that answers prediction requests.\n\nWhich statement uses the terms algorithm and model correctly?",
     "options": [
       {
         "key": "A",
@@ -1014,16 +1014,16 @@
       },
       {
         "key": "C",
-        "text": "XGBoost and the trained artifact are both models; inference is the algorithm",
-        "explanation": "Inference is the act of using a model to predict, not an algorithm, and XGBoost itself is not yet a model."
+        "text": "XGBoost is the algorithm; the endpoint answering requests is the model",
+        "explanation": "The endpoint is the hosting infrastructure that serves the model; the model is the trained artifact loaded onto it."
       },
       {
         "key": "D",
-        "text": "The sales data is the model; XGBoost turns it into the inference endpoint",
-        "explanation": "Data is what the algorithm learns from; the model is the learned result, not the data."
+        "text": "XGBoost is the algorithm; the hyperparameters set for training are the model",
+        "explanation": "Hyperparameters are settings chosen before training; the model is made of the parameters learned from the data."
       }
     ],
-    "explanation": "An algorithm is the procedure that learns patterns from data; XGBoost implements gradient boosted trees. Running it on the sales data produces a model, the trained artifact that is deployed and used for inference. The other options swap or blur these roles: data is the input, and inference is the use of the model. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
+    "explanation": "An algorithm is the procedure that learns patterns from data; XGBoost implements gradient boosted trees. Running it on the sales data produces a model, the trained artifact that holds the learned parameters and is used for inference. Hyperparameters are settings that steer training rather than the result of it, and the endpoint is only the infrastructure that hosts the model. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
     "reviewStatus": "draft",
@@ -1044,25 +1044,25 @@
     "options": [
       {
         "key": "A",
-        "text": "Amazon Quick for the developers; Kiro for the analysts",
-        "explanation": "This swaps the tools: Kiro is the developer environment with specs, and Amazon Quick serves business users."
+        "text": "Amazon Q Developer for the developers; Amazon Quick for the analysts",
+        "explanation": "Amazon Q Developer offers coding chat and agentic code changes in the IDE, but Kiro's specs are what produce requirements, design and task files first."
       },
       {
         "key": "B",
-        "text": "Amazon SageMaker Ground Truth for the developers; Amazon Quick for the analysts",
-        "explanation": "Ground Truth manages human data labeling; it does not help developers plan and write code."
+        "text": "Kiro for the developers; Amazon SageMaker Canvas for the analysts",
+        "explanation": "SageMaker Canvas lets analysts build models and generate predictions without code; it is not a BI tool for dashboards and chat over existing forecasts."
       },
       {
         "key": "C",
-        "text": "Kiro for the developers; Amazon SageMaker Model Monitor for the analysts",
-        "explanation": "Model Monitor detects drift in endpoint data for ML teams; it does not give analysts dashboards or chat."
+        "text": "Amazon Q Developer for the developers; Amazon SageMaker Canvas for the analysts",
+        "explanation": "Q Developer lacks Kiro's spec workflow, and Canvas builds no-code models rather than serving dashboards over the forecasts."
       },
       {
         "key": "D",
         "text": "Kiro for the developers; Amazon Quick for the analysts"
       }
     ],
-    "explanation": "Kiro is an AI-powered development environment whose specs turn a feature into requirements, design and tasks before the agent writes code. Amazon Quick gives business users dashboards (Amazon Quick Sight) and natural-language chat over connected data, with no ML expertise. Ground Truth labels data and Model Monitor watches deployed models. Read more: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
+    "explanation": "Both tools are named in the current AIF-C01 exam guide. Kiro is an AI-powered development environment whose specs turn a feature into requirements, design and task files before the agent writes code. Amazon Quick, which evolved from Amazon QuickSight, gives business users dashboards (now the Amazon Quick Sight feature) and natural-language chat over connected data. Amazon Q Developer helps with coding in the IDE but has no spec-driven requirements and design workflow, and SageMaker Canvas is for building no-code ML models, not for BI dashboards over forecasts. Read more: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/quick/latest/userguide/what-is.html",
     "reviewStatus": "draft",
@@ -1257,7 +1257,7 @@
         "explanation": "The registry stores and approves model versions; it does not run the steps that create them."
       }
     ],
-    "explanation": "Amazon SageMaker Pipelines is a workflow orchestration service for ML: it defines data preparation, training, evaluation and registration as steps that run the same way each time, which is the repeatable process MLOps calls for. Data Wrangler covers only data preparation, Model Monitor watches deployed models, and Model Registry stores versions. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html",
+    "explanation": "Amazon SageMaker Pipelines is a workflow orchestration service for ML: it defines data preparation, training, evaluation and registration as steps that run the same way each time, which is the repeatable process MLOps calls for. Pipeline executions can be started on a schedule or in response to events, such as new data landing in Amazon S3, through Amazon EventBridge. Data Wrangler covers only data preparation, Model Monitor watches deployed models, and Model Registry stores versions. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/pipeline-eventbridge.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html",
     "reviewStatus": "draft",
@@ -1292,11 +1292,11 @@
       },
       {
         "key": "D",
-        "text": "Root mean squared error (RMSE)",
-        "explanation": "RMSE measures error for regression on numeric targets; spam filtering is classification."
+        "text": "F1 score",
+        "explanation": "F1 weights precision and recall equally, so it also rewards catching more spam, an error the users have said they can tolerate."
       }
     ],
-    "explanation": "The costly error is a false positive: a good email flagged as spam. Precision is the share of flagged emails that really are spam, so raising it means fewer good emails in junk. Recall focuses on missed spam, which users tolerate, accuracy hides which error is happening, and RMSE is a regression metric. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
+    "explanation": "The costly error is a false positive: a good email flagged as spam. Precision is the share of flagged emails that really are spam, so raising it means fewer good emails in junk. Recall focuses on missed spam, which users tolerate; accuracy hides which error is happening; and F1, the harmonic mean of precision and recall, balances both errors instead of targeting the one users care about. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html",
     "reviewStatus": "draft",
@@ -1322,8 +1322,8 @@
       },
       {
         "key": "B",
-        "text": "AWS CloudTrail",
-        "explanation": "CloudTrail records API calls for auditing, not model parameters and metrics."
+        "text": "Amazon SageMaker Model Registry",
+        "explanation": "Model Registry catalogs and approves the model versions chosen for deployment; it is not where every experimental run's parameters are logged and compared."
       },
       {
         "key": "C",
@@ -1332,10 +1332,10 @@
       },
       {
         "key": "D",
-        "text": "Managed MLflow on Amazon SageMaker AI"
+        "text": "Amazon SageMaker AI with MLflow"
       }
     ],
-    "explanation": "Experimentation is a core MLOps practice, and managed MLflow on SageMaker AI tracks experiments: it logs each run's parameters and metrics so runs can be compared and the best model registered. Debugger diagnoses a single training job, CloudTrail audits API activity, and Model Monitor watches production endpoints. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html",
+    "explanation": "Experimentation is a core MLOps practice, and Amazon SageMaker AI with MLflow tracks the experimentation phase: it logs each run's parameters and metrics so runs can be compared and the best model registered. Debugger diagnoses a single training job, Model Registry holds the versions picked for deployment rather than every run, and Model Monitor watches production endpoints. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html",
     "reviewStatus": "draft",
@@ -1356,25 +1356,25 @@
     "options": [
       {
         "key": "A",
-        "text": "Send batches of readings in a prompt to a large language model in Amazon Bedrock",
-        "explanation": "A cloud model call needs a network connection and adds far more latency than 10 milliseconds."
+        "text": "Fine-tune a small open-weight LLM from SageMaker JumpStart and run it on the local hardware",
+        "explanation": "It runs offline, but generating text with an LLM is far too heavy for thousands of decisions a second within 10 milliseconds on numeric data."
       },
       {
         "key": "B",
-        "text": "Use Amazon Bedrock Model Distillation to create a smaller model and call it on demand",
-        "explanation": "A distilled model is smaller but still invoked through Bedrock over the network, which the line does not have."
+        "text": "Train an XGBoost model in SageMaker AI and host it on a real-time endpoint in the nearest Region",
+        "explanation": "The model type fits, but a Region endpoint must be reached over a network the line does not have."
       },
       {
         "key": "C",
-        "text": "Train a gradient boosted tree model such as XGBoost in SageMaker AI and run it locally"
+        "text": "Train a gradient boosted tree model such as XGBoost in SageMaker AI and run it on the local hardware"
       },
       {
         "key": "D",
-        "text": "Host an open-weight LLM on a SageMaker AI real-time endpoint in the nearest Region",
-        "explanation": "Any Region endpoint needs connectivity, and an LLM is heavy for millisecond decisions on numeric data."
+        "text": "Train a k-means clustering model in SageMaker AI on the readings and run it on the local hardware",
+        "explanation": "k-means is fast and offline, but it is unsupervised: it ignores the year of labels and only groups readings rather than learning normal versus faulty."
       }
     ],
-    "explanation": "Labeled numeric sensor data is a supervised classification problem that traditional ML handles well. A compact gradient boosted tree model such as XGBoost can be trained in SageMaker AI and run offline on local hardware within milliseconds. Every foundation model option depends on a network call, and LLMs are a poor fit for high-volume, low-latency numeric classification. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
+    "explanation": "Labeled numeric sensor data is a supervised classification problem that traditional ML handles well. A compact gradient boosted tree model such as XGBoost can be trained in SageMaker AI and run offline on local hardware within milliseconds. A Region endpoint needs connectivity, an LLM is far too heavy for high-volume, millisecond classification of numbers, and k-means clustering is unsupervised, so it wastes the labels that define faulty. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost.html",
     "reviewStatus": "draft",
@@ -1429,13 +1429,13 @@
     "categoryKey": "ai-ml-fundamentals",
     "conceptId": "mlops",
     "level": "veryhard",
-    "difficulty": 5,
-    "prompt": "SageMaker Model Monitor already reports data drift for a model on a SageMaker AI endpoint. Today a data scientist retrains the model by hand in a notebook whenever they notice the report. The company wants retraining to start automatically and run the same way each time, with a person approving each new version before it serves traffic.\n\nWhich design meets these requirements?",
+    "difficulty": 4,
+    "prompt": "SageMaker Model Monitor already reports data drift for a model on a SageMaker AI endpoint. Today a data scientist retrains the model by hand in a notebook whenever they notice a drift report. The company wants each drift violation to start retraining automatically, with steps that run the same way each time and a person approving each new version before it serves traffic.\n\nWhich design meets these requirements?",
     "options": [
       {
         "key": "A",
-        "text": "Schedule the notebook to run nightly and deploy whatever model it produces",
-        "explanation": "A nightly notebook ignores the drift signal and deploys with no human approval."
+        "text": "Have the drift alert invoke an AWS Lambda function that retrains the model and updates the endpoint",
+        "explanation": "This starts on drift, but ad hoc code in a function is no defined, repeatable pipeline, and the new model reaches the endpoint with no human approval."
       },
       {
         "key": "B",
@@ -1443,16 +1443,16 @@
       },
       {
         "key": "C",
-        "text": "Turn on auto scaling for the endpoint so more instances absorb the drifted traffic",
-        "explanation": "More instances handle more load; they do nothing about predictions degrading on drifted data."
+        "text": "Schedule a nightly SageMaker Pipelines run that registers a version for approval",
+        "explanation": "The pipeline and approval fit, but retraining runs on a clock rather than when Model Monitor reports a drift violation."
       },
       {
         "key": "D",
-        "text": "Run a SageMaker Clarify bias report each week and retrain by hand when bias rises",
-        "explanation": "Clarify measures bias, not data drift, and retraining stays manual."
+        "text": "Have the drift alert start a SageMaker Pipelines run that deploys the new version directly",
+        "explanation": "This is automatic and repeatable, but deploying straight to the endpoint skips the person who must approve each version."
       }
     ],
-    "explanation": "Model monitoring and re-training close the MLOps loop: a Model Monitor violation raises an alert that starts a SageMaker Pipelines run, which retrains the same way every time and registers the new version in Model Registry with a pending approval status, so a person approves it before deployment. The other designs skip drift, approval or automation. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
+    "explanation": "Model monitoring and re-training close the MLOps loop: a Model Monitor violation raises an alert that starts a SageMaker Pipelines run, which retrains the same way every time and registers the new version in Model Registry with a pending approval status, so a person approves it before deployment. A nightly schedule ignores the drift signal, direct deployment skips approval, and a Lambda function lacks both a repeatable pipeline and approval. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",
     "reviewStatus": "draft",
@@ -1495,7 +1495,7 @@
         "explanation": "This is backwards: starting from a pretrained model is what lets fine-tuning work with far less data."
       }
     ],
-    "explanation": "SageMaker JumpStart offers pretrained, open-weight models that the company deploys, fine-tunes and evaluates on infrastructure in its own account. Training a foundation model from scratch is possible but takes very large datasets and compute, so most teams start from a pretrained model. Bedrock serves provider models through an API without sharing weights, and providers cannot see customer prompts. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
+    "explanation": "SageMaker JumpStart offers pretrained, open-weight models that the company deploys, fine-tunes and evaluates on infrastructure in its own account. Training a foundation model from scratch is possible but takes very large datasets and compute, so most teams start from a pretrained model; fine-tuning then needs far less labeled data than training from scratch, because the model already carries what it learned in pretraining. Bedrock serves provider models through an API without sharing weights, and its data protection documentation (https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html) states that model providers have no access to the accounts that run inference, so they cannot see customer prompts. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
     "reviewStatus": "draft",
