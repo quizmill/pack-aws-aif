@@ -1676,24 +1676,24 @@
       {
         "key": "A",
         "text": "A generative adversarial network (GAN)",
-        "explanation": "A GAN trains a generator against a discriminator and generates an image in a single pass, not by step-by-step denoising."
+        "explanation": "A GAN trains a generator against a discriminator, and the generator produces an image in a single pass rather than by step-by-step denoising."
       },
       {
         "key": "B",
         "text": "A transformer-based large language model",
-        "explanation": "An LLM predicts the next token of text; it does not denoise images."
+        "explanation": "An LLM predicts the next token of text; it does not build an image by removing noise."
       },
       {
         "key": "C",
-        "text": "A recurrent neural network (RNN)",
-        "explanation": "RNNs process sequences one step at a time, such as text or time series; they are not the image denoising approach."
+        "text": "A variational autoencoder (VAE)",
+        "explanation": "A VAE decodes an image from a sampled latent vector in a single pass, rather than refining random noise over many steps."
       },
       {
         "key": "D",
         "text": "A diffusion model"
       }
     ],
-    "explanation": "Diffusion models learn to reverse a process that adds noise to images: at generation time they start from random noise and remove it step by step, guided by the text prompt. Stable Diffusion is a well-known example. GANs generate in one pass, and LLMs and RNNs work on sequences such as text. Read more: https://aws.amazon.com/what-is/stable-diffusion/",
+    "explanation": "Diffusion models learn to reverse a process that adds noise to images: at generation time they start from random noise and remove it step by step, guided by the text prompt. Stable Diffusion is a well-known example. GANs and VAEs also generate images, but each produces its output in one pass of a generator or decoder, and LLMs generate text tokens. Read more: https://aws.amazon.com/what-is/stable-diffusion/",
     "source": "original",
     "sourceRef": "https://aws.amazon.com/what-is/stable-diffusion/",
     "reviewStatus": "draft",
@@ -1748,30 +1748,30 @@
     "categoryKey": "genai-fundamentals",
     "conceptId": "model-selection",
     "level": "hard",
-    "difficulty": 4,
-    "prompt": "A company is choosing a model in Amazon Bedrock for a support chat. Answers are short and simple, traffic is high, and replies must start within a second. On the team's test set, a small model and a large model both meet the quality bar.\n\nWhich choice best fits?",
+    "difficulty": 3,
+    "prompt": "A company is choosing a model in Amazon Bedrock for a support chat. Answers are short and simple, traffic is high, and replies must start within a second. On the team's test set, the large model scores slightly higher than the small model, and both meet the quality bar.\n\nWhich choice best fits?",
     "options": [
       {
         "key": "A",
-        "text": "The large model, because bigger models generally give better answers",
-        "explanation": "The large model adds latency and cost per token with no measured quality gain on this test set."
+        "text": "The large model, because it scored higher on the team's test set",
+        "explanation": "Both models already clear the quality bar, so a small score gain does not justify the large model's higher latency and cost per token."
       },
       {
         "key": "B",
-        "text": "The model with the longest context window, so that whole conversations fit",
-        "explanation": "Short, simple exchanges do not need a long context window, and it does not address latency or cost."
+        "text": "The model with the longest context window, so whole chats fit",
+        "explanation": "Short, simple exchanges do not need a long context window, and a longer window does nothing for latency or cost."
       },
       {
         "key": "C",
-        "text": "The small model, because it meets the quality bar at lower latency and cost"
+        "text": "The small model, because it meets the bar at lower latency and cost"
       },
       {
         "key": "D",
-        "text": "A multimodal model, so customers can attach screenshots in the future",
-        "explanation": "A requirement that does not exist yet should not outweigh today's latency and cost constraints."
+        "text": "The large model on Provisioned Throughput, so peak capacity is reserved",
+        "explanation": "Reserved capacity prevents throttling but adds an hourly commitment, and the large model still generates each reply more slowly than the small one."
       }
     ],
-    "explanation": "Model selection weighs quality against latency, cost and other constraints. When both models meet the quality bar on the team's own evaluation, the smaller model answers faster and costs less per token, which matters at high traffic. Bigger is not better by default, and a long context window or multimodality solves problems this use case does not have. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
+    "explanation": "Model selection weighs quality against latency, cost and other constraints. When both models meet the quality bar on the team's own evaluation, the smaller model answers faster and costs less per token, which matters at high traffic. A slightly higher score above the bar is not worth the extra latency and cost, Provisioned Throughput reserves capacity without making a large model faster per reply, and a long context window solves a problem this use case does not have. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "reviewStatus": "draft",
@@ -1840,16 +1840,16 @@
       },
       {
         "key": "C",
-        "text": "Amazon Q Developer",
-        "explanation": "Q Developer is an assistant for software development; it does not deploy models for you to host."
+        "text": "Amazon Bedrock Custom Model Import",
+        "explanation": "Custom Model Import brings open-weight model weights into Bedrock, which then serves the model for you without instance or endpoint choices."
       },
       {
         "key": "D",
-        "text": "Amazon Comprehend custom classification",
-        "explanation": "Comprehend custom classification trains a text classifier; it does not host foundation models."
+        "text": "Amazon Bedrock Provisioned Throughput",
+        "explanation": "Provisioned Throughput reserves capacity for a Bedrock model in model units; Bedrock still runs the hardware, so the team picks no instances or endpoint settings."
       }
     ],
-    "explanation": "SageMaker JumpStart offers pretrained and open-weight foundation models that you can deploy to SageMaker AI endpoints on instance types you pick, in your VPC, with your own endpoint settings. Amazon Bedrock offers models as a managed API without instance choices, which suits teams that do not want to run infrastructure. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
+    "explanation": "SageMaker JumpStart offers pretrained and open-weight foundation models that you can deploy to SageMaker AI endpoints on instance types you pick, in your VPC, with your own endpoint settings. The Amazon Bedrock options are all managed: on-demand inference is pay-per-token, Custom Model Import serves weights you upload, and Provisioned Throughput reserves capacity in model units, but none of them lets the team choose instances or configure the endpoint. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
     "reviewStatus": "draft",
@@ -1884,11 +1884,11 @@
       },
       {
         "key": "D",
-        "text": "It is the Amazon Bedrock API used to fine-tune a model on tool-calling examples",
-        "explanation": "Fine-tuning is a model customization job; MCP is a runtime protocol between an agent and its tools."
+        "text": "It is a schema format, like OpenAPI, used to describe each REST endpoint to Gateway",
+        "explanation": "OpenAPI and Smithy specs are inputs that describe the APIs; MCP is the protocol over which Gateway then exposes them to agents as tools."
       }
     ],
-    "explanation": "MCP is an open protocol that standardizes how AI applications and agents connect to external tools and data sources. AgentCore Gateway converts APIs and Lambda functions into MCP-compatible tools that agents can discover and invoke. Agent-to-agent communication is covered by A2A, and MCP has nothing to do with fine-tuning or compressing history. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html",
+    "explanation": "MCP is an open protocol that standardizes how AI applications and agents connect to external tools and data sources. AgentCore Gateway takes OpenAPI or Smithy specs and Lambda functions as inputs and converts them into MCP-compatible tools that agents can discover and invoke, so the API description and the protocol are different layers. Agent-to-agent communication is covered by A2A, and MCP does not compress history. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html",
     "reviewStatus": "draft",
@@ -1982,34 +1982,34 @@
     "categoryKey": "genai-fundamentals",
     "conceptId": "genai-services",
     "level": "hard",
-    "difficulty": 4,
+    "difficulty": 3,
     "prompt": "A company compares calling foundation models through Amazon Bedrock with hosting an open model itself on Amazon EC2.\n\nWhich TWO are advantages of Amazon Bedrock? (Select TWO.)",
     "options": [
       {
         "key": "A",
-        "text": "The company can download any base model's weights to run on premises",
-        "explanation": "Bedrock serves models through an API; it does not hand out the weights of the base models it hosts."
+        "text": "Choice of the GPU instance type that serves each model",
+        "explanation": "Picking GPU instance types is a benefit of self-hosting on EC2; Bedrock runs the serving hardware and does not expose instance choices."
       },
       {
         "key": "B",
-        "text": "Charges are a fixed monthly fee whatever the usage",
-        "explanation": "On-demand pricing is per token, and Provisioned Throughput is hourly; neither is a flat monthly fee."
+        "text": "Freedom to change the model architecture and retrain it",
+        "explanation": "Changing a model's architecture needs full access to its code and weights, which self-hosting gives; Bedrock offers customization such as fine-tuning instead."
       },
       {
         "key": "C",
-        "text": "Responses are deterministic, so the same prompt always returns the same text",
-        "explanation": "Bedrock models are generative and sample their output; inference parameters reduce variation but do not remove it."
+        "text": "Control over the inference server software and its versions",
+        "explanation": "Choosing and patching the serving stack is something the company does when it self-hosts on EC2; in Bedrock, AWS manages that software."
       },
       {
         "key": "D",
-        "text": "There are no servers or GPU instances for the company to manage"
+        "text": "No servers or GPU instances for the company to manage"
       },
       {
         "key": "E",
-        "text": "Models from several providers are available through one API"
+        "text": "Models from several providers available through one API"
       }
     ],
-    "explanation": "Amazon Bedrock is a fully managed service: it offers foundation models from Amazon and other providers through a single API, with no infrastructure for the customer to run. It does not distribute base model weights, its outputs are not deterministic, and pricing follows usage or reserved hourly capacity. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+    "explanation": "Amazon Bedrock is a fully managed service: it offers foundation models from Amazon and other providers through a single API, with no infrastructure for the customer to run. The other options are real benefits, but of the EC2 side of the comparison: self-hosting gives control over instance types, the serving software and the model itself, in exchange for running all of it. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
     "reviewStatus": "draft",
@@ -2047,11 +2047,11 @@
       },
       {
         "key": "D",
-        "text": "The model's parameter count",
-        "explanation": "Parameter count describes the model's size, not its effect on the business."
+        "text": "Average time taken to generate each description",
+        "explanation": "Generation latency is a technical performance measure; descriptions can be produced quickly without lifting sales."
       }
     ],
-    "explanation": "Business value is measured with business metrics: here, whether visitors to pages with generated descriptions buy more often (conversion rate), alongside measures such as revenue per user or return on investment. Technical scores such as BLEU, token counts and model size do not show business impact. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "explanation": "Business value is measured with business metrics: here, whether visitors to pages with generated descriptions buy more often (conversion rate), alongside measures such as revenue per user or return on investment. Technical measures such as BLEU, token counts and generation latency describe the model's output or performance, not its business impact. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
     "reviewStatus": "draft",
@@ -4922,8 +4922,8 @@
     "options": [
       {
         "key": "A",
-        "text": "Pre-train the model again from scratch on public web data",
-        "explanation": "Pre-training happens before fine-tuning and is done by the model provider; repeating it would undo the point of starting from a foundation model."
+        "text": "Fine-tune it again on a larger set of support transcripts",
+        "explanation": "Without first measuring the tuned model, the team cannot tell whether more tuning is needed or what data is missing."
       },
       {
         "key": "B",
@@ -4936,11 +4936,11 @@
       },
       {
         "key": "D",
-        "text": "Select the data that the provider used for pre-training",
-        "explanation": "Data selection for pre-training is an early step owned by the model builder, long before this team fine-tuned the model."
+        "text": "Compare its per-token price with other candidate models",
+        "explanation": "Comparing prices is part of model selection, which the team already finished; it does not show whether the tuned model works."
       }
     ],
-    "explanation": "The FM lifecycle runs roughly from data selection and model selection, through pre-training and fine-tuning, to evaluation, deployment and feedback. After fine-tuning, the team evaluates the model on representative tasks to confirm it meets the success criteria before deploying it. Feedback follows deployment, and pre-training and its data selection come much earlier. Read more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "explanation": "The FM lifecycle runs roughly from data selection and model selection, through pre-training and fine-tuning, to evaluation, deployment and feedback. After fine-tuning, the team evaluates the model on representative tasks to confirm it meets the success criteria before deploying it. More tuning is only worth doing once evaluation shows a gap, price comparison belongs to the earlier selection step, and feedback follows deployment. Read more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
     "reviewStatus": "draft",
@@ -5082,21 +5082,21 @@
       },
       {
         "key": "B",
-        "text": "Average time to first token",
-        "explanation": "Time to first token is a technical latency measure; it can improve while subscribers still leave."
+        "text": "Cost per conversation handled",
+        "explanation": "Cost per conversation shows how cheaply the assistant runs; it can fall while subscribers still leave."
       },
       {
         "key": "C",
-        "text": "ROUGE score on a summarization test set",
-        "explanation": "ROUGE compares generated text with reference text; it measures model output, not whether customers stay."
+        "text": "Average revenue per user",
+        "explanation": "Average revenue per user reflects spending in a period and can rise from price changes even as subscribers churn sooner."
       },
       {
         "key": "D",
-        "text": "Conversion rate of a single upgrade campaign",
-        "explanation": "A campaign conversion rate measures one short-term action, while the goal is how long subscribers stay and spend."
+        "text": "Conversion rate of upgrade offers",
+        "explanation": "Upgrade conversion measures whether customers accept offers, not how long they stay as subscribers."
       }
     ],
-    "explanation": "Customer lifetime value (CLV) captures the total revenue a customer brings over the whole relationship, so it rises when subscribers stay longer. Latency and ROUGE are technical measures of the model, and a single campaign's conversion rate tracks a one-off action rather than retention. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "explanation": "Customer lifetime value (CLV) captures the total revenue a customer brings over the whole relationship, so it rises when subscribers stay longer. Cost per conversation tracks operating efficiency, average revenue per user measures spending within a period, and upgrade conversion tracks one kind of sale; none of them shows whether customers stay for more years. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
     "reviewStatus": "draft",
@@ -5230,7 +5230,7 @@
     "conceptId": "genai-builder-tools",
     "level": "easy",
     "difficulty": 2,
-    "prompt": "A company wants employees with no coding background to learn prompt design by building small generative AI apps in a browser. Setup should take minutes and need no AWS infrastructure.\n\nWhich option fits best?",
+    "prompt": "A company wants employees with no coding background to learn prompt design by building small generative AI apps in a browser and sharing them with colleagues. Setup should take minutes and need no AWS account.\n\nWhich option fits best?",
     "options": [
       {
         "key": "A",
@@ -5240,21 +5240,21 @@
       {
         "key": "B",
         "text": "Amazon Bedrock AgentCore",
-        "explanation": "AgentCore is for developers deploying production agents, which is far more setup than a learning exercise needs."
+        "explanation": "AgentCore is for developers deploying production agents in an AWS account, which is far more setup than a learning exercise needs."
       },
       {
         "key": "C",
-        "text": "Amazon EC2 with an open-weight model",
-        "explanation": "Hosting a model on EC2 means choosing instances and managing software, the opposite of a no-code start."
+        "text": "Amazon Bedrock console playgrounds",
+        "explanation": "The playgrounds let users try prompts against models, but they run in the AWS Management Console, so each learner needs an AWS account and permissions."
       },
       {
         "key": "D",
         "text": "PartyRock"
       }
     ],
-    "explanation": "PartyRock is a no-code generative AI playground from Amazon: people build small AI apps in the browser by describing them, which makes it a low-barrier way to learn prompt design. JumpStart, AgentCore and self-hosting on EC2 all need AWS infrastructure and technical skills. Read more: https://partyrock.aws/",
+    "explanation": "PartyRock is a no-code generative AI playground from Amazon: people sign in with an Apple, Amazon or Google account, build small AI apps in the browser by describing them, and share or remix them, all without creating an AWS account. The Bedrock playgrounds are also good for prompt experiments but live in the AWS console, and JumpStart and AgentCore need AWS infrastructure and technical skills. Read more: https://aws.amazon.com/blogs/aws/build-ai-apps-with-partyrock-and-amazon-bedrock/",
     "source": "original",
-    "sourceRef": "https://partyrock.aws/",
+    "sourceRef": "https://aws.amazon.com/blogs/aws/build-ai-apps-with-partyrock-and-amazon-bedrock/",
     "reviewStatus": "draft",
     "tags": [
       "aif-c01",
@@ -5326,11 +5326,11 @@
       },
       {
         "key": "D",
-        "text": "The model raises its temperature as the history grows",
-        "explanation": "Temperature is set by the caller and does not change by itself; it also has no effect on price."
+        "text": "Bedrock adds a storage fee for each earlier turn it keeps in a session",
+        "explanation": "Model invocations are stateless, so Bedrock keeps no conversation between calls to charge for; the app itself holds and re-sends the history."
       }
     ],
-    "explanation": "Models are stateless, so a chat app re-sends prior turns as input tokens on every call. Each new turn adds to that history, so input tokens, and the cost per request, climb steadily. Trimming or summarizing history, or caching a fixed prefix, keeps this in check. Rates per token stay the same and there is no session-time charge. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/count-tokens.html",
+    "explanation": "Models are stateless, so a chat app re-sends prior turns as input tokens on every call. Each new turn adds to that history, so input tokens, and the cost per request, climb steadily. Trimming or summarizing history, or caching a fixed prefix, keeps this in check. Rates per token stay the same, and there is no session-time or history-storage charge, because Bedrock does not hold the conversation between calls. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/count-tokens.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/count-tokens.html",
     "reviewStatus": "draft",
@@ -5386,7 +5386,7 @@
     "conceptId": "context-engineering",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A team is improving the quality of an assistant's answers by changing what goes into the model's context window for each request, without changing the model.\n\nWhich TWO are context engineering practices? (Select TWO.)",
+    "prompt": "A team wants to improve the quality of an assistant's answers through context engineering, keeping the same model.\n\nWhich TWO are context engineering practices? (Select TWO.)",
     "options": [
       {
         "key": "A",
@@ -5394,8 +5394,8 @@
       },
       {
         "key": "B",
-        "text": "Switch the model to Provisioned Throughput to remove throttling",
-        "explanation": "Provisioned Throughput changes capacity and billing; it does not change what information the model sees."
+        "text": "Turn on prompt caching for the long shared system prompt",
+        "explanation": "Prompt caching reuses an already processed prompt prefix to cut latency and input cost; the model still sees exactly the same context."
       },
       {
         "key": "C",
@@ -5408,11 +5408,11 @@
       },
       {
         "key": "E",
-        "text": "Move to a model with more parameters trained on more data",
-        "explanation": "Changing the model is model selection; the team is working on what goes into the context, with the model fixed."
+        "text": "Raise the maximum output tokens so answers have room to be longer",
+        "explanation": "The output token limit caps how long a response can be; it adds no information to what the model reads in its context."
       }
     ],
-    "explanation": "Context engineering is the practice of choosing and shaping everything a model sees for a request: instructions, retrieved passages, memory, tool results and history. Retrieving only relevant chunks and injecting relevant stored preferences, for example from AgentCore long-term memory, give the model better information within the token budget. Capacity, sampling settings and model size do not change the context. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+    "explanation": "Context engineering is the practice of choosing and shaping everything a model sees for a request: instructions, retrieved passages, memory, tool results and history. Retrieving only relevant chunks and injecting relevant stored preferences, for example from AgentCore long-term memory, give the model better information within the token budget; Amazon Bedrock Knowledge Bases, for example, augments the prompt with only the chunks most similar to the query (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-how-it-works.html). Prompt caching speeds up and cheapens a repeated prefix without changing its content, and sampling settings and the output length limit do not change what the model reads. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
     "reviewStatus": "draft",
@@ -5431,8 +5431,8 @@
     "categoryKey": "genai-fundamentals",
     "conceptId": "multi-agent-patterns",
     "level": "hard",
-    "difficulty": 4,
-    "prompt": "A travel agent built by one team needs to delegate hotel bookings to a separate booking agent that another team builds and runs as its own service. The two agents must exchange tasks and results.\n\nWhich protocol is designed for this communication?",
+    "difficulty": 3,
+    "prompt": "A travel agent built by one team needs to delegate hotel bookings to a separate booking agent that another team builds and runs as its own service. The two agents must exchange tasks and results.\n\nWhich option is designed for this communication?",
     "options": [
       {
         "key": "A",
@@ -5454,9 +5454,9 @@
         "explanation": "Gateway turns APIs and Lambda functions into MCP tools for an agent; it is not the protocol two peer agents use to exchange tasks."
       }
     ],
-    "explanation": "Agent2Agent (A2A) is an open protocol that lets agents built by different teams or frameworks discover each other and exchange tasks and results across services. MCP connects an agent to tools and data; an OpenAPI action group gives a Bedrock agent callable APIs; AgentCore Gateway exposes tools over MCP. AgentCore Runtime and Strands Agents both support A2A. Read more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "explanation": "Agent2Agent (A2A) is an open protocol that lets agents built by different teams or frameworks discover each other through agent cards and exchange tasks and results across services; AgentCore Runtime can host A2A servers for exactly this. MCP connects an agent to tools and data, an OpenAPI action group gives a Bedrock agent callable APIs, and AgentCore Gateway exposes tools over MCP. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-a2a.html",
     "source": "original",
-    "sourceRef": "https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-a2a.html",
     "reviewStatus": "draft",
     "tags": [
       "aif-c01",
@@ -5480,7 +5480,7 @@
       },
       {
         "key": "B",
-        "text": "A supervisor agent that routes each request to specialist agents"
+        "text": "Split it into specialist agents under a supervisor agent"
       },
       {
         "key": "C",
@@ -5553,25 +5553,25 @@
     "options": [
       {
         "key": "A",
-        "text": "Archive it for compliance and keep the current model unchanged",
-        "explanation": "Keeping the data for audit is fine, but ignoring it skips the feedback stage that drives the next improvement."
+        "text": "Fine-tune on every rated draft, then redeploy the tuned model",
+        "explanation": "Training on low-rated drafts teaches the weak behavior, and redeploying without re-evaluation leaves the legal problem unverified."
       },
       {
         "key": "B",
-        "text": "Pre-train a new foundation model from scratch on the ratings",
-        "explanation": "A few thousand ratings are far too little for pre-training, which needs very large unlabeled datasets and heavy compute."
+        "text": "Add the low-rated legal drafts to the RAG knowledge base",
+        "explanation": "Retrieval would feed the model its own poor drafts as reference material, which tends to repeat the errors rather than fix them."
       },
       {
         "key": "C",
-        "text": "Switch to the largest available model without further testing",
-        "explanation": "A bigger model may or may not fix legal drafts, and deploying without evaluation skips a lifecycle step."
+        "text": "Raise the temperature for legal topics to vary the drafts",
+        "explanation": "Temperature changes how varied the sampling is, not how accurate legal drafts are, and the change would still need evaluating."
       },
       {
         "key": "D",
         "text": "Use it to refine prompts or tuning data, re-evaluate, then redeploy"
       }
     ],
-    "explanation": "Feedback closes the FM lifecycle loop: production signals show where the model falls short, the team improves prompts, retrieval or fine-tuning data for those cases, evaluates again and redeploys. Ignoring the signal stalls improvement, ratings are not pre-training material, and swapping models without evaluation skips a step. Read more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
+    "explanation": "Feedback closes the FM lifecycle loop: production signals show where the model falls short, the team improves prompts, retrieval or fine-tuning data for those cases, evaluates again and redeploys. Tuning on every draft uses bad examples as training data and skips evaluation, putting poor drafts in a knowledge base grounds the model in its own mistakes, and temperature controls variety rather than quality. Read more: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html",
     "reviewStatus": "draft",
@@ -5675,20 +5675,20 @@
       },
       {
         "key": "B",
-        "text": "Score it on test prompts from each department and compare per department"
+        "text": "Score it on test prompts from each department and compare the results"
       },
       {
         "key": "C",
-        "text": "Measure the average latency of its responses under load",
-        "explanation": "Latency is a performance requirement, but it says nothing about whether the content is good in each department."
+        "text": "Score it on one mixed test set and report a single average score",
+        "explanation": "A single average can hide a weak department behind two strong ones, so it cannot show whether quality holds in all three."
       },
       {
         "key": "D",
-        "text": "Count the tokens it produces per request for each department",
-        "explanation": "Token counts reflect length and cost, not whether the drafts are accurate or useful."
+        "text": "Have expert reviewers rate its drafts for legal, the riskiest area",
+        "explanation": "Human review is a sound method, but covering only legal prompts says nothing about marketing or engineering."
       }
     ],
-    "explanation": "Cross-domain performance means checking quality in each domain the model will serve. A test set with prompts from each department, scored separately (for example with an Amazon Bedrock model evaluation job), shows whether the model holds up everywhere or is weak in one area. A general benchmark, latency or token counts do not answer that. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
+    "explanation": "Cross-domain performance means checking quality in each domain the model will serve. A test set with prompts from each department, scored and reported separately (for example with an Amazon Bedrock model evaluation job), shows whether the model holds up everywhere or is weak in one area. A general benchmark or a single blended average hides department-level gaps, and reviewing one department leaves the others untested. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html",
     "reviewStatus": "draft",
@@ -5705,7 +5705,7 @@
     "conceptId": "agentcore-services",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "A team has built an agent with the open-source LangGraph framework. They want to run it in production with each user session isolated from the others, fast scaling, and no servers to manage, while keeping their LangGraph code.\n\nWhich option fits best?",
+    "prompt": "A team has built a research agent with the open-source LangGraph framework. Some research sessions run for more than an hour. They want to run it in production with each user session isolated from the others, fast scaling, and no servers to manage, while keeping their LangGraph code.\n\nWhich option fits best?",
     "options": [
       {
         "key": "A",
@@ -5714,8 +5714,8 @@
       },
       {
         "key": "B",
-        "text": "Amazon SageMaker JumpStart",
-        "explanation": "JumpStart deploys pre-trained models to endpoints; it does not host agent code with per-session isolation."
+        "text": "AWS Lambda functions running the agent",
+        "explanation": "Lambda is serverless and can run LangGraph code, but each invocation stops after at most 15 minutes, too short for hour-long sessions."
       },
       {
         "key": "C",
@@ -5727,7 +5727,7 @@
         "text": "Amazon Bedrock AgentCore Runtime"
       }
     ],
-    "explanation": "AgentCore Runtime is a serverless runtime for agents and tools built with any framework, including LangGraph, CrewAI and Strands Agents, and any model. It isolates each session and scales automatically. Bedrock Agents would need a rebuild, JumpStart hosts models rather than agents, and EC2 puts server management back on the team. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
+    "explanation": "AgentCore Runtime is a serverless runtime for agents and tools built with any framework, including LangGraph, CrewAI and Strands Agents, and any model. Each user session runs in its own microVM, sessions can last up to 8 hours, and it scales automatically. Bedrock Agents would need a rebuild, Lambda's 15-minute limit cuts long sessions short, and EC2 puts server management back on the team. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
     "reviewStatus": "draft",
@@ -5744,7 +5744,7 @@
     "conceptId": "agentcore-services",
     "level": "hard",
     "difficulty": 4,
-    "prompt": "An agent on Amazon Bedrock AgentCore must read each user's calendar in a third-party SaaS app on that user's behalf. Users grant consent through OAuth, and the team wants no credentials stored in the agent's code.\n\nWhich AgentCore service handles this?",
+    "prompt": "An agent on Amazon Bedrock AgentCore must read each user's calendar in a third-party SaaS app on that user's behalf, calling the calendar's REST API from its own code. Users grant consent through OAuth, and the team wants no credentials stored in the agent's code.\n\nWhich AgentCore service obtains and holds each user's OAuth tokens for the agent?",
     "options": [
       {
         "key": "A",
@@ -5752,21 +5752,21 @@
       },
       {
         "key": "B",
-        "text": "AgentCore Memory",
-        "explanation": "Memory stores conversation context and user facts; it does not manage OAuth consent or access tokens."
+        "text": "AgentCore Policy",
+        "explanation": "Policy evaluates Cedar rules on agent traffic through a gateway to decide which tool calls are allowed; it does not obtain or store users' OAuth tokens."
       },
       {
         "key": "C",
-        "text": "AgentCore Observability",
-        "explanation": "Observability provides traces, metrics and logs of agent behavior; it does not authorize access to other services."
+        "text": "AgentCore Gateway",
+        "explanation": "Gateway turns APIs into MCP tools and relies on Identity for outbound credentials; here the agent calls the API itself and needs Identity's tokens directly."
       },
       {
         "key": "D",
-        "text": "AgentCore Code Interpreter",
-        "explanation": "Code Interpreter runs code in a sandbox for the agent; it does not broker access to a user's accounts."
+        "text": "AgentCore Memory",
+        "explanation": "Memory stores conversation context and user facts for later turns; it is not a credential store and does not run OAuth consent flows."
       }
     ],
-    "explanation": "AgentCore Identity manages agent identities and credential providers, so an agent can access AWS resources and third-party services on behalf of a user, with OAuth consent and tokens held by the service rather than in code. Memory, Observability and Code Interpreter solve other problems. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+    "explanation": "AgentCore Identity manages agent identities and credential providers, so an agent can access AWS resources and third-party services on behalf of a user, with OAuth consent and tokens held by the service rather than in code. Gateway and Policy are also access-related, but Gateway exposes tools over MCP (using Identity for outbound auth) and Policy decides which tool calls an agent may make; Memory holds context, not credentials. Read more: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
     "reviewStatus": "draft",
@@ -5978,12 +5978,12 @@
     "conceptId": "model-selection",
     "level": "veryhard",
     "difficulty": 5,
-    "prompt": "A company is choosing a model in Amazon Bedrock for a claims app. Requirements: accept a photo and a text description in one request; process data in an EU Region; respond within 2 seconds at the 95th percentile; and, among models that qualify, cost the least. The candidates:\n\n- Model A: text only, available in the EU, 1 s, lowest cost\n- Model B: image and text, available in the EU, 1.5 s, medium cost\n- Model C: image and text, available in US Regions only, 1 s, low cost\n- Model D: image and text, available in the EU, 4 s, low cost\n\nWhich model should the company choose?",
+    "prompt": "A company in Germany is choosing a model in Amazon Bedrock for a claims app. Each request sends a photo of the damage with a short description, and the app must return a written damage assessment within 2 seconds at the 95th percentile. Data must be processed in EU Regions, and among models that qualify, the cheapest wins. All candidates are called from the Frankfurt Region:\n\n- Model A: vision-language model, global cross-Region inference profile, 1 s, lowest cost\n- Model B: vision-language model, EU cross-Region inference profile, 1.5 s, medium cost\n- Model C: multimodal embeddings model that accepts image and text, 0.5 s, low cost\n- Model D: vision-language model, submitted as Bedrock batch inference jobs, low cost\n\nWhich model should the company choose?",
     "options": [
       {
         "key": "A",
         "text": "Model A",
-        "explanation": "Model A is fast, cheap and in the EU, but it cannot accept the photo, so it fails the first requirement."
+        "explanation": "A global inference profile lets Bedrock route each request to a commercial Region anywhere, so processing can leave the EU."
       },
       {
         "key": "B",
@@ -5992,17 +5992,17 @@
       {
         "key": "C",
         "text": "Model C",
-        "explanation": "Model C is fast and multimodal, but processing in US Regions breaks the EU data requirement."
+        "explanation": "An embeddings model turns the image and text into a numeric vector for search or recommendation; it does not write an assessment."
       },
       {
         "key": "D",
         "text": "Model D",
-        "explanation": "Model D is multimodal, in the EU and cheaper than B, but its 4-second response time misses the 2-second target."
+        "explanation": "Batch inference processes prompts asynchronously and writes results to Amazon S3, so it cannot answer an app request within 2 seconds."
       }
     ],
-    "explanation": "Apply the hard constraints first (modality, Region, latency), then pick the cheapest model that passes. Model A lacks image input, Model C is outside the EU, and Model D is too slow. Model B is the only one that meets every constraint, so its medium cost is the lowest that qualifies. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+    "explanation": "Apply the hard constraints first, then pick the cheapest model that passes. A geographic (EU) cross-Region inference profile keeps processing in Regions within the EU, while a global profile can route to any supported commercial Region, so Model A breaks the data requirement. Model C is an embeddings model, which returns vectors rather than generated text, and Model D's batch jobs run asynchronously through Amazon S3, far beyond a 2-second response. Model B meets every constraint, so its medium cost is the lowest that qualifies. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html",
     "source": "original",
-    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+    "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html",
     "reviewStatus": "draft",
     "tags": [
       "aif-c01",
@@ -6017,29 +6017,29 @@
     "conceptId": "multi-agent-patterns",
     "level": "veryhard",
     "difficulty": 5,
-    "prompt": "A finance team builds a multi-agent system with Strands Agents for a monthly report. Every run must follow the same steps: extract the data, run three independent analyses in parallel, then write the report. Auditors need the same sequence each month.\n\nWhich multi-agent pattern fits best?",
+    "prompt": "A finance team is designing a multi-agent system that produces a monthly report. Every run must extract the data, run three independent analyses at the same time, then write the report. Auditors require the identical sequence each month.\n\nWhich orchestration pattern fits best?",
     "options": [
       {
         "key": "A",
-        "text": "Swarm, where agents hand tasks to each other as they see fit",
+        "text": "A swarm of peer agents that hand off work to one another",
         "explanation": "In a swarm, agents decide among themselves who acts next, so the path is emergent and can differ from run to run."
       },
       {
         "key": "B",
-        "text": "Graph, where a model decision at each node picks the next path",
-        "explanation": "A graph lets model decisions choose branches and loops, which allows the sequence to change between runs."
+        "text": "Agent-to-agent (A2A) delegation between agent services",
+        "explanation": "A2A is a protocol for agents in separate services to exchange tasks; it defines how agents talk, not a fixed order in which the steps run."
       },
       {
         "key": "C",
-        "text": "A single agent that plans the steps fresh on each run",
-        "explanation": "An agent planning from scratch each month may reorder or skip steps, which the auditors do not accept."
+        "text": "An orchestrator agent that calls specialist agents as tools",
+        "explanation": "The orchestrator's model decides when and whether to call each specialist, so the order of steps can change from run to run."
       },
       {
         "key": "D",
-        "text": "Workflow, a developer-defined task graph with parallel steps"
+        "text": "A code-defined workflow of tasks and their dependencies"
       }
     ],
-    "explanation": "The Strands Workflow pattern runs a fixed, developer-defined task graph, with independent tasks in parallel, as one repeatable action, which suits a process that must run the same way every time. Swarm hands off between agents autonomously and Graph lets model decisions choose the path, so both allow variation; a single planning agent offers no fixed sequence. Read more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
+    "explanation": "Multi-agent systems differ mainly in how the path of execution is decided. A workflow is a pre-defined task graph (DAG) set in code: its flow is deterministic, independent tasks run in parallel, and a prompt cannot alter its structure, which suits a process auditors expect to run identically. In a swarm the agents hand off autonomously, an orchestrator using agents as tools lets its model decide which specialist to call and when, and A2A is a communication protocol between agent services rather than an execution order. Strands Agents, the AWS open-source agent SDK, offers all four patterns. Read more: https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
     "source": "original",
     "sourceRef": "https://strandsagents.com/latest/documentation/docs/user-guide/concepts/multi-agent/multi-agent-patterns/",
     "reviewStatus": "draft",
