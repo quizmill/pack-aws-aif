@@ -3694,30 +3694,30 @@
     "categoryKey": "security-governance",
     "conceptId": "ai-security-services",
     "level": "hard",
-    "difficulty": 4,
+    "difficulty": 3,
     "prompt": "An application in private subnets calls Amazon Bedrock. Security requires that this traffic stays off the public internet and that the subnets have no NAT gateway.\n\nWhat should the team create?",
     "options": [
       {
         "key": "A",
         "text": "A gateway VPC endpoint for Amazon Bedrock",
-        "explanation": "Gateway endpoints exist only for Amazon S3 and DynamoDB, so there is no gateway endpoint for Bedrock."
+        "explanation": "Gateway endpoints exist for Amazon S3 and DynamoDB, so there is no gateway endpoint to create for Bedrock."
       },
       {
         "key": "B",
-        "text": "A NAT gateway in a public subnet with restrictive security groups",
-        "explanation": "A NAT gateway sends traffic out through the internet gateway, and the requirement rules it out."
+        "text": "A transit gateway route to Amazon Bedrock",
+        "explanation": "A transit gateway interconnects VPCs and on-premises networks; it does not by itself give a private path to the Bedrock service API."
       },
       {
         "key": "C",
-        "text": "An interface VPC endpoint for Amazon Bedrock (AWS PrivateLink)"
+        "text": "An interface VPC endpoint for Amazon Bedrock"
       },
       {
         "key": "D",
-        "text": "An internet gateway with a route limited to Bedrock's IP ranges",
-        "explanation": "Traffic through an internet gateway uses the public internet, which is what the team must avoid."
+        "text": "A VPC peering connection to Amazon Bedrock",
+        "explanation": "VPC peering routes traffic between two VPCs; Bedrock is reached through its service endpoint, not through a VPC the team can peer with."
       }
     ],
-    "explanation": "An interface VPC endpoint, powered by AWS PrivateLink, gives a private connection from the VPC to Amazon Bedrock without an internet gateway, NAT device, VPN or Direct Connect. Gateway endpoints are only for Amazon S3 and DynamoDB, and NAT or internet gateways send traffic over the internet path. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html",
+    "explanation": "An interface VPC endpoint, powered by AWS PrivateLink, gives a private connection from the VPC to Amazon Bedrock without an internet gateway, NAT device, VPN or Direct Connect. Gateway endpoints cover Amazon S3 and DynamoDB, not Bedrock. A transit gateway links VPCs and on-premises networks, and VPC peering links two VPCs; neither connects the subnets to the Bedrock service API on its own. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html",
     "reviewStatus": "draft",
@@ -3787,15 +3787,15 @@
       },
       {
         "key": "C",
-        "text": "AWS Trusted Advisor",
-        "explanation": "Trusted Advisor checks accounts against best practices; it does not keep a log of individual API calls."
+        "text": "The IAM credential report",
+        "explanation": "The credential report lists each IAM user and the status of their passwords and access keys; it does not record individual API calls or source IP addresses."
       },
       {
         "key": "D",
         "text": "AWS CloudTrail"
       }
     ],
-    "explanation": "AWS CloudTrail records API calls made to Amazon Bedrock, including who made each call, when and from which source IP address, so changes such as updating a guardrail can be audited. CloudWatch metrics are aggregates, Trusted Advisor makes recommendations, and invocation logging captures model traffic rather than configuration changes. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/logging-using-cloudtrail.html",
+    "explanation": "AWS CloudTrail records API calls made to Amazon Bedrock, including who made each call, when and from which source IP address, so changes such as updating a guardrail can be audited. CloudWatch metrics are aggregates, the IAM credential report shows credential status rather than actions, and invocation logging captures model traffic rather than configuration changes. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/logging-using-cloudtrail.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/logging-using-cloudtrail.html",
     "reviewStatus": "draft",
@@ -4295,21 +4295,21 @@
       },
       {
         "key": "B",
-        "text": "The default AWS owned key that Bedrock uses",
+        "text": "An AWS owned key in AWS KMS",
         "explanation": "An AWS owned key is managed by AWS in its own accounts, so the bank cannot audit its use or disable it."
       },
       {
         "key": "C",
-        "text": "AWS Secrets Manager with automatic rotation",
-        "explanation": "Secrets Manager stores and rotates secrets such as database passwords; it is not the key that encrypts knowledge base data."
+        "text": "An AWS managed key in AWS KMS",
+        "explanation": "The bank can audit an AWS managed key's use in CloudTrail, but it cannot change the key's policy or disable it."
       },
       {
         "key": "D",
-        "text": "A certificate from AWS Certificate Manager",
-        "explanation": "Certificate Manager issues TLS certificates that protect data in transit, not keys that encrypt stored data."
+        "text": "Amazon S3 managed keys (SSE-S3)",
+        "explanation": "SSE-S3 keys are created and managed by Amazon S3, so the bank cannot audit each use of a key it controls or disable that key."
       }
     ],
-    "explanation": "By default, Amazon Bedrock encrypts knowledge base resources with an AWS owned key. Choosing a customer managed key in AWS KMS instead gives the bank control of the key policy, a CloudTrail record of each use of the key, and the ability to disable the key. Secrets Manager holds credentials, and Certificate Manager covers TLS in transit. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-kb.html",
+    "explanation": "By default, Amazon Bedrock encrypts knowledge base resources with an AWS owned key. Choosing a customer managed key in AWS KMS instead gives the bank control of the key policy, a CloudTrail record of each use of the key, and the ability to disable the key. An AWS managed key can be audited but its policy cannot be changed and it cannot be disabled, and AWS owned keys and SSE-S3 keys are managed entirely by AWS. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-kb.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-kb.html",
     "reviewStatus": "draft",
@@ -4415,8 +4415,8 @@
     "options": [
       {
         "key": "A",
-        "text": "A higher temperature for the model",
-        "explanation": "Temperature changes how varied the wording is; it does not link answers to their sources."
+        "text": "A contextual grounding check in a guardrail",
+        "explanation": "A grounding check filters responses that the reference source does not support, but it does not show employees which document an answer came from."
       },
       {
         "key": "B",
@@ -4425,15 +4425,15 @@
       },
       {
         "key": "C",
-        "text": "A guardrail word filter on responses",
-        "explanation": "Word filters block listed words and phrases; they do not attach sources to answers."
+        "text": "Metadata filters on knowledge base queries",
+        "explanation": "Metadata filters narrow which documents are searched, but the answer still does not point employees to the document it used."
       },
       {
         "key": "D",
         "text": "Source citations in each response"
       }
     ],
-    "explanation": "When an application queries a knowledge base with the RetrieveAndGenerate API, the response comes back with citations to the original source data. Users can open the cited source to verify the answer, which is what source citation in a RAG system is for. Temperature, invocation logging and word filters do nothing to tie an answer to its source. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve-generate.html",
+    "explanation": "When an application queries a knowledge base with the RetrieveAndGenerate API, the response comes back with citations to the original source data. Users can open the cited source to verify the answer, which is what source citation in a RAG system is for. A contextual grounding check blocks unsupported answers automatically but leaves employees nothing to check against, metadata filters only narrow the search, and invocation logging is an audit record. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve-generate.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve-generate.html",
     "reviewStatus": "draft",
