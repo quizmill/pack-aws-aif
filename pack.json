@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 2,
+  "id": "aws-aif",
+  "title": "AWS AI Practitioner",
+  "description": "Practice for the AWS Certified AI Practitioner (AIF-C01) exam - AI and ML basics, generative AI, foundation models, responsible AI, and security and governance for AI on AWS.",
+  "homeSubtitle": "Grind toward AIF-C01.",
+  "themeColor": "#ff9900",
+  "categories": [
+    {
+      "key": "ai-ml-fundamentals",
+      "label": "Fundamentals of AI and ML",
+      "shortLabel": "AI & ML",
+      "icon": "🧠",
+      "weight": 0.2
+    },
+    {
+      "key": "genai-fundamentals",
+      "label": "Fundamentals of Generative AI",
+      "shortLabel": "GenAI",
+      "icon": "✨",
+      "weight": 0.24
+    },
+    {
+      "key": "fm-applications",
+      "label": "Applications of Foundation Models",
+      "shortLabel": "Foundation Models",
+      "icon": "🧩",
+      "weight": 0.28
+    },
+    {
+      "key": "responsible-ai",
+      "label": "Guidelines for Responsible AI",
+      "shortLabel": "Responsible AI",
+      "icon": "⚖️",
+      "weight": 0.14
+    },
+    {
+      "key": "security-governance",
+      "label": "Security, Compliance, and Governance for AI Solutions",
+      "shortLabel": "Security",
+      "icon": "🛡️",
+      "weight": 0.14
+    }
+  ],
+  "levelsLabel": "Tier",
+  "levels": [
+    {
+      "key": "easy",
+      "label": "Easy"
+    },
+    {
+      "key": "hard",
+      "label": "Hard"
+    },
+    {
+      "key": "veryhard",
+      "label": "Very hard"
+    }
+  ],
+  "exam": {
+    "label": "AIF-C01 exam",
+    "passPct": 70,
+    "scaled": true,
+    "questionCount": 65,
+    "durationMinutes": 90
+  },
+  "games": {},
+  "sources": [
+    {
+      "label": "Original",
+      "name": "quizmill exam-style questions",
+      "blurb": "Questions written for this pack in the official exam's style, each grounded in the public AWS documentation page named in its sourceRef.",
+      "url": "https://github.com/quizmill/pack-aws-aif"
+    },
+    {
+      "label": "AWS",
+      "name": "AIF-C01 exam guide",
+      "blurb": "Domains, weights and task statements follow the official AWS Certified AI Practitioner (AIF-C01) exam guide.",
+      "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html"
+    }
+  ]
+}
