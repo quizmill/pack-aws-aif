@@ -144,7 +144,7 @@
         "text": "Amazon Transcribe to convert speech to text, then Amazon Comprehend for sentiment"
       }
     ],
-    "explanation": "Amazon Transcribe converts recorded speech into text, and Amazon Comprehend detects the sentiment of that text (positive, negative, neutral or mixed); both are pretrained managed services. Polly does the opposite of transcription, Translate changes language but not sentiment, and Lex runs live chatbot conversations. Read more: https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+    "explanation": "Amazon Transcribe converts recorded speech into text, and Amazon Comprehend detects the sentiment of that text (positive, negative, neutral or mixed); both are pretrained managed services. Polly does the opposite of transcription, Translate changes language but not sentiment, and Lex runs live chatbot conversations. (Transcribe Call Analytics can also return sentiment by itself; among these options, Transcribe with Comprehend is the one that works.) Read more: https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
     "reviewStatus": "draft",
@@ -179,11 +179,11 @@
       },
       {
         "key": "D",
-        "text": "Cluster employees by salary band and apply each band's average deduction",
-        "explanation": "Clustering groups similar records; an average per group cannot reproduce each employee's exact deduction."
+        "text": "Use SageMaker Autopilot to find the best model for the deduction",
+        "explanation": "Autopilot picks the best ML model, but any model still predicts an estimate instead of applying the exact formula."
       }
     ],
-    "explanation": "ML models make predictions; they are a poor fit when a specific, deterministic outcome is required and the rules are already known. Implementing the published formula directly gives exact, repeatable results at lower cost. Regression and clustering only approximate the answer, and a foundation model can produce different output for the same input. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "explanation": "ML models make predictions; they are a poor fit when a specific, deterministic outcome is required and the rules are already known. Implementing the published formula directly gives exact, repeatable results at lower cost. Regression models, however they are chosen, only approximate the answer, and a foundation model can produce different output for the same input. Read more: https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
     "reviewStatus": "draft",
@@ -689,15 +689,15 @@
       },
       {
         "key": "C",
-        "text": "A cross-Region inference profile with on-demand calls",
-        "explanation": "A cross-Region profile spreads load for higher throughput; it does not lower the per-token price."
+        "text": "A geographic cross-Region inference profile with on-demand calls",
+        "explanation": "A geographic profile spreads load for higher throughput at on-demand rates; it gets no batch discount."
       },
       {
         "key": "D",
         "text": "Batch inference with the tickets uploaded to Amazon S3"
       }
     ],
-    "explanation": "Bedrock batch inference processes many prompts asynchronously from files in Amazon S3 and writes the results back to S3. For supported models, batch is priced at 50% less than on-demand, which suits a job where nobody waits on a single response. Provisioned Throughput charges by the hour whether or not it is used, and on-demand or cross-Region calls pay the full on-demand price. Read more: https://aws.amazon.com/bedrock/pricing/",
+    "explanation": "Bedrock batch inference processes many prompts asynchronously from files in Amazon S3 and writes the results back to S3. For supported models, batch is priced at 50% less than on-demand, which suits a job where nobody waits on a single response. Provisioned Throughput charges by the hour whether or not it is used, and on-demand calls, in one Region or across Regions, do not get the batch discount. Read more: https://aws.amazon.com/bedrock/pricing/",
     "source": "original",
     "sourceRef": "https://aws.amazon.com/bedrock/pricing/",
     "reviewStatus": "draft",
@@ -1204,8 +1204,8 @@
       },
       {
         "key": "B",
-        "text": "Add a negative prompt telling the model not to give wrong answers",
-        "explanation": "Telling a model not to be wrong gives it no method; it changes nothing about how it reaches the answer."
+        "text": "Raise the temperature so the model explores more possible answers",
+        "explanation": "Higher temperature adds randomness; it does not make the model work through the steps."
       },
       {
         "key": "C",
@@ -1214,11 +1214,11 @@
       },
       {
         "key": "D",
-        "text": "Remove the examples from the prompt so it is zero-shot",
-        "explanation": "Removing examples takes guidance away; it does not help the model reason through steps."
+        "text": "Add a few-shot example that shows only the question and the final number",
+        "explanation": "An example with only the final number teaches the model to skip the reasoning, which is the problem here."
       }
     ],
-    "explanation": "Chain-of-thought prompting asks the model to reason through intermediate steps before giving the answer, which improves results on multi-step problems such as arithmetic and logic. A vague instruction not to be wrong, a tighter output limit or fewer examples all give the model less to work with. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/design-a-prompt.html",
+    "explanation": "Chain-of-thought prompting asks the model to reason through intermediate steps before giving the answer, which improves results on multi-step problems such as arithmetic and logic. More randomness, a tighter output limit or examples that skip the working do not help the model reason. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/design-a-prompt.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/design-a-prompt.html",
     "reviewStatus": "draft",
@@ -1785,8 +1785,8 @@
     "options": [
       {
         "key": "A",
-        "text": "The neural network is more transparent because its higher accuracy shows it reasons correctly",
-        "explanation": "Accuracy measures how often a model is right, not whether people can see how it reached a decision."
+        "text": "Applying SHAP to the network makes it interpretable by design, like the tree",
+        "explanation": "SHAP gives post-hoc approximations of a black-box model; it does not make the network interpretable by design."
       },
       {
         "key": "B",
@@ -1799,11 +1799,11 @@
       },
       {
         "key": "D",
-        "text": "Explainability matters mainly during training, so the more accurate network is safer",
-        "explanation": "The requirement is a reason for each decision, which applies to every prediction, not only during training."
+        "text": "A SageMaker model card for the network meets the per-applicant reason requirement",
+        "explanation": "A model card documents the model for reviewers; it does not give each declined applicant a reason for their decision."
       }
     ],
-    "explanation": "A decision tree's path to a decision can be read directly, so it is transparent. A deep neural network is a black box: tools such as SHAP feature attributions approximate its reasoning after the fact. The bank must weigh 5 points of accuracy against how faithfully it can explain each decision. Accuracy does not equal transparency, and explanations are needed for every decision. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html",
+    "explanation": "A decision tree's path to a decision can be read directly, so it is transparent. A deep neural network is a black box: tools such as SHAP feature attributions approximate its reasoning after the fact. The bank must weigh 5 points of accuracy against how faithfully it can explain each decision. Post-hoc methods do not make a model transparent, and a model card documents the model rather than each decision. Read more: https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html",
     "reviewStatus": "draft",
@@ -2225,8 +2225,8 @@
       },
       {
         "key": "B",
-        "text": "Prompts are protected only when the company buys Provisioned Throughput",
-        "explanation": "Bedrock's data protection applies to on-demand use too; it does not depend on the pricing option."
+        "text": "A customer managed KMS key also hides the prompt text from the model during inference",
+        "explanation": "The model has to read the prompt to answer it; KMS keys protect stored data, not what the model processes."
       },
       {
         "key": "C",
@@ -2243,7 +2243,7 @@
         "explanation": "Bedrock does not use customer content to improve base models, and model providers never receive it."
       }
     ],
-    "explanation": "With Amazon Bedrock, customer content is not used to improve the base models and is not shared with model providers, which have no access to the accounts where models run. Data is encrypted in transit and at rest, and customers can use their own AWS KMS keys. These protections do not depend on Provisioned Throughput. Read more: https://aws.amazon.com/bedrock/faqs/",
+    "explanation": "With Amazon Bedrock, customer content is not used to improve the base models and is not shared with model providers, which have no access to the accounts where models run. Data is encrypted in transit and at rest, and customers can use their own AWS KMS keys; the keys protect data at rest, while the model still reads the prompt to answer. Read more: https://aws.amazon.com/bedrock/faqs/",
     "source": "original",
     "sourceRef": "https://aws.amazon.com/bedrock/faqs/",
     "reviewStatus": "draft",
@@ -2349,8 +2349,8 @@
       },
       {
         "key": "B",
-        "text": "Provisioned Throughput in the US East (N. Virginia) Region",
-        "explanation": "Processing in a US Region violates the EU-only requirement, whatever the capacity."
+        "text": "Provisioned Throughput in a single EU Region",
+        "explanation": "This keeps processing in the EU, but capacity stays bounded by one Region, and peak traffic exceeds what one Region provides."
       },
       {
         "key": "C",
@@ -2363,7 +2363,7 @@
         "explanation": "Retries keep processing in the EU but do not raise the throughput ceiling of a single Region."
       }
     ],
-    "explanation": "Geographic cross-Region inference spreads requests across Regions within a boundary such as the EU, raising available throughput while keeping data processing inside that geography, which suits data residency requirements. A global profile can route anywhere, a US Region breaks residency, and retries do not add capacity. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html",
+    "explanation": "Geographic cross-Region inference spreads requests across Regions within a boundary such as the EU, raising available throughput while keeping data processing inside that geography, which suits data residency requirements. A global profile can route anywhere, and a single EU Region, reserved or with retries, cannot absorb the peak. Read more: https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html",
     "source": "original",
     "sourceRef": "https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html",
     "reviewStatus": "draft",
